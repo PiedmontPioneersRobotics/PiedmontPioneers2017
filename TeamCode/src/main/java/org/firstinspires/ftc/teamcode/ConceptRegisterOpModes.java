@@ -33,12 +33,13 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.robotcontroller.external.samples;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegistrar;
 
-import org.firstinspires.ftc.robotcontroller.external.samples.*;
+import org.firstinspires.ftc.robotcontroller.external.samples.ConceptVuMarkIdentification;
+import org.firstinspires.ftc.robotcontroller.external.samples.OneTrickOgreTeleop;
 
 /**
  * This class demonstrates how to manually register opmodes.
@@ -112,6 +113,8 @@ public class ConceptRegisterOpModes
       // manager.register("Telemetry",              ConceptTelemetry.class);
       // manager.register("Vuforia Navigation",     ConceptVuforiaNavigation.class);
       manager.register("VuMark Identification",     ConceptVuMarkIdentification.class);
-      manager.register("One Trick Ogre",                OneTrickOgreTeleop.class);
+      manager.register("One Trick Ogre",            OneTrickOgreTeleop.class);
+        manager.register("FWD",                     FWDTeleop.class);
+
     }
 }
