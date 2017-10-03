@@ -20,7 +20,7 @@ public class FWDTeleop extends OpMode{
         double childSpeed;
         double OgreSpeed;
         OgreSpeed = -gamepad1.left_stick_y;
-        childSpeed = gamepad1.right_stick_y;
+        childSpeed = -gamepad1.right_stick_y;
 
         robot.Right1.setPower(OgreSpeed);
         robot.Right2.setPower(OgreSpeed);
