@@ -51,7 +51,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  * a LinearOpMode. It shares much structure with {@link ConceptVuforiaNavigation}; we do not here
  * duplicate the core Vuforia documentation found there, but rather instead focus on the
  * differences between the use of Vuforia for navigation vs VuMark identification.
- *
+ * 
  * @see ConceptVuforiaNavigation
  * @see VuforiaLocalizer
  * @see VuforiaTrackableDefaultListener
@@ -78,7 +78,17 @@ public class ConceptVuMarkIdentification extends LinearOpMode {
      */
     VuforiaLocalizer vuforia;
 
+    public boolean RedBottom;
+    public boolean BlueBottom;
+    public boolean RedTop;
+    public boolean BlueTop;
     @Override public void runOpMode() {
+
+
+
+
+
+
 
         /*
          * To start up Vuforia, tell it the view that we wish to use for camera monitor (on the RC phone);
@@ -137,6 +147,19 @@ public class ConceptVuMarkIdentification extends LinearOpMode {
              * UNKNOWN will be returned by {@link RelicRecoveryVuMark#from(VuforiaTrackable)}.
              */
             RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
+
+
+
+            if(vuMark != RelicRecoveryVuMark.CENTER){
+
+            }else{
+                telemetry.addData("Hi", vuMark);
+            }
+            /*
+            AddedCode
+            */
+
+
             if (vuMark != RelicRecoveryVuMark.UNKNOWN) {
 
                 /* Found an instance of the template. In the actual game, you will probably
