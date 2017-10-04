@@ -31,6 +31,24 @@ public class FWDTeleop extends OpMode{
         telemetry.addData("right",  "%.2f", rightSpeed);
         telemetry.addData("right",  "%.2f", rightSpeed);
 
+
+
+
+
+
+
+
+        if (gamepad1.left_bumper) {
+            robot.starboardGripper.setPosition(0);
+            robot.portGripper.setPosition(1);
+
+        }else if (gamepad1.right_bumper) {
+            robot.starboardGripper.setPosition(1);
+            robot.portGripper.setPosition(0);
+        }else {
+            robot.starboardGripper.setPosition(0.5);
+            robot.portGripper.setPosition(0.5);
+        }
     }
     @Override
     public void stop() {
