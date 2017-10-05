@@ -33,7 +33,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.robotcontroller.external.samples;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegistrar;
@@ -111,7 +111,7 @@ public class ConceptRegisterOpModes
       // manager.register("Scan Servo",             ConceptScanServo.class);
       // manager.register("Telemetry",              ConceptTelemetry.class);
       // manager.register("Vuforia Navigation",     ConceptVuforiaNavigation.class);
-      manager.register("VuMark Identification",     ConceptVuMarkIdentification.class);
+      manager.register("VuMark Identification",     VuMarkIdentification.class);
       manager.register("One Trick Ogre",                OneTrickOgreTeleop.class);
     }
 }

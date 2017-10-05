@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 FIRST. All rights reserved.
+package org.firstinspires.ftc.teamcode;/* Copyright (c) 2017 FIRST. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted (subject to the limitations in the disclaimer below) provided that
@@ -66,7 +66,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 @Autonomous(name="Concept: VuMark Id", group ="Concept")
 //@Disabled
-public class ConceptVuMarkIdentification extends LinearOpMode {
+public class VuMarkIdentification extends LinearOpMode {
 
     public static final String TAG = "Vuforia VuMark Sample";
 
@@ -77,11 +77,24 @@ public class ConceptVuMarkIdentification extends LinearOpMode {
      * localization engine.
      */
     VuforiaLocalizer vuforia;
-
+    // READ THIS: This main code is for RedBottom!!
     public boolean RedBottom;
     public boolean BlueBottom;
     public boolean RedTop;
     public boolean BlueTop;
+
+    public boolean Center;
+    public boolean Left;
+    public boolean Right;
+    public void KnockoffJewel(String jewelColor, Boolean opMode){
+        //extend jewel arm
+
+        if (jewelColor == "Red") {
+
+        } else if (jewelColor == "Blue") {
+
+        }
+    }
     @Override public void runOpMode() {
 
 
@@ -138,6 +151,7 @@ public class ConceptVuMarkIdentification extends LinearOpMode {
 
         relicTrackables.activate();
 
+
         while (opModeIsActive()) {
 
             /**
@@ -149,29 +163,36 @@ public class ConceptVuMarkIdentification extends LinearOpMode {
             RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
 
 
-
-            if(vuMark != RelicRecoveryVuMark.CENTER){
-
-            }else{
-                telemetry.addData("Hi", vuMark);
+            if(RedBottom){
             }
+
+            if(vuMark == RelicRecoveryVuMark.CENTER){
+                Center = true;
+                telemetry.addData("Center", "True!!");
+            }else if(vuMark == RelicRecoveryVuMark.LEFT){
+                Left = true;
+                telemetry.addData("Left", "True!!");
+            }else if(vuMark == RelicRecoveryVuMark.RIGHT){
+                Right = true;
+                telemetry.addData("Right", "True!!");
+            }
+            telemetry.update();
             /*
             AddedCode
             */
-
 
             if (vuMark != RelicRecoveryVuMark.UNKNOWN) {
 
                 /* Found an instance of the template. In the actual game, you will probably
                  * loop until this condition occurs, then move on to act accordingly depending
                  * on which VuMark was visible. */
-                telemetry.addData("VuMark", "%s visible", vuMark);
+                //telemetry.addData("VuMark", "%s visible", vuMark);
 
                 /* For fun, we also exhibit the navigational pose. In the Relic Recovery game,
                  * it is perhaps unlikely that you will actually need to act on this pose information, but
                  * we illustrate it nevertheless, for completeness. */
                 OpenGLMatrix pose = ((VuforiaTrackableDefaultListener)relicTemplate.getListener()).getPose();
-                telemetry.addData("Pose", format(pose));
+               // telemetry.addData("Pose", format(pose));
 
                 /* We further illustrate how to decompose the pose into useful rotational and
                  * translational components */
@@ -191,10 +212,10 @@ public class ConceptVuMarkIdentification extends LinearOpMode {
                 }
             }
             else {
-                telemetry.addData("VuMark", "not visible");
+               // telemetry.addData("VuMark", "not visible");
             }
 
-            telemetry.update();
+            //telemetry.update();
         }
     }
 
