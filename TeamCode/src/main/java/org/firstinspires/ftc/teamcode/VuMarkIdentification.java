@@ -51,7 +51,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  * a LinearOpMode. It shares much structure with {@link ConceptVuforiaNavigation}; we do not here
  * duplicate the core Vuforia documentation found there, but rather instead focus on the
  * differences between the use of Vuforia for navigation vs VuMark identification.
- *
+ * 
  * @see ConceptVuforiaNavigation
  * @see VuforiaLocalizer
  * @see VuforiaTrackableDefaultListener
