@@ -164,8 +164,15 @@ public class VuMarkIdentification extends LinearOpMode {
         }
         return distance;
     }
-
+    //hold glyph
+    public void holdGlyph(){
+        //these values may be switched! Check it next time!!
+        robot.starboardGripper.setPosition(1);
+        robot.portGripper.setPosition(0);
+    }
+    //drop glyph into cryptobox
     public void dropGlyph(){
+        //these values may be switched! Check it next time!!
         robot.starboardGripper.setPosition(0);
         robot.portGripper.setPosition(1);
     }
@@ -234,12 +241,12 @@ public class VuMarkIdentification extends LinearOpMode {
 
 
             if(RedBottom){
+                holdGlyph();
                 KnockoffJewel("Red", RedBottom);
                 driveForward(1, checkVuforia());
                 rightTurn(1,2);
                 driveForward(1,2);
-
-            //Drop glyph;
+                dropGlyph();
             //}else if(BlueBottom){
             //    ArmKnocksOffJule;
             //if distance
