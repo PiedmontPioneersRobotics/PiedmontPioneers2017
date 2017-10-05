@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -8,6 +9,8 @@ public class HardwareFWD {
     public DcMotor  Right2   = null;
     public DcMotor  Left1   = null;
     public DcMotor  Left2   = null;
+    public Servo starboardGripper = null;
+    public Servo portGripper = null;
     HardwareMap hwMap           =  null;
     private ElapsedTime period  = new ElapsedTime();
     public HardwareFWD(){}
@@ -29,5 +32,7 @@ public class HardwareFWD {
         Left2.setDirection(DcMotor.Direction.FORWARD);
         Left2.setPower(0);
         Left2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        starboardGripper = hwMap.get(Servo.class, "Starboard gripper");
+        portGripper = hwMap.get(Servo.class, "Port gripper");
     }
  }
