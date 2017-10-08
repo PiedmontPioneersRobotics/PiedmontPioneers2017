@@ -1,8 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class HardwareFWD {
@@ -19,11 +18,11 @@ public class HardwareFWD {
     public void init(HardwareMap ahwMap) {
         hwMap = ahwMap;
         Right1  = hwMap.get(DcMotor.class, "Right1");
-        Right1.setDirection(DcMotor.Direction.REVERSE);
+        Right1.setDirection(DcMotor.Direction.FORWARD);
         Right1.setPower(0);
         Right1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         Right2  = hwMap.get(DcMotor.class, "Right2");
-        Right2.setDirection(DcMotor.Direction.REVERSE);
+        Right2.setDirection(DcMotor.Direction.FORWARD);
         Right2.setPower(0);
         Right2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         Left1  = hwMap.get(DcMotor.class, "Left1");

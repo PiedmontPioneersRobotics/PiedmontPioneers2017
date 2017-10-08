@@ -1,4 +1,4 @@
-/* Copyright (c) 2017 FIRST. All rights reserved.
+package org.firstinspires.ftc.teamcode;/* Copyright (c) 2017 FIRST. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted (subject to the limitations in the disclaimer below) provided that
@@ -29,6 +29,7 @@
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.ConceptVuforiaNavigation;
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -66,30 +67,118 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 @Autonomous(name="Concept: VuMark Id", group ="Concept")
 //@Disabled
-public class ConceptVuMarkIdentification extends LinearOpMode {
+public class VuMarkIdentification extends LinearOpMode {
 
     public static final String TAG = "Vuforia VuMark Sample";
 
     OpenGLMatrix lastLocation = null;
-
+    private ElapsedTime runtime = new ElapsedTime();
     /**
      * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
      * localization engine.
      */
     VuforiaLocalizer vuforia;
-
+    // READ THIS: This main code is for RedBottom!!
     public boolean RedBottom;
     public boolean BlueBottom;
     public boolean RedTop;
     public boolean BlueTop;
+
+    VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
+    VuforiaTrackable relicTemplate = relicTrackables.get(0);
+    RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
+
+    HardwareFWD robot  = new HardwareFWD();
+    public boolean Center;
+    public boolean Left;
+    public boolean Right;
+    public void KnockoffJewel(String jewelColor, Boolean opMode) {
+        //extend jewel arm
+        if (jewelColor == "Red") {
+
+        } else if (jewelColor == "Blue") {
+
+        }
+    }
+    double rightSpeed;
+    double leftSpeed;
+    //drive forward
+    public void driveForward(double speed, double time) {
+        runtime.reset();
+        leftSpeed = speed;
+        rightSpeed = speed;
+        while (opModeIsActive() && (runtime.seconds() < time)) {
+            robot.Right1.setPower(rightSpeed);
+            robot.Right2.setPower(rightSpeed);
+            robot.Left1.setPower(leftSpeed);
+            robot.Left2.setPower(leftSpeed);
+        }
+
+        robot.Right1.setPower(0);
+        robot.Right2.setPower(0);
+        robot.Left1.setPower(0);
+        robot.Left2.setPower(0);
+    }
+    //turn left
+    public void leftTurn(double speed, double time){
+        runtime.reset();
+        leftSpeed = -speed;
+        rightSpeed = speed;
+        while (opModeIsActive() && (runtime.seconds() < time)) {
+            robot.Right1.setPower(rightSpeed);
+            robot.Right2.setPower(rightSpeed);
+            robot.Left1.setPower(leftSpeed);
+            robot.Left2.setPower(leftSpeed);
+        }
+    }
+    // turn right
+    public void rightTurn(double speed, double time){
+        runtime.reset();
+        leftSpeed = speed;
+        rightSpeed = -speed;
+        while (opModeIsActive() && (runtime.seconds() < time)) {
+            robot.Right1.setPower(rightSpeed);
+            robot.Right2.setPower(rightSpeed);
+            robot.Left1.setPower(leftSpeed);
+            robot.Left2.setPower(leftSpeed);
+        }
+    }
+    //check vuforia and return the distance needed to get to the correct cryptobox column
+    public double checkVuforia() {
+        Center = false;
+        Right = false;
+        Left = false;
+        double distance = 0.0;
+        if(vuMark == RelicRecoveryVuMark.CENTER){
+            Center = true;
+            distance = 1;
+            telemetry.addData("Center ", "True!!");
+        } else if(vuMark == RelicRecoveryVuMark.LEFT){
+            Left = true;
+            distance = 2;
+            telemetry.addData("Left ", "True!!");
+        } else if(vuMark == RelicRecoveryVuMark.RIGHT){
+            Right = true;
+            distance = 3;
+            telemetry.addData("Right ", "True!!");
+        }
+        return distance;
+    }
+    //hold glyph
+    public void holdGlyph(){
+        //these values may be switched! Check it next time!!
+        robot.starboardGripper.setPosition(1);
+        robot.portGripper.setPosition(0);
+    }
+    //drop glyph into cryptobox
+    public void dropGlyph(){
+        //these values may be switched! Check it next time!!
+        robot.starboardGripper.setPosition(0);
+        robot.portGripper.setPosition(1);
+    }
     @Override public void runOpMode() {
-
-
-
-
-
-
-
+        robot.init(hardwareMap);
+        telemetry.addData("Say", "Hello Driver");
         /*
          * To start up Vuforia, tell it the view that we wish to use for camera monitor (on the RC phone);
          * If no camera monitor is desired, use the parameterless constructor instead (commented out below).
@@ -128,15 +217,13 @@ public class ConceptVuMarkIdentification extends LinearOpMode {
          * but differ in their instance id information.
          * @see VuMarkInstanceId
          */
-        VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
-        VuforiaTrackable relicTemplate = relicTrackables.get(0);
-        relicTemplate.setName("relicVuMarkTemplate"); // can help in debugging; otherwise not necessary
 
         telemetry.addData(">", "Press Play to start");
         telemetry.update();
         waitForStart();
 
         relicTrackables.activate();
+
 
         while (opModeIsActive()) {
 
@@ -146,32 +233,73 @@ public class ConceptVuMarkIdentification extends LinearOpMode {
              * UNKNOWN, LEFT, CENTER, and RIGHT. When a VuMark is visible, something other than
              * UNKNOWN will be returned by {@link RelicRecoveryVuMark#from(VuforiaTrackable)}.
              */
+            VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
+            VuforiaTrackable relicTemplate = relicTrackables.get(0);
+            relicTemplate.setName("relicVuMarkTemplate"); // can help in debugging; otherwise not necessary
+
             RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
 
 
+            if(RedBottom){
+                holdGlyph();
+                KnockoffJewel("Red", RedBottom);
+                driveForward(1, checkVuforia());
+                rightTurn(1,2);
+                driveForward(1,2);
+                dropGlyph();
+            //}else if(BlueBottom){
+            //    ArmKnocksOffJule;
+            //if distance
+            //   Go Backwards;
+            //   Phone checks vuforia;
+                            //  Turn 90o  toward the cryptoBox
+            //if distance
+            //   Go Backwards;
+            //Drop glyph;
+            //}
+            // Start Starboard facing juels
+            //if(Redtop){
+            //   VuforiaChecks;
+            //   KnockOffJule;
+            //   Go Forward;
+            //   Turn 90o to left;
+            //   Go forward
+            //  Turn 90o to Right;
+            //  Go Forward;
+            // Drop glyph;
+            //}else
+            // Start Starboard facing juels
+            //if(bluetop){
+            //   VuforiaChecks;
+            //   KnockOffJule;
+            //  Go backwords;
+            //   Turn 90o to port;
+            //   Go forward
+            //  Turn 90o to port;
+            //  Go Forward;
+            // Drop glyph;
+            //}
 
-            if(vuMark != RelicRecoveryVuMark.CENTER){
-
-            }else{
-                telemetry.addData("Hi", vuMark);
             }
+
+
+            telemetry.update();
             /*
             AddedCode
             */
-
 
             if (vuMark != RelicRecoveryVuMark.UNKNOWN) {
 
                 /* Found an instance of the template. In the actual game, you will probably
                  * loop until this condition occurs, then move on to act accordingly depending
                  * on which VuMark was visible. */
-                telemetry.addData("VuMark", "%s visible", vuMark);
+                //telemetry.addData("VuMark", "%s visible", vuMark);
 
                 /* For fun, we also exhibit the navigational pose. In the Relic Recovery game,
                  * it is perhaps unlikely that you will actually need to act on this pose information, but
                  * we illustrate it nevertheless, for completeness. */
                 OpenGLMatrix pose = ((VuforiaTrackableDefaultListener)relicTemplate.getListener()).getPose();
-                telemetry.addData("Pose", format(pose));
+               // telemetry.addData("Pose", format(pose));
 
                 /* We further illustrate how to decompose the pose into useful rotational and
                  * translational components */
@@ -191,10 +319,10 @@ public class ConceptVuMarkIdentification extends LinearOpMode {
                 }
             }
             else {
-                telemetry.addData("VuMark", "not visible");
+               // telemetry.addData("VuMark", "not visible");
             }
 
-            telemetry.update();
+            //telemetry.update();
         }
     }
 
