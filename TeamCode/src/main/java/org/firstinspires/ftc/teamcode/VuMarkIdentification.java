@@ -18,6 +18,7 @@ package org.firstinspires.ftc.teamcode;/* Copyright (c) 2017 FIRST. All rights r
  * LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
  * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ *
  * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
@@ -240,20 +241,29 @@ public class VuMarkIdentification extends LinearOpMode {
             RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
 
 
-            if(RedBottom){
+            if(RedBottom) {
                 holdGlyph();
                 KnockoffJewel("Red", RedBottom);
                 driveForward(1, checkVuforia());
-                rightTurn(1,2);
-                driveForward(1,2);
+                rightTurn(1, 2);
+                driveForward(1, 2);
                 dropGlyph();
+            } else if(BlueBottom) {
+                KnockoffJewel("Blue", BlueBottom);
+                driveForward(-1,checkVuforia());
+                rightTurn(1,2);
+                driveForward(1,checkVuforia());
+                dropGlyph();
+            }
+
+
             //}else if(BlueBottom){
             //    ArmKnocksOffJule;
-            //if distance
+
             //   Go Backwards;
             //   Phone checks vuforia;
                             //  Turn 90o  toward the cryptoBox
-            //if distance
+
             //   Go Backwards;
             //Drop glyph;
             //}
@@ -280,7 +290,7 @@ public class VuMarkIdentification extends LinearOpMode {
             // Drop glyph;
             //}
 
-            }
+
 
 
             telemetry.update();
