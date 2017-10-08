@@ -68,7 +68,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 @Autonomous(name="Concept: VuMark Id", group ="Concept")
 //@Disabled
-public class VuMarkIdentification extends LinearOpMode {
+public class    VuMarkIdentification extends LinearOpMode {
 
     public static final String TAG = "Vuforia VuMark Sample";
 
@@ -93,13 +93,25 @@ public class VuMarkIdentification extends LinearOpMode {
     public boolean Center;
     public boolean Left;
     public boolean Right;
-    public void KnockoffJewel(String jewelColor, Boolean opMode) {
-        //extend jewel arm
-        if (jewelColor == "Red") {
+    public void KnockoffJewel(String teamColor, Boolean opMode) {
+        robot.jewelMover.setPosition(.5);
+        if (teamColor == "Red") {
 
-        } else if (jewelColor == "Blue") {
+// if (sensed color = red){
+// drive forward
+// }
+// if (sensed color = blue){
+// drive backwards
 
+        } else if (teamColor == "Blue") {
+//sense which color is in front of
+// if (sensed color = red){
+// drive backwards
+// }
+// if (sensed color = blue){
+// drive forwards
         }
+    //    pull up the arm
     }
     double rightSpeed;
     double leftSpeed;
@@ -254,15 +266,21 @@ public class VuMarkIdentification extends LinearOpMode {
                 rightTurn(1,2);
                 driveForward(1,checkVuforia());
                 dropGlyph();
+            } else if(BlueTop) {
+                holdGlyph();
+                KnockoffJewel("Blue", BlueTop);
+                driveForward(1, checkVuforia());
+                rightTurn(1, 2);
+                driveForward(1, 2);
+                dropGlyph();
             }
-
 
             //}else if(BlueBottom){
             //    ArmKnocksOffJule;
 
             //   Go Backwards;
             //   Phone checks vuforia;
-                            //  Turn 90o  toward the cryptoBox
+            //  Turn 90o  toward the cryptoBox
 
             //   Go Backwards;
             //Drop glyph;
@@ -279,17 +297,6 @@ public class VuMarkIdentification extends LinearOpMode {
             // Drop glyph;
             //}else
             // Start Starboard facing juels
-            //if(bluetop){
-            //   VuforiaChecks;
-            //   KnockOffJule;
-            //  Go backwords;
-            //   Turn 90o to port;
-            //   Go forward
-            //  Turn 90o to port;
-            //  Go Forward;
-            // Drop glyph;
-            //}
-
 
 
 

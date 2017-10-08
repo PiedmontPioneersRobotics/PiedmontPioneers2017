@@ -12,10 +12,12 @@ public class HardwareFWD {
     public DcMotor  lifter = null;
     public Servo    starboardGripper = null;
     public Servo    portGripper = null;
+    public Servo    jewelMover = null;//child
     HardwareMap hwMap           =  null;
     private ElapsedTime period  = new ElapsedTime();
     public HardwareFWD(){}
     public void init(HardwareMap ahwMap) {
+
         hwMap = ahwMap;
         Right1  = hwMap.get(DcMotor.class, "Right1");
         Right1.setDirection(DcMotor.Direction.FORWARD);
