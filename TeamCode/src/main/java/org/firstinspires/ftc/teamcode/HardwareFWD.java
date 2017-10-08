@@ -9,8 +9,9 @@ public class HardwareFWD {
     public DcMotor  Right2   = null;
     public DcMotor  Left1   = null;
     public DcMotor  Left2   = null;
-    public Servo starboardGripper = null;
-    public Servo portGripper = null;
+    public DcMotor  lifter = null;
+    public Servo    starboardGripper = null;
+    public Servo    portGripper = null;
     HardwareMap hwMap           =  null;
     private ElapsedTime period  = new ElapsedTime();
     public HardwareFWD(){}
@@ -32,7 +33,13 @@ public class HardwareFWD {
         Left2.setDirection(DcMotor.Direction.FORWARD);
         Left2.setPower(0);
         Left2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        lifter  = hwMap.get(DcMotor.class, "lifter");
+        lifter.setDirection(DcMotor.Direction.FORWARD);
+        lifter.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         starboardGripper = hwMap.get(Servo.class, "Starboard gripper");
+        starboardGripper.setPosition(0.5);
         portGripper = hwMap.get(Servo.class, "Port gripper");
+        portGripper.setPosition(0.5);
+
     }
  }
