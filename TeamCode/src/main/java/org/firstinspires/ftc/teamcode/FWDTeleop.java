@@ -43,11 +43,24 @@ public class FWDTeleop extends OpMode{
             robot.portGripper.setPosition(1);
 
         }else if (gamepad1.right_bumper) {
-            robot.starboardGripper.setPosition(1);
-            robot.portGripper.setPosition(0);
-        }else {
             robot.starboardGripper.setPosition(0.5);
             robot.portGripper.setPosition(0.5);
+        }else {
+            robot.starboardGripper.setPosition(1);
+            robot.portGripper.setPosition(0);
+        }
+
+
+
+
+
+
+        if (gamepad1.b) {
+            robot.lifter.setPower(255);
+        }else if(gamepad1.a) {
+            robot.lifter.setPower(-255);
+        }else {
+            robot.lifter.setPower(0);
         }
     }
     @Override
