@@ -19,7 +19,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 import java.util.ArrayList;
 import java.util.List;
-@Autonomous(name="Concept: Vuforia Navigation", group ="Concept")
+@Autonomous(name="MinimalNav", group ="Concept")
 public class MinimalVuNav extends LinearOpMode {
 
     public static final String TAG = "Vuforia Navigation Sample";
