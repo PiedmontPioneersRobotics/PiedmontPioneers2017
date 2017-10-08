@@ -247,6 +247,14 @@ public class VuMarkIdentification extends LinearOpMode {
                 rightTurn(1,2);
                 driveForward(1,2);
                 dropGlyph();
+            } else if(BlueBottom) {
+                KnockoffJewel("Blue", BlueBottom);
+                driveForward(-1,checkVuforia());
+                rightTurn(1,2);
+                driveForward(1,checkVuforia());
+                dropGlyph();
+            }
+
 
             //}else if(BlueBottom){
             //    ArmKnocksOffJule;
