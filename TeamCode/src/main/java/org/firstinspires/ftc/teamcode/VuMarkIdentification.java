@@ -247,6 +247,7 @@ public class VuMarkIdentification extends LinearOpMode {
                 rightTurn(1,2);
                 driveForward(1,2);
                 dropGlyph();
+
             //}else if(BlueBottom){
             //    ArmKnocksOffJule;
             //if distance
@@ -258,6 +259,19 @@ public class VuMarkIdentification extends LinearOpMode {
             //Drop glyph;
             //}
             // Start Starboard facing juels
+
+           if (RedTop){
+               double drivetime = checkVuforia();
+
+               checkVuforia();
+               KnockoffJewel("Red", RedTop);
+               driveForward(1,2);
+               rightTurn(1,2);
+               driveForward(1,drivetime);
+               rightTurn(1,2);
+               driveForward(1,2);
+               dropGlyph();
+           }
             //if(Redtop){
             //   VuforiaChecks;
             //   KnockOffJule;
