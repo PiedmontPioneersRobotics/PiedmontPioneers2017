@@ -19,13 +19,13 @@ public class FWDTeleop extends OpMode{
     public void loop() {
         double rightSpeed;
         double leftSpeed;
-        leftSpeed = -gamepad1.left_stick_y;
-        rightSpeed = -gamepad1.right_stick_y;
+        rightSpeed = gamepad1.right_stick_x;
+        leftSpeed = -gamepad1.right_stick_y;
 
-        robot.Right1.setPower(rightSpeed);
-        robot.Right2.setPower(rightSpeed);
-        robot.Left1.setPower(leftSpeed);
-        robot.Left2.setPower(leftSpeed);
+        robot.Right1.setPower(rightSpeed - leftSpeed);
+        robot.Right2.setPower(rightSpeed - leftSpeed);
+        robot.Left1.setPower(rightSpeed + leftSpeed);
+        robot.Left2.setPower(rightSpeed + leftSpeed);
         telemetry.addData("left",  "%.2f", leftSpeed);
         telemetry.addData("left",  "%.2f", leftSpeed);
         telemetry.addData("right",  "%.2f", rightSpeed);
