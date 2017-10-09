@@ -161,6 +161,8 @@ public class VuMarkIdentification extends LinearOpMode {
             Right = true;
             distance = 3;
             telemetry.addData("Right ", "True!!");
+        }else{
+            distance = 0.0;
         }
         return distance;
     }
