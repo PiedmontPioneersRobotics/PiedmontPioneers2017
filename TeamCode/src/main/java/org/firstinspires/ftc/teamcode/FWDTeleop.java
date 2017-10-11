@@ -19,13 +19,14 @@ public class FWDTeleop extends OpMode{
     public void loop() {
         double rightSpeed;
         double leftSpeed;
-        rightSpeed = gamepad1.right_stick_x;
-        leftSpeed = -gamepad1.right_stick_y;
-
-        robot.Right1.setPower(rightSpeed - leftSpeed);
-        robot.Right2.setPower(rightSpeed - leftSpeed);
-        robot.Left1.setPower(rightSpeed + leftSpeed);
-        robot.Left2.setPower(rightSpeed + leftSpeed);
+        rightSpeed = gamepad1.right_stick_y;
+        leftSpeed = -gamepad1.left_stick_y;
+        rightSpeed = rightSpeed * rightSpeed * rightSpeed;
+        leftSpeed = leftSpeed * leftSpeed * leftSpeed;
+        robot.Right1.setPower(rightSpeed );
+        robot.Right2.setPower(rightSpeed);
+        robot.Left1.setPower(leftSpeed);
+        robot.Left2.setPower(leftSpeed);
         telemetry.addData("left",  "%.2f", leftSpeed);
         telemetry.addData("left",  "%.2f", leftSpeed);
         telemetry.addData("right",  "%.2f", rightSpeed);
@@ -36,8 +37,8 @@ public class FWDTeleop extends OpMode{
             robot.portGripper.setPosition(1);
 
         }else if (gamepad1.right_bumper) {
-            robot.starboardGripper.setPosition(0.5);
-            robot.portGripper.setPosition(0.5);
+            robot.starboardGripper.setPosition(1);
+            robot.portGripper.setPosition(0);
         }else {
             robot.starboardGripper.setPosition(1);
             robot.portGripper.setPosition(0);
