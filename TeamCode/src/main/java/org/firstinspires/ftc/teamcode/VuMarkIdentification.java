@@ -84,23 +84,6 @@ public class VuMarkIdentification extends LinearOpMode {
     public boolean BlueBottom;
     public boolean RedTop;
     public boolean BlueTop;
-
-    VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
-    VuforiaTrackable relicTemplate = relicTrackables.get(0);
-    RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
-
-    HardwareFWD robot  = new HardwareFWD();
-    public boolean Center;
-    public boolean Left;
-    public boolean Right;
-    public void KnockoffJewel(String jewelColor, Boolean opMode) {
-        //extend jewel arm
-        if (jewelColor == "Red") {
-
-        } else if (jewelColor == "Blue") {
-
-        }
-    }
     double rightSpeed;
     double leftSpeed;
     //drive forward
@@ -108,6 +91,22 @@ public class VuMarkIdentification extends LinearOpMode {
         runtime.reset();
         leftSpeed = speed;
         rightSpeed = speed;
+        while (opModeIsActive() && (runtime.seconds() < time)) {
+            robot.Right1.setPower(rightSpeed);
+            robot.Right2.setPower(rightSpeed);
+            robot.Left1.setPower(leftSpeed);
+            robot.Left2.setPower(leftSpeed);
+        }
+
+        robot.Right1.setPower(0);
+        robot.Right2.setPower(0);
+        robot.Left1.setPower(0);
+        robot.Left2.setPower(0);
+    }
+    public void driveBackward(double speed, double time) {
+        runtime.reset();
+        leftSpeed = -speed;
+        rightSpeed = -speed;
         while (opModeIsActive() && (runtime.seconds() < time)) {
             robot.Right1.setPower(rightSpeed);
             robot.Right2.setPower(rightSpeed);
@@ -143,6 +142,27 @@ public class VuMarkIdentification extends LinearOpMode {
             robot.Left1.setPower(leftSpeed);
             robot.Left2.setPower(leftSpeed);
         }
+    }
+    VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
+    VuforiaTrackable relicTemplate = relicTrackables.get(0);
+    RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
+
+    HardwareFWD robot  = new HardwareFWD();
+    public boolean Center;
+    public boolean Left;
+    public boolean Right;
+    public void KnockoffJewel(Boolean opMode) {
+        //jewelColor is a spacer variable for now
+        String jewelColor = "nothing";
+        //armDown();
+        if (jewelColor == "Red") {
+            driveForward(1,1);
+            driveBackward(1,1);
+        } else if (jewelColor == "Blue") {
+            driveBackward(1,1);
+            driveForward(1,1);
+        }
+        //armUp();
     }
     //check vuforia and return the distance needed to get to the correct cryptobox column
     public double checkVuforia() {
@@ -245,13 +265,13 @@ public class VuMarkIdentification extends LinearOpMode {
 
             if(RedBottom) {
                 holdGlyph();
-                KnockoffJewel("Red", RedBottom);
+                KnockoffJewel(RedBottom);
                 driveForward(1, checkVuforia());
                 rightTurn(1, 2);
                 driveForward(1, 2);
                 dropGlyph();
             } else if(BlueBottom) {
-                KnockoffJewel("Blue", BlueBottom);
+                KnockoffJewel(BlueBottom);
                 driveForward(-1,checkVuforia());
                 rightTurn(1,2);
                 driveForward(1,checkVuforia());
