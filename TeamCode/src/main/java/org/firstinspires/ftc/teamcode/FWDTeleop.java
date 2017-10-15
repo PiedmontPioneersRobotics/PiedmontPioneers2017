@@ -59,11 +59,19 @@ public class FWDTeleop extends OpMode{
 
 
 
-        robot.starboardGripper.setPosition(0.11*(1-gamepad1.right_trigger)+0.2);
-        robot.portGripper.setPosition(0.11*gamepad1.left_trigger+0.2);
-        telemetry.addData("port gripper",  "%.2f", gamepad1.right_trigger);
-        telemetry.addData("starboard gripper",  "%.2f", gamepad1.left_trigger);
+        if ((gamepad1.left_bumper)&&(gamepad1.left_bumper)) {
+            robot.starboardGripper.setPosition(1);
+            robot.portGripper.setPosition(0);
+        }
 
+        else {
+            double rgp = 1 - (0.11 * (gamepad1.right_trigger) + 0.2);
+            double lgp = 0.11 * gamepad1.left_trigger + 0.2;
+            robot.starboardGripper.setPosition(rgp);
+            robot.portGripper.setPosition(lgp);
+            telemetry.addData("starboard gripper", "%.2f", rgp);
+            telemetry.addData("port gripper", "%.2f", lgp);
+        }
     }
     @Override
     public void stop() {
