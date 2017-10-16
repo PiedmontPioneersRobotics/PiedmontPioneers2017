@@ -66,11 +66,11 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  * is explained in {@link ConceptVuforiaNavigation}.
  */
 
-@Autonomous(name="Concept: VuMark Id", group ="Concept")
-//@Disabled
+@Autonomous(name="Red Bottom Autonomous", group ="Concept")
 public class VuMarkIdentification extends LinearOpMode {
 
     public static final String TAG = "Vuforia VuMark Sample";
+    RelicRecoveryVuMark vuMark;
 
     OpenGLMatrix lastLocation = null;
     private ElapsedTime runtime = new ElapsedTime();
@@ -80,19 +80,17 @@ public class VuMarkIdentification extends LinearOpMode {
      */
     VuforiaLocalizer vuforia;
     // READ THIS: This main code is for RedBottom!!
-    public boolean RedBottom;
+    public boolean RedBottom = true;
     public boolean BlueBottom;
     public boolean RedTop;
     public boolean BlueTop;
 
-    VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
-    VuforiaTrackable relicTemplate = relicTrackables.get(0);
-    RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
 
     HardwareFWD robot  = new HardwareFWD();
     public boolean Center;
     public boolean Left;
     public boolean Right;
+
     public void KnockoffJewel(String jewelColor, Boolean opMode) {
         //extend jewel arm
         if (jewelColor == "Red") {
@@ -105,6 +103,8 @@ public class VuMarkIdentification extends LinearOpMode {
     double leftSpeed;
     //drive forward
     public void driveForward(double speed, double time) {
+        telemetry.addData(">", "Start drive forward");
+
         runtime.reset();
         leftSpeed = speed;
         rightSpeed = speed;
@@ -182,6 +182,8 @@ public class VuMarkIdentification extends LinearOpMode {
     @Override public void runOpMode() {
         robot.init(hardwareMap);
         telemetry.addData("Say", "Hello Driver");
+        telemetry.update();
+
         /*
          * To start up Vuforia, tell it the view that we wish to use for camera monitor (on the RC phone);
          * If no camera monitor is desired, use the parameterless constructor instead (commented out below).
@@ -214,6 +216,10 @@ public class VuMarkIdentification extends LinearOpMode {
         parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
         this.vuforia = ClassFactory.createVuforiaLocalizer(parameters);
 
+        VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
+        VuforiaTrackable relicTemplate = relicTrackables.get(0);
+        vuMark = RelicRecoveryVuMark.from(relicTemplate);
+
         /**
          * Load the data set containing the VuMarks for Relic Recovery. There's only one trackable
          * in this data set: all three of the VuMarks in the game were created from this one template,
@@ -227,28 +233,19 @@ public class VuMarkIdentification extends LinearOpMode {
 
         relicTrackables.activate();
 
+        telemetry.addData(">", "Start main loop");
+        telemetry.update();
 
         while (opModeIsActive()) {
 
-            /**
-             * See if any of the instances of {@link relicTemplate} are currently visible.
-             * {@link RelicRecoveryVuMark} is an enum which can have the following values:
-             * UNKNOWN, LEFT, CENTER, and RIGHT. When a VuMark is visible, something other than
-             * UNKNOWN will be returned by {@link RelicRecoveryVuMark#from(VuforiaTrackable)}.
-             */
-            VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
-            VuforiaTrackable relicTemplate = relicTrackables.get(0);
-            relicTemplate.setName("relicVuMarkTemplate"); // can help in debugging; otherwise not necessary
-
-            RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
-
+            driveForward(1,1000);
 
             if(RedBottom) {
                 holdGlyph();
-                KnockoffJewel("Red", RedBottom);
-                driveForward(1, checkVuforia());
+               KnockoffJewel("Red", RedBottom);
+               driveForward(1, checkVuforia());
                 rightTurn(1, 2);
-                driveForward(1, 2);
+                driveForward(1, 1000);
                 dropGlyph();
             } else if(BlueBottom) {
                 KnockoffJewel("Blue", BlueBottom);
@@ -257,6 +254,7 @@ public class VuMarkIdentification extends LinearOpMode {
                 driveForward(1,checkVuforia());
                 dropGlyph();
             }
+
 
 
             //}else if(BlueBottom){
@@ -334,7 +332,7 @@ public class VuMarkIdentification extends LinearOpMode {
                // telemetry.addData("VuMark", "not visible");
             }
 
-            //telemetry.update();
+            telemetry.update();
         }
     }
 
