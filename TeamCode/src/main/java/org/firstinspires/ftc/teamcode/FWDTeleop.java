@@ -62,9 +62,7 @@ public class FWDTeleop extends OpMode{
         if ((gamepad1.left_bumper)&&(gamepad1.left_bumper)) {
             robot.starboardGripper.setPosition(1);
             robot.portGripper.setPosition(0);
-        }
-
-        else {
+        } else {
             double rgp = 1 - (0.11 * (gamepad1.right_trigger) + 0.2);
             double lgp = 0.11 * gamepad1.left_trigger + 0.2;
             robot.starboardGripper.setPosition(rgp);
