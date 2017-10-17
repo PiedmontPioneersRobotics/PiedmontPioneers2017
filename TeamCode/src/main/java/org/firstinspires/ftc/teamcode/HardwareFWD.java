@@ -39,9 +39,12 @@ public class HardwareFWD {
         lifter.setDirection(DcMotor.Direction.FORWARD);
         lifter.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         starboardGripper = hwMap.get(Servo.class, "Starboard gripper");
-        starboardGripper.setPosition(0.5);
         portGripper = hwMap.get(Servo.class, "Port gripper");
-        portGripper.setPosition(0.5);
+        double rgp = 1 - 0.2;
+        double lgp = 0.2;
+        starboardGripper.setPosition(rgp);
+        portGripper.setPosition(lgp);
 
     }
+
  }
