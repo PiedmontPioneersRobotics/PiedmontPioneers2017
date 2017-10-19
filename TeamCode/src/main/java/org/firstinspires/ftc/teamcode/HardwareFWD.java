@@ -38,12 +38,14 @@ public class HardwareFWD {
         lifter  = hwMap.get(DcMotor.class, "lifter");
         lifter.setDirection(DcMotor.Direction.FORWARD);
         lifter.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        jewelMover = hwMap.get(Servo.class, "Jewel Grabber");
         starboardGripper = hwMap.get(Servo.class, "Starboard gripper");
         portGripper = hwMap.get(Servo.class, "Port gripper");
         double rgp = 1 - 0.2;
         double lgp = 0.2;
         starboardGripper.setPosition(rgp);
         portGripper.setPosition(lgp);
+        jewelMover.setPosition(0.5);
 
     }
 
