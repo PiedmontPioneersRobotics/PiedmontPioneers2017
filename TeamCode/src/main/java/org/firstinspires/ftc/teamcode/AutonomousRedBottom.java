@@ -70,55 +70,14 @@ public class AutonomousRedBottom extends AutonomousBase {
 
         while (opModeIsActive()) {
 
-            holdGlyph();
-            KnockoffJewel("Red", RedBottom);
-            driveForward(0.5, 0.75f);
-            rightTurn(0.5, 0.75);
-            driveForward(0.5, 0.5);
             dropGlyph();
+            KnockoffJewel("Red", RedBottom);
+            driveForward(0.25, 1.25);
+            rightTurn(0.25, 1.2);
+            driveForward(0.25, 0.75);
+            holdGlyph();
             stopDriving();
             RedBottom = false;
-
-
-
-
-
-            //}else if(BlueBottom){
-            //    ArmKnocksOffJule;
-
-            //   Go Backwards;
-            //   Phone checks vuforia;
-            //  Turn 90o  toward the cryptoBox
-
-            //   Go Backwards;
-            //Drop glyph;
-            //}
-            // Start Starboard facing juels
-            //if(Redtop){
-            //   VuforiaChecks;
-            //   KnockOffJule;
-            //   Go Forward;
-            //   Turn 90o to left;
-            //   Go forward
-            //  Turn 90o to Right;
-            //  Go Forward;
-            // Drop glyph;
-            //}else
-            // Start Starboard facing juels
-            //if(bluetop){
-            //   VuforiaChecks;
-            //   KnockOffJule;
-            //  Go backwords;
-            //   Turn 90o to port;
-            //   Go forward
-            //  Turn 90o to port;
-            //  Go Forward;
-            // Drop glyph;
-            //}
-
-
-
-
             telemetry.update();
             /*
             AddedCode
