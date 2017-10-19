@@ -18,7 +18,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 @Autonomous(name="Red Bottom Autonomous", group ="Concept")
-public class VuMarkIdentification extends LinearOpMode {
+public class AutonomousBase extends LinearOpMode {
 
     public static final String TAG = "Vuforia VuMark Sample";
     RelicRecoveryVuMark vuMark;
