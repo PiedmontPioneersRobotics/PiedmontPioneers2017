@@ -39,6 +39,7 @@ public class VuMarkIdentification extends LinearOpMode {
     public boolean Right;
 
     public void KnockoffJewel(String jewelColor, Boolean opMode) {
+        robot.jewelMover.setPosition(0.789);
         //extend jewel arm
         if (jewelColor == "Red") {
 
@@ -170,9 +171,9 @@ public class VuMarkIdentification extends LinearOpMode {
             if(RedBottom) {
                 holdGlyph();
                 KnockoffJewel("Red", RedBottom);
-                driveForward(1, checkVuforia());
-                rightTurn(1, 2);
-                driveForward(1, 1000);
+                driveForward(0.5, 0.75f);
+                rightTurn(0.5, 0.75);
+                driveForward(0.5, 0.5);
                 dropGlyph();
             } else if(BlueBottom) {
                 KnockoffJewel("Blue", BlueBottom);
