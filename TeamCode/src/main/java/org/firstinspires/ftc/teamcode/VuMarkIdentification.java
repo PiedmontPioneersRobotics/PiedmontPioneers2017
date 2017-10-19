@@ -50,6 +50,12 @@ public class VuMarkIdentification extends LinearOpMode {
     double rightSpeed;
     double leftSpeed;
     //drive forward
+    public void stopDriving(){
+        robot.Right1.setPower(0);
+        robot.Right2.setPower(0);
+        robot.Left1.setPower(0);
+        robot.Left2.setPower(0);
+    }
     public void driveForward(double speed, double time) {
         telemetry.addData(">", "Start drive forward");
 
@@ -175,6 +181,8 @@ public class VuMarkIdentification extends LinearOpMode {
                 rightTurn(0.5, 0.75);
                 driveForward(0.5, 0.5);
                 dropGlyph();
+                stopDriving();
+                RedBottom = false;
             } else if(BlueBottom) {
                 KnockoffJewel("Blue", BlueBottom);
                 driveForward(-1,checkVuforia());
