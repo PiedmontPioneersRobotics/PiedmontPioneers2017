@@ -54,7 +54,7 @@ public class VuMarkIdentification extends LinearOpMode {
 
         runtime.reset();
         leftSpeed = speed;
-        rightSpeed = speed;
+        rightSpeed = -speed;
         while (opModeIsActive() && (runtime.seconds() < time)) {
             robot.Right1.setPower(rightSpeed);
             robot.Right2.setPower(rightSpeed);
@@ -70,7 +70,7 @@ public class VuMarkIdentification extends LinearOpMode {
     public void driveBackward(double speed, double time) {
         runtime.reset();
         leftSpeed = -speed;
-        rightSpeed = -speed;
+        rightSpeed = speed;
         while (opModeIsActive() && (runtime.seconds() < time)) {
             robot.Right1.setPower(rightSpeed);
             robot.Right2.setPower(rightSpeed);
@@ -87,7 +87,7 @@ public class VuMarkIdentification extends LinearOpMode {
     public void leftTurn(double speed, double time){
         runtime.reset();
         leftSpeed = -speed;
-        rightSpeed = speed;
+        rightSpeed = -speed;
         while (opModeIsActive() && (runtime.seconds() < time)) {
             robot.Right1.setPower(rightSpeed);
             robot.Right2.setPower(rightSpeed);
@@ -99,7 +99,7 @@ public class VuMarkIdentification extends LinearOpMode {
     public void rightTurn(double speed, double time){
         runtime.reset();
         leftSpeed = speed;
-        rightSpeed = -speed;
+        rightSpeed = speed;
         while (opModeIsActive() && (runtime.seconds() < time)) {
             robot.Right1.setPower(rightSpeed);
             robot.Right2.setPower(rightSpeed);
@@ -166,9 +166,7 @@ public class VuMarkIdentification extends LinearOpMode {
         telemetry.update();
 
         while (opModeIsActive()) {
-
-            driveForward(1,1000);
-
+            RedBottom = true;
             if(RedBottom) {
                 holdGlyph();
                 KnockoffJewel("Red", RedBottom);
@@ -191,7 +189,7 @@ public class VuMarkIdentification extends LinearOpMode {
 
             //   Go Backwards;
             //   Phone checks vuforia;
-                            //  Turn 90o  toward the cryptoBox
+            //  Turn 90o  toward the cryptoBox
 
             //   Go Backwards;
             //Drop glyph;
@@ -230,7 +228,7 @@ public class VuMarkIdentification extends LinearOpMode {
             if (vuMark != RelicRecoveryVuMark.UNKNOWN) {
                 //telemetry.addData("VuMark", "%s visible", vuMark);
                 OpenGLMatrix pose = ((VuforiaTrackableDefaultListener)relicTemplate.getListener()).getPose();
-               // telemetry.addData("Pose", format(pose));
+                // telemetry.addData("Pose", format(pose));
                 if (pose != null) {
                     VectorF trans = pose.getTranslation();
                     Orientation rot = Orientation.getOrientation(pose, AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES);
@@ -247,7 +245,7 @@ public class VuMarkIdentification extends LinearOpMode {
                 }
             }
             else {
-               // telemetry.addData("VuMark", "not visible");
+                // telemetry.addData("VuMark", "not visible");
             }
 
             telemetry.update();
