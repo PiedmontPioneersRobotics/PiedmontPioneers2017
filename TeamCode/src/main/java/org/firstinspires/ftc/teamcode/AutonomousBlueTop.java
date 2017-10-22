@@ -15,9 +15,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefau
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 @Autonomous(name="New Red Bottom Autonomous", group ="Concept")
-public class AutonomousRedTop extends AutonomousBase {
+public class AutonomousBlueTop extends AutonomousBase {
     // READ THIS: This main code is for RedBottom!!
-    public boolean RedTop = true;
+    public boolean BlueTop = true;
 
     //check vuforia and return the distance needed to get to the correct cryptobox column
     public double checkVuforia() {
@@ -68,17 +68,25 @@ public class AutonomousRedTop extends AutonomousBase {
 
         while (opModeIsActive()) {
 
+            //   VuforiaChecks;
+//   KnockOffJule;
+//  Go backwords;
+//   Turn 90o to port;
+//   Go forward
+//  Turn 90o to port;
+//  Go Forward;
+// Drop glyph;
 
             holdGlyph();
-            KnockoffJewel("Red", RedTop);
-            driveForward(0.25, 1.25);
+            KnockoffJewel("Blue", BlueTop);
+            driveBackward(0.25, 1.25);
             leftTurn(0.25, 1.2);
             driveForward(0.25, 0.45);
-            rightTurn(0.25, 1.2);
+            leftTurn(0.25, 1.2);
             driveForward(0.25, 1.05);
             dropGlyph();
             stopDriving();
-            RedTop = false;
+            BlueTop = false;
             telemetry.update();
             /*
             AddedCode
