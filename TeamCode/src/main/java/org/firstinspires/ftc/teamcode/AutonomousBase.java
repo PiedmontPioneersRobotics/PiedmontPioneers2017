@@ -77,7 +77,8 @@ public abstract class AutonomousBase extends LinearOpMode {
     //drive forward
     public void driveForward(double speed, double time) {
         telemetry.addData(">", "Start drive forward");
-
+        telemetry.addData("Right speed:", "%.2f", rightSpeed);
+        telemetry.addData("Left speed:", "%.2f", leftSpeed);
         runtime.reset();
         leftSpeed = speed;
         rightSpeed = -speed;
@@ -96,6 +97,9 @@ public abstract class AutonomousBase extends LinearOpMode {
 
     //drive backward
     public void driveBackward(double speed, double time) {
+        telemetry.addData(">", "Start drive backward");
+        telemetry.addData("Right speed:", "%.2f", rightSpeed);
+        telemetry.addData("Left speed:", "%.2f", leftSpeed);
         runtime.reset();
         leftSpeed = -speed;
         rightSpeed = speed;
@@ -114,6 +118,9 @@ public abstract class AutonomousBase extends LinearOpMode {
 
     //turn left
     public void leftTurn(double speed, double time){
+        telemetry.addData(">", "Start turn left");
+        telemetry.addData("Right speed:", "%.2f", rightSpeed);
+        telemetry.addData("Left speed:", "%.2f", leftSpeed);
         runtime.reset();
         leftSpeed = -speed;
         rightSpeed = -speed;
@@ -127,6 +134,9 @@ public abstract class AutonomousBase extends LinearOpMode {
 
     // turn right
     public void rightTurn(double speed, double time){
+        telemetry.addData(">", "Start turn left");
+        telemetry.addData("Right speed:", "%.2f", rightSpeed);
+        telemetry.addData("Left speed:", "%.2f", leftSpeed);
         runtime.reset();
         leftSpeed = speed;
         rightSpeed = speed;
@@ -147,7 +157,7 @@ public abstract class AutonomousBase extends LinearOpMode {
         robot.starboardGripper.setPosition(0);
         robot.portGripper.setPosition(1);
     }
-    
+
     //drop glyph into cryptobox
     public void dropGlyph(){
         //these values may be switched! Check it next time!!
