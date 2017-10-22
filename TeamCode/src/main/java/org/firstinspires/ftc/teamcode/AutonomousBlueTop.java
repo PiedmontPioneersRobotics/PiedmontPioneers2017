@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
@@ -16,33 +14,36 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
-@Autonomous(name="Red Bottom Autonomous", group ="Concept")
-public class AutonomousRedBottom extends AutonomousBase {
+@Autonomous(name="Blue Top Autonomous", group ="Concept")
+public class AutonomousBlueTop extends AutonomousBase {
     // READ THIS: This main code is for RedBottom!!
-    public boolean RedBottom = true;
+    public boolean RedTop = false;
+    public boolean BlueTop = true;
+    public boolean RedBottom = false;
+    public boolean BlueBottom = false;
 
     //check vuforia and return the distance needed to get to the correct cryptobox column
     public double checkVuforia() {
         Center = false;
         Right = false;
         Left = false;
-        double driving_time = 0.0;
+        double distance = 0.0;
         if(vuMark == RelicRecoveryVuMark.CENTER){
             Center = true;
-            driving_time = 1.25;
+            distance = 1;
             telemetry.addData("Center ", "True!!");
         } else if(vuMark == RelicRecoveryVuMark.LEFT){
             Left = true;
-            driving_time = 1.5;
+            distance = 2;
             telemetry.addData("Left ", "True!!");
         } else if(vuMark == RelicRecoveryVuMark.RIGHT){
             Right = true;
-            driving_time = 1;
+            distance = 3;
             telemetry.addData("Right ", "True!!");
         }else{
-            driving_time = 0.0;
+            distance = 0.0;
         }
-        return driving_time;
+        return distance;
     }
 
     @Override public void runOpMode() {
@@ -70,9 +71,27 @@ public class AutonomousRedBottom extends AutonomousBase {
 
         while (opModeIsActive()) {
 
-            holdGlyph();
-            stopDriving();
-            RedBottom = false;
+            //   VuforiaChecks;
+//   KnockOffJule;
+//  Go backwords;
+//   Turn 90o to port;
+//   Go forward
+//  Turn 90o to port;
+//  Go Forward;
+// Drop glyph;
+            if(BlueTop) {
+                holdGlyph();
+                KnockoffJewel("Blue", BlueTop);
+                driveBackward(0.25, 1.25);
+                leftTurn(0.25, 1.2);
+                driveForward(0.25, 0.45);
+                leftTurn(0.25, 1.2);
+                driveForward(0.25, 1.05);
+                dropGlyph();
+                stopDriving();
+                BlueTop = false;
+
+            }
             telemetry.update();
             /*
             AddedCode
