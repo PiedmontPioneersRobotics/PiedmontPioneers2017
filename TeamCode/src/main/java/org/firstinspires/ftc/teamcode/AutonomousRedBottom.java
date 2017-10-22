@@ -1,3 +1,4 @@
+
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -26,23 +27,23 @@ public class AutonomousRedBottom extends AutonomousBase {
         Center = false;
         Right = false;
         Left = false;
-        double distance = 0.0;
+        double driving_time = 0.0;
         if(vuMark == RelicRecoveryVuMark.CENTER){
             Center = true;
-            distance = 1;
+            driving_time = 1.25;
             telemetry.addData("Center ", "True!!");
         } else if(vuMark == RelicRecoveryVuMark.LEFT){
             Left = true;
-            distance = 2;
+            driving_time = 1.5;
             telemetry.addData("Left ", "True!!");
         } else if(vuMark == RelicRecoveryVuMark.RIGHT){
             Right = true;
-            distance = 3;
+            driving_time = 1;
             telemetry.addData("Right ", "True!!");
         }else{
-            distance = 0.0;
+            driving_time = 0.0;
         }
-        return distance;
+        return driving_time;
     }
 
     @Override public void runOpMode() {
@@ -70,11 +71,6 @@ public class AutonomousRedBottom extends AutonomousBase {
 
         while (opModeIsActive()) {
 
-            dropGlyph();
-            KnockoffJewel("Red", RedBottom);
-            driveForward(0.25, 1.25);
-            rightTurn(0.25, 1.2);
-            driveForward(0.25, 0.75);
             holdGlyph();
             stopDriving();
             RedBottom = false;
