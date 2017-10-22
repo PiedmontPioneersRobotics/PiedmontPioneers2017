@@ -16,7 +16,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
-@Autonomous(name="New Red Bottom Autonomous", group ="Concept")
+@Autonomous(name="Red Bottom Autonomous", group ="Concept")
 public class AutonomousRedBottom extends AutonomousBase {
     // READ THIS: This main code is for RedBottom!!
     public boolean RedBottom = true;
@@ -69,15 +69,16 @@ public class AutonomousRedBottom extends AutonomousBase {
         telemetry.update();
 
         while (opModeIsActive()) {
-
-            holdGlyph();
-            KnockoffJewel("Red", RedBottom);
-            driveForward(0.25, 1.25);
-            rightTurn(0.25, 1.2);
-            driveForward(0.25, 0.75);
-            dropGlyph();
-            stopDriving();
-            RedBottom = false;
+            if(RedBottom) {
+                holdGlyph();
+                KnockoffJewel("Red", RedBottom);
+                driveForward(0.25, 1.25);
+                rightTurn(0.25, 1.2);
+                driveForward(0.25, 0.75);
+                dropGlyph();
+                stopDriving();
+                RedBottom = false;
+            }
             telemetry.update();
             /*
             AddedCode
