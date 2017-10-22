@@ -17,7 +17,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 @Autonomous(name="Blue Top Autonomous", group ="Concept")
 public class AutonomousBlueTop extends AutonomousBase {
     // READ THIS: This main code is for RedBottom!!
+    public boolean RedTop = false;
     public boolean BlueTop = true;
+    public boolean RedBottom = false;
+    public boolean BlueBottom = false;
 
     //check vuforia and return the distance needed to get to the correct cryptobox column
     public double checkVuforia() {
