@@ -26,7 +26,7 @@ public abstract class AutonomousBase extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
     VuforiaLocalizer vuforia;
     // READ THIS: This main code is for RedBottom!!
-    public boolean RedBottom = true;
+    public boolean RedBottom;
     public boolean BlueBottom;
     public boolean RedTop;
     public boolean BlueTop;
@@ -41,10 +41,26 @@ public abstract class AutonomousBase extends LinearOpMode {
         robot.jewelMover.setPosition(0.789);
         //extend jewel arm
         if (jewelColor == "Red") {
-            
+            if (RedBottom = true) {
+                driveBackward(0.25, 0.5);
+            } else if (RedTop = true) {
+                driveBackward(0.25, 0.5);
+            } else if (BlueBottom = true) {
+                driveForward(0.25, 0.5);
+            } else if (BlueTop = true) {
+                driveForward(0.25, 0.5);
+            }
 
         } else if (jewelColor == "Blue") {
-
+            if (RedBottom = true) {
+                driveForward(0.25, 0.5);
+            } else if (RedTop = true) {
+                driveForward(0.25, 0.5);
+            } else if (BlueBottom = true) {
+                driveBackward(0.25, 0.5);
+            } else if (BlueTop = true) {
+                driveBackward(0.25, 0.5);
+            }
         }
     }
     double rightSpeed;
