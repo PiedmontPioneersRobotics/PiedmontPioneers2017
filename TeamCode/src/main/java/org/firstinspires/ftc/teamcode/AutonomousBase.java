@@ -41,6 +41,7 @@ public abstract class AutonomousBase extends LinearOpMode {
         robot.jewelMover.setPosition(0.789);
         //extend jewel arm
         if (jewelColor == "Red") {
+            
 
         } else if (jewelColor == "Blue") {
 
@@ -119,14 +120,14 @@ public abstract class AutonomousBase extends LinearOpMode {
     //hold glyph
     public void holdGlyph(){
         //these values may be switched! Check it next time!!
-        robot.starboardGripper.setPosition(1);
-        robot.portGripper.setPosition(0);
+        robot.starboardGripper.setPosition(0);
+        robot.portGripper.setPosition(1);
     }
     //drop glyph into cryptobox
     public void dropGlyph(){
         //these values may be switched! Check it next time!!
-        robot.starboardGripper.setPosition(0);
-        robot.portGripper.setPosition(1);
+        robot.starboardGripper.setPosition(1);
+        robot.portGripper.setPosition(0);
     }
      public abstract void runOpMode();
 
