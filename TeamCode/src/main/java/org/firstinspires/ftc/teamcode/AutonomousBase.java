@@ -37,6 +37,7 @@ public abstract class AutonomousBase extends LinearOpMode {
     public boolean Left;
     public boolean Right;
 
+    //knock off jewel routine
     public void KnockoffJewel(String jewelColor, Boolean opMode) {
         robot.jewelMover.setPosition(0.789);
         //extend jewel arm
@@ -65,13 +66,15 @@ public abstract class AutonomousBase extends LinearOpMode {
     }
     double rightSpeed;
     double leftSpeed;
-    //drive forward
+    //stop driving
     public void stopDriving(){
         robot.Right1.setPower(0);
         robot.Right2.setPower(0);
         robot.Left1.setPower(0);
         robot.Left2.setPower(0);
     }
+
+    //drive forward
     public void driveForward(double speed, double time) {
         telemetry.addData(">", "Start drive forward");
 
@@ -90,6 +93,8 @@ public abstract class AutonomousBase extends LinearOpMode {
         robot.Left1.setPower(0);
         robot.Left2.setPower(0);
     }
+
+    //drive backward
     public void driveBackward(double speed, double time) {
         runtime.reset();
         leftSpeed = -speed;
@@ -106,6 +111,7 @@ public abstract class AutonomousBase extends LinearOpMode {
         robot.Left1.setPower(0);
         robot.Left2.setPower(0);
     }
+
     //turn left
     public void leftTurn(double speed, double time){
         runtime.reset();
@@ -118,6 +124,7 @@ public abstract class AutonomousBase extends LinearOpMode {
             robot.Left2.setPower(leftSpeed);
         }
     }
+
     // turn right
     public void rightTurn(double speed, double time){
         runtime.reset();
@@ -130,6 +137,7 @@ public abstract class AutonomousBase extends LinearOpMode {
             robot.Left2.setPower(leftSpeed);
         }
     }
+
     //check vuforia and return the distance needed to get to the correct cryptobox column
     public  abstract double checkVuforia();
 
@@ -139,6 +147,7 @@ public abstract class AutonomousBase extends LinearOpMode {
         robot.starboardGripper.setPosition(0);
         robot.portGripper.setPosition(1);
     }
+    
     //drop glyph into cryptobox
     public void dropGlyph(){
         //these values may be switched! Check it next time!!
