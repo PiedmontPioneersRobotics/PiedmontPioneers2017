@@ -1,4 +1,6 @@
 package org.firstinspires.ftc.teamcode;
+import android.graphics.Color;
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -38,29 +40,47 @@ public abstract class AutonomousBase extends LinearOpMode {
     public boolean Right;
 
     //knock off jewel routine
-    public void KnockoffJewel(String jewelColor, Boolean opMode) {
-        robot.jewelMover.setPosition(0.789);
+    public void KnockoffJewel(Boolean opMode) {
+        String jewelColor;
+        robot.jewelMover.setPosition(0.5);
         //extend jewel arm
+        float hsvValues[] = {0F,0F,0F};
+        Color.RGBToHSV(robot.colorSensor.red() * 8, robot.colorSensor.green() * 8, robot.colorSensor.blue() * 8, hsvValues);
+        if (robot.colorSensor.red()>200 && robot.colorSensor.blue()<200) {
+            jewelColor = "Red";
+        }else if (robot.colorSensor.red()<200 && robot.colorSensor.blue()>200){
+            jewelColor = "Blue";
+        }else {
+            jewelColor = "None";
+        }
         if (jewelColor == "Red") {
             if (RedBottom = true) {
-                driveBackward(0.25, 0.5);
+                leftTurn(0.25, 1);
+                rightTurn(0.25, 1);
             } else if (RedTop = true) {
-                driveBackward(0.25, 0.5);
+                leftTurn(0.25, 1);
+                rightTurn(0.25, 1);
             } else if (BlueBottom = true) {
-                driveForward(0.25, 0.5);
+                rightTurn(0.25, 1);
+                leftTurn(0.25, 1);
             } else if (BlueTop = true) {
-                driveForward(0.25, 0.5);
+                rightTurn(0.25, 1);
+                leftTurn(0.25, 1);
             }
 
         } else if (jewelColor == "Blue") {
             if (RedBottom = true) {
-                driveForward(0.25, 0.5);
+                rightTurn(0.25, 1);
+                leftTurn(0.25, 1);
             } else if (RedTop = true) {
-                driveForward(0.25, 0.5);
+                rightTurn(0.25, 1);
+                leftTurn(0.25, 1);
             } else if (BlueBottom = true) {
-                driveBackward(0.25, 0.5);
+                leftTurn(0.25, 1);
+                rightTurn(0.25, 1);
             } else if (BlueTop = true) {
-                driveBackward(0.25, 0.5);
+                leftTurn(0.25, 1);
+                rightTurn(0.25, 1);
             }
         }
     }
