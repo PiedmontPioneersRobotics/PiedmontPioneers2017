@@ -1,10 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-public class HardwareFWD {
+public class HardwareFWDEncoder {
     public DcMotor  Right1   = null;
     public DcMotor  Right2   = null;
     public DcMotor  Left1   = null;
@@ -15,7 +15,7 @@ public class HardwareFWD {
     public Servo    jewelMover = null;//child
     HardwareMap hwMap           =  null;
     private ElapsedTime period  = new ElapsedTime();
-    public HardwareFWD(){}
+    public HardwareFWDEncoder(){}
     public void init(HardwareMap ahwMap) {
 
         hwMap = ahwMap;
@@ -34,19 +34,14 @@ public class HardwareFWD {
         Left2  = hwMap.get(DcMotor.class, "Left2");
         Left2.setDirection(DcMotor.Direction.FORWARD);
         Left2.setPower(0);
-        Left2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        Left2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         lifter  = hwMap.get(DcMotor.class, "lifter");
         lifter.setDirection(DcMotor.Direction.FORWARD);
         lifter.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        jewelMover = hwMap.get(Servo.class, "Jewel Grabber");
         starboardGripper = hwMap.get(Servo.class, "Starboard gripper");
+        starboardGripper.setPosition(0.5);
         portGripper = hwMap.get(Servo.class, "Port gripper");
-        double rgp = 1 - 0.2;
-        double lgp = 0.2;
-        starboardGripper.setPosition(rgp);
-        portGripper.setPosition(lgp);
-        jewelMover.setPosition(0.5);
+        portGripper.setPosition(0.5);
 
     }
-
  }
