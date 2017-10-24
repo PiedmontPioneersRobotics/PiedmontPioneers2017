@@ -107,7 +107,7 @@ public class VuMarkIdentification extends LinearOpMode {
 
         runtime.reset();
         leftSpeed = speed;
-        rightSpeed = speed;
+        rightSpeed = -speed;
         while (opModeIsActive() && (runtime.seconds() < time)) {
             robot.Right1.setPower(rightSpeed);
             robot.Right2.setPower(rightSpeed);
@@ -152,7 +152,7 @@ public class VuMarkIdentification extends LinearOpMode {
     public void rightTurn(double speed, double time){
         runtime.reset();
         leftSpeed = speed;
-        rightSpeed = -speed;
+        rightSpeed = speed;
         while (opModeIsActive() && (runtime.seconds() < time)) {
             robot.Right1.setPower(rightSpeed);
             robot.Right2.setPower(rightSpeed);
@@ -254,14 +254,16 @@ public class VuMarkIdentification extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            driveForward(1,1000);
 
             if(RedBottom) {
                 holdGlyph();
                 KnockoffJewel("Red", RedBottom);
-                driveForward(1, checkVuforia());
-                rightTurn(1, 2);
-                driveForward(1, 1000);
+                driveForward(1,1);
+
+                rightTurn(1, .666);
+
+                driveForward(1, .3666);
+                driveForward(0, 85);
                 dropGlyph();
             } else if(BlueBottom) {
                 KnockoffJewel("Blue", BlueBottom);
