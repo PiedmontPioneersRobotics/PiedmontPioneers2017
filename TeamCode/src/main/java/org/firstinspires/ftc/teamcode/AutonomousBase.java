@@ -83,6 +83,7 @@ public abstract class AutonomousBase extends LinearOpMode {
                 rightTurn(0.25, 1);
             }
         }
+        robot.jewelMover.setPosition(1);
     }
     double rightSpeed;
     double leftSpeed;
