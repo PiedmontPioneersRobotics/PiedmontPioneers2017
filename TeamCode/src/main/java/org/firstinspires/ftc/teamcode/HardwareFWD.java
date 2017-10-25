@@ -1,18 +1,20 @@
 package org.firstinspires.ftc.teamcode;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class HardwareFWD {
-    public DcMotor  Right1   = null;
-    public DcMotor  Right2   = null;
-    public DcMotor  Left1   = null;
-    public DcMotor  Left2   = null;
-    public DcMotor  lifter = null;
-    public Servo    starboardGripper = null;
-    public Servo    portGripper = null;
-    public Servo    jewelMover = null;//child
+    public DcMotor      Right1   = null;
+    public DcMotor      Right2   = null;
+    public DcMotor      Left1   = null;
+    public DcMotor      Left2   = null;
+    public DcMotor      lifter = null;
+    public Servo        starboardGripper = null;
+    public Servo        portGripper = null;
+    public Servo        jewelMover = null;//child
+    public ColorSensor  colorSensor = null;
     HardwareMap hwMap           =  null;
     private ElapsedTime period  = new ElapsedTime();
     public HardwareFWD(){}
@@ -41,11 +43,13 @@ public class HardwareFWD {
         jewelMover = hwMap.get(Servo.class, "Jewel Grabber");
         starboardGripper = hwMap.get(Servo.class, "Starboard gripper");
         portGripper = hwMap.get(Servo.class, "Port gripper");
-        double rgp = 1 - 0.2;
-        double lgp = 0.2;
+        colorSensor = hwMap.get(ColorSensor.class, "Color Sensor");
+        colorSensor.enableLed(true);    //color sensor light
+        double rgp = 1 - 0.2;   //right gripper position
+        double lgp = 0.2;       //left gripper position
         starboardGripper.setPosition(rgp);
         portGripper.setPosition(lgp);
-        jewelMover.setPosition(0.5);
+        jewelMover.setPosition(1);
 
     }
 
