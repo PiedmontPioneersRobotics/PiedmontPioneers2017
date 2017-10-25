@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
@@ -17,9 +19,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 @Autonomous(name="Blue Bottom Autonomous", group ="Concept")
 public class AutonomousBlueBottom extends AutonomousBase {
     // READ THIS: This main code is for BlueBottom!!
-    public boolean RedTop = false;
-    public boolean BlueTop = false;
-    public boolean RedBottom = false;
     public boolean BlueBottom = true;
 
     //check vuforia and return the distance needed to get to the correct cryptobox column
@@ -27,23 +26,23 @@ public class AutonomousBlueBottom extends AutonomousBase {
         Center = false;
         Right = false;
         Left = false;
-        double distance = 0.0;
+        double driving_time = 0.0;
         if(vuMark == RelicRecoveryVuMark.CENTER){
             Center = true;
-            distance = 1;
+            driving_time = 1.25;
             telemetry.addData("Center ", "True!!");
         } else if(vuMark == RelicRecoveryVuMark.LEFT){
             Left = true;
-            distance = 2;
+            driving_time = 1.5;
             telemetry.addData("Left ", "True!!");
         } else if(vuMark == RelicRecoveryVuMark.RIGHT){
             Right = true;
-            distance = 3;
+            driving_time = 1;
             telemetry.addData("Right ", "True!!");
         }else{
-            distance = 0.0;
+            driving_time = 0.0;
         }
-        return distance;
+        return driving_time;
     }
 
     @Override public void runOpMode() {
@@ -70,18 +69,10 @@ public class AutonomousBlueBottom extends AutonomousBase {
         telemetry.update();
 
         while (opModeIsActive()) {
-            if(BlueBottom){
-                dropGlyph();
-                KnockoffJewel("Blue", BlueBottom);
-                driveBackward(0.25, 1.25);
-                rightTurn(0.25, 1.4);
-                driveForward(0.25, 0.75);
-                stopDriving();
-                dropGlyph();
-                BlueBottom = false;
-            }
 
-
+            holdGlyph();
+            stopDriving();
+            BlueBottom = false;
             telemetry.update();
             /*
             AddedCode
