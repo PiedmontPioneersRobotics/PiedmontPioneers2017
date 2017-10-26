@@ -71,6 +71,11 @@ public class AutonomousRedBottom extends AutonomousBase {
         while (opModeIsActive()) {
 
             holdGlyph();
+           // KnockoffJewel("Red", RedBottom);
+            driveForward(0.25, 1.25);
+            rightTurn(0.25, 1.2);
+            driveForward(0.25, 0.75);
+            dropGlyph();
             stopDriving();
             RedBottom = false;
             telemetry.update();

@@ -71,13 +71,14 @@ public class AutonomousBlueBottom extends AutonomousBase {
 
         while (opModeIsActive()) {
             if(BlueBottom){
-                dropGlyph();
+                holdGlyph();
                 //KnockoffJewel("Blue", BlueBottom);
                 driveBackward(0.25, 1.25);
                 rightTurn(0.25, 1.35);
                 driveForward(0.25, 0.75);
-                stopDriving();
                 dropGlyph();
+                stopDriving();
+
                 BlueBottom = false;
             }
 
