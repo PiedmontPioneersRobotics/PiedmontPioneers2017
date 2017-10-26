@@ -75,11 +75,11 @@ public class AutonomousRedTop extends AutonomousBase {
             if(RedTop) {
                 holdGlyph();
                 //KnockoffJewel("Red", RedTop);
-                driveForward(0.25, 1.25);
-                leftTurn(0.25, 1.2);
-                driveForward(0.25, 0.45);
+                driveForward(0.25, 1.28);
+                leftTurn(0.25, 1.3);
+                driveForward(0.25, 0.4);
                 rightTurn(0.25, 1.2);
-                driveForward(0.25, 1.05);
+                driveForward(0.25, 1.03);
                 dropGlyph();
                 stopDriving();
                 RedTop = false;
