@@ -19,7 +19,7 @@ public class AutonomousRedBottom extends AutonomousBase {
     // READ THIS: This main code is for RedBottom!!
     public boolean RedBottom = true;
 
-    public static final double CENTER_COLUMN_DISTANCE = 1.45;
+    public static final double CENTER_COLUMN_DISTANCE = 1.35;
 
     //check vuforia and return the distance needed to get to the correct cryptobox column
     public double checkVuforia() {
@@ -105,13 +105,14 @@ public class AutonomousRedBottom extends AutonomousBase {
             driveForward(0.25, checkVuforia());
             telemetry.addData(">", "Driving ForwarD");
             telemetry.update();
-            rightTurn(0.25,1.2);
+            rightTurn(0.25,1.2666);
             telemetry.addData(">", "Turned Right");
             telemetry.update();
-            driveForward(0.25, 0.92);
+            driveForward(0.25, 0.93);
             telemetry.addData(">", "Fiual Drive forward");
             telemetry.update();
             dropGlyph();
+            driveForward(-0.25, 0.5);
                         /*
            // KnockoffJewel("Red", RedBottom);
             driveForward(0.25, 1.25);
