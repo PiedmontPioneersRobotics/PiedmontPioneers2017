@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 @TeleOp(name="FWDTeleop: Teleop", group="FWD")
 public class FWDTeleop extends OpMode{
     HardwareFWD robot  = new HardwareFWD();
+    boolean a_previously_pressed = false;
+    boolean b_previously_pressed = false;
 
     @Override
     public void init() {
@@ -17,6 +19,11 @@ public class FWDTeleop extends OpMode{
     public void start() {}
     @Override
     public void loop() {
+        int lifterPosition;
+        boolean a_pressed;
+        boolean b_pressed;
+        a_pressed = gamepad1.a;
+        b_pressed = gamepad1.b;
         double rightSpeed;
         double leftSpeed;
         rightSpeed = gamepad1.right_stick_y;
@@ -57,7 +64,14 @@ public class FWDTeleop extends OpMode{
             robot.lifter.setPower(0);
         }
 
+        if (a_pressed && !a_previously_pressed) {
+            robot.lifter.setTargetPosition(2880);
+        }
 
+        if (b_pressed && !b_previously_pressed) {
+            robot.lifter.setTargetPosition(0);
+        }
+        a_previously_pressed = a_pressed;
 
         if ((gamepad1.left_bumper)&&(gamepad1.left_bumper)) {
             robot.starboardGripper.setPosition(1);
