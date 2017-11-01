@@ -48,6 +48,7 @@ public class AutonomousRedTop extends AutonomousBase {
     }
 
     @Override public void runOpMode() {
+        /*
         robot.init(hardwareMap);
         telemetry.addData("Say", "Hello Driver");
         telemetry.update();
@@ -74,7 +75,7 @@ public class AutonomousRedTop extends AutonomousBase {
 
             if(RedTop) {
                 holdGlyph();
-                //KnockoffJewel("Red", RedTop);
+                KnockoffJewel(RedTop);
                 driveForward(0.25, 1.28);
                 leftTurn(0.25, 1.3);
                 driveForward(0.25, 0.4);
@@ -85,10 +86,11 @@ public class AutonomousRedTop extends AutonomousBase {
                 RedTop = false;
             }
             telemetry.update();
+            */
             /*
             AddedCode
             */
-
+/*
             if (vuMark != RelicRecoveryVuMark.UNKNOWN) {
                 //telemetry.addData("VuMark", "%s visible", vuMark);
                 OpenGLMatrix pose = ((VuforiaTrackableDefaultListener)relicTemplate.getListener()).getPose();
@@ -114,6 +116,7 @@ public class AutonomousRedTop extends AutonomousBase {
 
             telemetry.update();
         }
+*/
     }
 
     String format(OpenGLMatrix transformationMatrix) {
