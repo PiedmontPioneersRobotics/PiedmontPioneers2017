@@ -20,6 +20,7 @@ public class FWDTeleop extends OpMode{
     @Override
     public void loop() {
         int lifterPosition;
+        lifterPosition = robot.lifter.getCurrentPosition();
         boolean a_pressed;
         boolean b_pressed;
         a_pressed = gamepad1.a;
@@ -65,11 +66,11 @@ public class FWDTeleop extends OpMode{
         }
 
         if (a_pressed && !a_previously_pressed) {
-            robot.lifter.setTargetPosition(2880);
+            robot.lifter.setTargetPosition(lifterPosition + 2880);
         }
 
         if (b_pressed && !b_previously_pressed) {
-            robot.lifter.setTargetPosition(0);
+            robot.lifter.setTargetPosition(lifterPosition - 2880);
         }
         a_previously_pressed = a_pressed;
 
