@@ -102,6 +102,7 @@ public class AutonomousRedBottom extends AutonomousBase {
         while (opModeIsActive()) {
             telemetry.addData(">", "Preparing to drive into the Russian motherland ");
             telemetry.update();
+            KnockoffJewel(RedBottom);
             driveForward(0.25, checkVuforia());
             telemetry.addData(">", "Driving ForwarD");
             telemetry.update();
@@ -114,7 +115,7 @@ public class AutonomousRedBottom extends AutonomousBase {
             dropGlyph();
             driveForward(-0.25, 0.5);
                         /*
-           // KnockoffJewel("Red", RedBottom);
+           KnockoffJewel("Red", RedBottom);
             driveForward(0.25, 1.25);
             rightTurn(0.25, 1.2);
             driveForward(0.25, 0.75);

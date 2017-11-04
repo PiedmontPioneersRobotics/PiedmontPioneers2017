@@ -74,7 +74,7 @@ public class AutonomousBlueBottom extends AutonomousBase {
                 holdGlyph();
                 //KnockoffJewel("Blue", BlueBottom);
                 driveBackward(0.25, 1.15);
-                rightTurn(0.25, 1.15);
+                rightTurn(0.25, 1.12);
                 driveForward(0.25, 0.75);
                 dropGlyph();
                 stopDriving();

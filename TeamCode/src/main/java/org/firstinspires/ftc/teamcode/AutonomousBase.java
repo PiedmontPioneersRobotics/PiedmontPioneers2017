@@ -42,8 +42,8 @@ public abstract class AutonomousBase extends LinearOpMode {
     //knock off jewel routine
     public void KnockoffJewel(Boolean opMode) {
         String jewelColor;
-        robot.jewelMover.setPosition(0.5);
-        sleep(5000);
+        robot.jewelMover.setPosition(0);
+        sleep(500);
         //extend jewel arm
         float hsvValues[] = {0F,0F,0F};
         Color.RGBToHSV(robot.colorSensor.red() * 8, robot.colorSensor.green() * 8, robot.colorSensor.blue() * 8, hsvValues);
@@ -66,21 +66,18 @@ public abstract class AutonomousBase extends LinearOpMode {
             telemetry.update();
         }
         sleep(5000);
-        if (jewelColor.equals("Red")) {
-            if (RedBottom) {
-                leftTurn(0.25, 1);
-                rightTurn(0.25, 1);
-            } else if (RedTop) {
-                leftTurn(0.25, 1);
-                rightTurn(0.25, 1);
-            } else if (BlueBottom) {
-                rightTurn(0.25, 1);
-                leftTurn(0.25, 1);
-            } else if (BlueTop) {
-                rightTurn(0.25, 1);
-                leftTurn(0.25, 1);
-            }
-
+        if (RedBottom) {
+            leftTurn(0.25, 1);
+            rightTurn(0.25, 1);
+        } else if (RedTop) {
+            leftTurn(0.25, 1);
+            rightTurn(0.25, 1);
+        } else if (BlueBottom) {
+            rightTurn(0.25, 1);
+            leftTurn(0.25, 1);
+        } else if (BlueTop) {
+            rightTurn(0.25, 1);
+            leftTurn(0.25, 1);
         } else if (jewelColor.equals("Blue")) {
             if (RedBottom) {
                 rightTurn(0.25, 1);
