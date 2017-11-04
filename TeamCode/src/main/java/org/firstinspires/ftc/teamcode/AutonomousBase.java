@@ -43,42 +43,55 @@ public abstract class AutonomousBase extends LinearOpMode {
     public void KnockoffJewel(Boolean opMode) {
         String jewelColor;
         robot.jewelMover.setPosition(0.5);
+        sleep(5000);
         //extend jewel arm
         float hsvValues[] = {0F,0F,0F};
         Color.RGBToHSV(robot.colorSensor.red() * 8, robot.colorSensor.green() * 8, robot.colorSensor.blue() * 8, hsvValues);
-        if (robot.colorSensor.red()>200 && robot.colorSensor.blue()<200) {
+        telemetry.addData("Red: ", robot.colorSensor.red());
+        telemetry.addData("Green: ", robot.colorSensor.green());
+        telemetry.addData("Blue: ", robot.colorSensor.blue());
+        telemetry.update();
+        sleep(5000);
+        if (robot.colorSensor.red()>2 && robot.colorSensor.blue()<2) {
             jewelColor = "Red";
-        }else if (robot.colorSensor.red()<200 && robot.colorSensor.blue()>200){
+            telemetry.addLine("Red");
+            telemetry.update();
+        }else if (robot.colorSensor.red()<2 && robot.colorSensor.blue()>2){
             jewelColor = "Blue";
+            telemetry.addLine("Blue");
+            telemetry.update();
         }else {
             jewelColor = "None";
+            telemetry.addLine("None");
+            telemetry.update();
         }
-        if (jewelColor == "Red") {
-            if (RedBottom = true) {
+        sleep(5000);
+        if (jewelColor.equals("Red")) {
+            if (RedBottom) {
                 leftTurn(0.25, 1);
                 rightTurn(0.25, 1);
-            } else if (RedTop = true) {
+            } else if (RedTop) {
                 leftTurn(0.25, 1);
                 rightTurn(0.25, 1);
-            } else if (BlueBottom = true) {
+            } else if (BlueBottom) {
                 rightTurn(0.25, 1);
                 leftTurn(0.25, 1);
-            } else if (BlueTop = true) {
+            } else if (BlueTop) {
                 rightTurn(0.25, 1);
                 leftTurn(0.25, 1);
             }
 
-        } else if (jewelColor == "Blue") {
-            if (RedBottom = true) {
+        } else if (jewelColor.equals("Blue")) {
+            if (RedBottom) {
                 rightTurn(0.25, 1);
                 leftTurn(0.25, 1);
-            } else if (RedTop = true) {
+            } else if (RedTop) {
                 rightTurn(0.25, 1);
                 leftTurn(0.25, 1);
-            } else if (BlueBottom = true) {
+            } else if (BlueBottom) {
                 leftTurn(0.25, 1);
                 rightTurn(0.25, 1);
-            } else if (BlueTop = true) {
+            } else if (BlueTop) {
                 leftTurn(0.25, 1);
                 rightTurn(0.25, 1);
             }
