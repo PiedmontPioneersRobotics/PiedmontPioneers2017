@@ -61,7 +61,7 @@ public class FWDTeleop extends OpMode{
 
 
 
-        if (gamepad1.b) {
+        if (gamepad1.y) {
             robot.lifter.setPower(255);
         }else if(gamepad1.a) {
             robot.lifter.setPower(-255);
