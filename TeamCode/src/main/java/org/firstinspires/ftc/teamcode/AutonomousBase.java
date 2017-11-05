@@ -35,6 +35,8 @@ public abstract class AutonomousBase extends LinearOpMode {
 
 
     HardwareFWD robot  = new HardwareFWD();
+    public final static double j_up = 1.0;
+    public final static double j_down = 0.5;
     public boolean Center;
     public boolean Left;
     public boolean Right;
@@ -42,7 +44,7 @@ public abstract class AutonomousBase extends LinearOpMode {
     //knock off jewel routine
     public void KnockoffJewel(Boolean opMode) {
         String jewelColor;
-        robot.jewelMover.setPosition(0);
+        robot.jewelMover.setPosition(j_down);
         sleep(500);
         //extend jewel arm
         float hsvValues[] = {0F,0F,0F};
@@ -51,7 +53,6 @@ public abstract class AutonomousBase extends LinearOpMode {
         telemetry.addData("Green: ", robot.colorSensor.green());
         telemetry.addData("Blue: ", robot.colorSensor.blue());
         telemetry.update();
-        sleep(5000);
         if (robot.colorSensor.red()>2 && robot.colorSensor.blue()<2) {
             jewelColor = "Red";
             telemetry.addLine("Red");
@@ -65,19 +66,21 @@ public abstract class AutonomousBase extends LinearOpMode {
             telemetry.addLine("None");
             telemetry.update();
         }
-        sleep(5000);
-        if (RedBottom) {
-            leftTurn(0.25, 1);
-            rightTurn(0.25, 1);
-        } else if (RedTop) {
-            leftTurn(0.25, 1);
-            rightTurn(0.25, 1);
-        } else if (BlueBottom) {
-            rightTurn(0.25, 1);
-            leftTurn(0.25, 1);
-        } else if (BlueTop) {
-            rightTurn(0.25, 1);
-            leftTurn(0.25, 1);
+        if (jewelColor.equals("Red")) {
+            if (RedBottom) {
+                leftTurn(0.25, 1);
+                rightTurn(0.25, 1);
+            } else if (RedTop) {
+                leftTurn(0.25, 1);
+                rightTurn(0.25, 1);
+            } else if (BlueBottom) {
+                rightTurn(0.25, 1);
+                leftTurn(0.25, 1);
+            } else if (BlueTop) {
+                rightTurn(0.25, 1);
+                leftTurn(0.25, 1);
+            }
+
         } else if (jewelColor.equals("Blue")) {
             if (RedBottom) {
                 rightTurn(0.25, 1);
@@ -93,7 +96,7 @@ public abstract class AutonomousBase extends LinearOpMode {
                 rightTurn(0.25, 1);
             }
         }
-        robot.jewelMover.setPosition(1);
+        robot.jewelMover.setPosition(j_up);
     }
     double rightSpeed;
     double leftSpeed;
