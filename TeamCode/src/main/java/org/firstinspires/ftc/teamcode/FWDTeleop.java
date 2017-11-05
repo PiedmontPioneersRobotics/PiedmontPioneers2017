@@ -10,8 +10,12 @@ public class FWDTeleop extends OpMode{
 
     @Override
     public void init() {
+        telemetry.addData("Say", "B4 init dog");
+
+
         robot.init(hardwareMap);
         telemetry.addData("Say", "Hello Driver");
+        telemetry.update();
     }
     @Override
     public void init_loop() {}
@@ -84,6 +88,7 @@ public class FWDTeleop extends OpMode{
             robot.portGripper.setPosition(lgp);
             telemetry.addData("starboard gripper", "%.2f", rgp);
             telemetry.addData("port gripper", "%.2f", lgp);
+
         }
     }
     @Override
