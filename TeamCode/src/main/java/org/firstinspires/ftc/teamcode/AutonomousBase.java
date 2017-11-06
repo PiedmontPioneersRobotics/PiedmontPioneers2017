@@ -45,7 +45,7 @@ public abstract class AutonomousBase extends LinearOpMode {
     public void KnockoffJewel(Boolean opMode) {
         String jewelColor;
         robot.jewelMover.setPosition(j_down);
-        sleep(500);
+        sleep(1000);
         //extend jewel arm
         float hsvValues[] = {0F,0F,0F};
         Color.RGBToHSV(robot.colorSensor.red() * 8, robot.colorSensor.green() * 8, robot.colorSensor.blue() * 8, hsvValues);
@@ -53,11 +53,11 @@ public abstract class AutonomousBase extends LinearOpMode {
         telemetry.addData("Green: ", robot.colorSensor.green());
         telemetry.addData("Blue: ", robot.colorSensor.blue());
         telemetry.update();
-        if (robot.colorSensor.red()>2 && robot.colorSensor.blue()<2) {
+        if (robot.colorSensor.red()>=1 && robot.colorSensor.blue()<=1) {
             jewelColor = "Red";
             telemetry.addLine("Red");
             telemetry.update();
-        }else if (robot.colorSensor.red()<2 && robot.colorSensor.blue()>2){
+        }else if (robot.colorSensor.red()<=1 && robot.colorSensor.blue()>=1){
             jewelColor = "Blue";
             telemetry.addLine("Blue");
             telemetry.update();
@@ -68,32 +68,40 @@ public abstract class AutonomousBase extends LinearOpMode {
         }
         if (jewelColor.equals("Red")) {
             if (RedBottom) {
-                leftTurn(0.25, 1);
-                rightTurn(0.25, 1);
+                telemetry.addLine("RedBottom");
+                leftTurn(0.25, 2);
+                rightTurn(0.25, 2);
             } else if (RedTop) {
-                leftTurn(0.25, 1);
-                rightTurn(0.25, 1);
+                telemetry.addLine("RedTop");
+                leftTurn(0.25, 2);
+                rightTurn(0.25, 2);
             } else if (BlueBottom) {
-                rightTurn(0.25, 1);
-                leftTurn(0.25, 1);
+                telemetry.addLine("BlueBottom");
+                rightTurn(0.25, 2);
+                leftTurn(0.25, 2);
             } else if (BlueTop) {
-                rightTurn(0.25, 1);
-                leftTurn(0.25, 1);
+                telemetry.addLine("BlueTop");
+                rightTurn(0.25, 2);
+                leftTurn(0.25, 2);
             }
 
         } else if (jewelColor.equals("Blue")) {
             if (RedBottom) {
-                rightTurn(0.25, 1);
-                leftTurn(0.25, 1);
+                telemetry.addLine("RedBottom");
+                rightTurn(0.25, 2);
+                leftTurn(0.25, 2);
             } else if (RedTop) {
-                rightTurn(0.25, 1);
-                leftTurn(0.25, 1);
+                telemetry.addLine("RedTop");
+                rightTurn(0.25, 2);
+                leftTurn(0.25, 2);
             } else if (BlueBottom) {
-                leftTurn(0.25, 1);
-                rightTurn(0.25, 1);
+                telemetry.addLine("BlueBottom");
+                leftTurn(0.25, 2);
+                rightTurn(0.25, 2);
             } else if (BlueTop) {
-                leftTurn(0.25, 1);
-                rightTurn(0.25, 1);
+                telemetry.addLine("BlueTop");
+                leftTurn(0.25, 2);
+                rightTurn(0.25, 2);
             }
         }
         robot.jewelMover.setPosition(j_up);
@@ -113,6 +121,7 @@ public abstract class AutonomousBase extends LinearOpMode {
         telemetry.addData(">", "Start drive forward");
         telemetry.addData("Right speed:", "%.2f", rightSpeed);
         telemetry.addData("Left speed:", "%.2f", leftSpeed);
+        telemetry.update();
         runtime.reset();
         leftSpeed = speed;
         rightSpeed = -speed;
@@ -134,6 +143,7 @@ public abstract class AutonomousBase extends LinearOpMode {
         telemetry.addData(">", "Start drive backward");
         telemetry.addData("Right speed:", "%.2f", rightSpeed);
         telemetry.addData("Left speed:", "%.2f", leftSpeed);
+        telemetry.update();
         runtime.reset();
         leftSpeed = -speed;
         rightSpeed = speed;
@@ -155,6 +165,7 @@ public abstract class AutonomousBase extends LinearOpMode {
         telemetry.addData(">", "Start turn left");
         telemetry.addData("Right speed:", "%.2f", rightSpeed);
         telemetry.addData("Left speed:", "%.2f", leftSpeed);
+        telemetry.update();
         runtime.reset();
         leftSpeed = -speed;
         rightSpeed = -speed;
@@ -164,6 +175,11 @@ public abstract class AutonomousBase extends LinearOpMode {
             robot.Left1.setPower(leftSpeed);
             robot.Left2.setPower(leftSpeed);
         }
+
+        robot.Right1.setPower(0);
+        robot.Right2.setPower(0);
+        robot.Left1.setPower(0);
+        robot.Left2.setPower(0);
     }
 
     // turn right
@@ -171,6 +187,7 @@ public abstract class AutonomousBase extends LinearOpMode {
         telemetry.addData(">", "Start turn left");
         telemetry.addData("Right speed:", "%.2f", rightSpeed);
         telemetry.addData("Left speed:", "%.2f", leftSpeed);
+        telemetry.update();
         runtime.reset();
         leftSpeed = speed;
         rightSpeed = speed;
@@ -180,6 +197,11 @@ public abstract class AutonomousBase extends LinearOpMode {
             robot.Left1.setPower(leftSpeed);
             robot.Left2.setPower(leftSpeed);
         }
+
+        robot.Right1.setPower(0);
+        robot.Right2.setPower(0);
+        robot.Left1.setPower(0);
+        robot.Left2.setPower(0);
     }
 
     //check vuforia and return the distance needed to get to the correct cryptobox column
