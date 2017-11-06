@@ -20,7 +20,9 @@ public class AutonomousRedBottom extends AutonomousBase {
     public boolean RedBottom = true;
 
     public static final double CENTER_COLUMN_DISTANCE = 1.35;
-
+    public static final double RIGHT_COLUMN_DISTANCE = 1;
+    public static final double LEFT_COLUMN_DISTANCE = 1.5;
+    double driving_time = 0.0;
     //check vuforia and return the distance needed to get to the correct cryptobox column
     public double checkVuforia() {
 
@@ -34,24 +36,20 @@ public class AutonomousRedBottom extends AutonomousBase {
         Center = false;
         Right = false;
         Left = false;
-        double driving_time = 0.0;
         if(vuMark == RelicRecoveryVuMark.CENTER){
             Center = true;
-
             driving_time = CENTER_COLUMN_DISTANCE;
-            telemetry.addData("Center ", "True!!");
+            telemetry.addData("Center:", "True");
         } else if(vuMark == RelicRecoveryVuMark.LEFT){
             Left = true;
-            driving_time = 1.5;
-            telemetry.addData("Left ", "True!!");
+            driving_time = LEFT_COLUMN_DISTANCE;
+            telemetry.addData("Left:", "True");
         } else if(vuMark == RelicRecoveryVuMark.RIGHT){
             Right = true;
-
-
-            driving_time = 1;
-            telemetry.addData("Right ", "True!!");
+            driving_time = RIGHT_COLUMN_DISTANCE;
+            telemetry.addData("Right:", "True");
         }else{
-            telemetry.addData(">", " Cant see it, Insta-Calliing Mid. ");
+            telemetry.addData(">", "Cannot see it.");
             telemetry.update();
             driving_time = CENTER_COLUMN_DISTANCE;
         }
@@ -100,17 +98,18 @@ public class AutonomousRedBottom extends AutonomousBase {
         telemetry.update();
 
         while (opModeIsActive()) {
-            telemetry.addData(">", "Preparing to drive into the Russian motherland ");
+            double time_for_driving = checkVuforia();
+            telemetry.addData(">", "Preparing to drive.");
             telemetry.update();
             KnockoffJewel(RedBottom);
-            driveForward(0.25, checkVuforia());
-            telemetry.addData(">", "Driving ForwarD");
+            driveForward(0.25, time_for_driving);
+            telemetry.addData(">", "Driving forward by:", checkVuforia());
             telemetry.update();
             rightTurn(0.25,1.2666);
-            telemetry.addData(">", "Turned Right");
+            telemetry.addData(">", "Turned right");
             telemetry.update();
             driveForward(0.25, 0.93);
-            telemetry.addData(">", "Fiual Drive forward");
+            telemetry.addData(">", "Final drive forward");
             telemetry.update();
             dropGlyph();
             driveForward(-0.25, 0.5);
