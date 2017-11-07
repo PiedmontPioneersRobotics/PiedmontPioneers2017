@@ -50,32 +50,29 @@ public class AutonomousRedBottom extends AutonomousBase {
             telemetry.addData("VuMark", "not visible");
             telemetry.update();
         }
-        if (stopper) {
-            Center = false;
-            Right = false;
-            Left = false;
-            if (vuMark == RelicRecoveryVuMark.CENTER) {
-                Center = true;
-                driving_time = CENTER_COLUMN_DISTANCE;
-                telemetry.addData("Center:", "True");
-                telemetry.update();
-            } else if (vuMark == RelicRecoveryVuMark.LEFT) {
-                Left = true;
-                driving_time = LEFT_COLUMN_DISTANCE;
-                telemetry.addData("Left:", "True");
-                telemetry.update();
-            } else if (vuMark == RelicRecoveryVuMark.RIGHT) {
-                Right = true;
-                driving_time = RIGHT_COLUMN_DISTANCE;
-                telemetry.addData("Right:", "True");
-                telemetry.update();
-            } else {
-                telemetry.addData(">", "Cannot see it.");
-                telemetry.update();
-                driving_time = CENTER_COLUMN_DISTANCE;
-            }
-            stopper = false;
-            return driving_time;
+
+        Center = false;
+        Right = false;
+        Left = false;
+        if (vuMark == RelicRecoveryVuMark.CENTER) {
+            Center = true;
+            driving_time = CENTER_COLUMN_DISTANCE;
+            telemetry.addData("Center:", "True");
+            telemetry.update();
+        } else if (vuMark == RelicRecoveryVuMark.LEFT) {
+            Left = true;
+            driving_time = LEFT_COLUMN_DISTANCE;
+            telemetry.addData("Left:", "True");
+            telemetry.update();
+        } else if (vuMark == RelicRecoveryVuMark.RIGHT) {
+            Right = true;
+            driving_time = RIGHT_COLUMN_DISTANCE;
+            telemetry.addData("Right:", "True");
+            telemetry.update();
+        } else {
+            telemetry.addData(">", "Cannot see it.");
+            telemetry.update();
+            driving_time = CENTER_COLUMN_DISTANCE;
         }
         return driving_time;
     }
