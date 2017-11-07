@@ -96,26 +96,22 @@ public class AutonomousRedBottom extends AutonomousBase {
 
         telemetry.addData(">", "Start main loop");
         telemetry.update();
-
-        while (opModeIsActive()) {
-            double time_for_driving = checkVuforia();
-            telemetry.addData(">", "Preparing to drive.");
-            telemetry.update();
-            KnockoffJewel(RedBottom);
-            driveForward(0.25, time_for_driving);
-            telemetry.addData(">", "Driving forward by:", checkVuforia());
-            telemetry.update();
-            rightTurn(0.25,1.2666);
-            telemetry.addData(">", "Turned right");
-            telemetry.update();
-            driveForward(0.25, 0.93);
-            telemetry.addData(">", "Final drive forward");
-            telemetry.update();
-            dropGlyph();
-            driveForward(-0.25, 0.5);
-
-            telemetry.update();
-        }
+        double time_for_driving = checkVuforia();
+        telemetry.addData(">", "Preparing to drive.");
+        telemetry.update();
+        KnockoffJewel(RedBottom);
+        driveForward(0.25, time_for_driving);
+        telemetry.addData(">", "Driving forward by:", time_for_driving);
+        telemetry.update();
+        rightTurn(0.25,1.2666);
+        telemetry.addData(">", "Turned right");
+        telemetry.update();
+        driveForward(0.25, 0.93);
+        telemetry.addData(">", "Final drive forward");
+        telemetry.update();
+        dropGlyph();
+        driveForward(-0.25, 0.5);
+        telemetry.update();
     }
 
     String format(OpenGLMatrix transformationMatrix) {
