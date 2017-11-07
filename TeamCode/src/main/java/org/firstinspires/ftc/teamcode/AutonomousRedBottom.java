@@ -30,8 +30,7 @@ public class AutonomousRedBottom extends AutonomousBase {
         VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
         VuforiaTrackable relicTemplate = relicTrackables.get(0);
         vuMark = RelicRecoveryVuMark.from(relicTemplate);
-
-
+        
         relicTrackables.activate();
         if (stopper) {
             Center = false;
@@ -95,7 +94,6 @@ public class AutonomousRedBottom extends AutonomousBase {
         telemetry.update();
         waitForStart();
 
-
         telemetry.addData(">", "Start main loop");
         telemetry.update();
 
@@ -115,19 +113,6 @@ public class AutonomousRedBottom extends AutonomousBase {
             telemetry.update();
             dropGlyph();
             driveForward(-0.25, 0.5);
-                        /*
-           KnockoffJewel("Red", RedBottom);
-            driveForward(0.25, 1.25);
-            rightTurn(0.25, 1.2);
-            driveForward(0.25, 0.75);
-            dropGlyph();
-            stopDriving();
-            sleep(12456);
-            RedBottom = false;
-            telemetry.update();
-
-            AddedCode
-            */
 
             telemetry.update();
         }
