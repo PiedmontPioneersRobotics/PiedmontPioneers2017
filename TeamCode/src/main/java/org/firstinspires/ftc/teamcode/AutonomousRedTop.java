@@ -24,7 +24,7 @@ public class AutonomousRedTop extends AutonomousBase {
 
 
     //check vuforia and return the distance needed to get to the correct cryptobox column
-    public double checkVuforia() {
+    @Override public double checkVuforia() {
         Center = false;
         Right = false;
         Left = false;

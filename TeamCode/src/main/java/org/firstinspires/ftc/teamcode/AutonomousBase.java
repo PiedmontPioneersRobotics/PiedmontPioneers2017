@@ -205,7 +205,12 @@ public abstract class AutonomousBase extends LinearOpMode {
     }
 
     //check vuforia and return the distance needed to get to the correct cryptobox column
-    public  abstract double checkVuforia();
+    public double checkVuforia(){
+    return 0;
+    };
+    public double checkVuforia(VuforiaTrackable relicTemplate){
+        return 0;
+    };
 
     //hold glyph
     public void holdGlyph(){

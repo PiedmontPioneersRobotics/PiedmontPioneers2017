@@ -25,36 +25,8 @@ public class AutonomousRedBottom extends AutonomousBase {
     public boolean stopper = true;
     public double driving_time = 0.0;
     //check vuforia and return the distance needed to get to the correct cryptobox column
-    public double checkVuforia() {
-
-        VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
-        VuforiaTrackable relicTemplate = relicTrackables.get(0);
+    @Override public double checkVuforia(VuforiaTrackable relicTemplate) {
         vuMark = RelicRecoveryVuMark.from(relicTemplate);
-        
-        relicTrackables.activate();
-        if (stopper) {
-            Center = false;
-            Right = false;
-            Left = false;
-            if (vuMark == RelicRecoveryVuMark.CENTER) {
-                Center = true;
-                driving_time = CENTER_COLUMN_DISTANCE;
-                telemetry.addData("Center:", "True");
-            } else if (vuMark == RelicRecoveryVuMark.LEFT) {
-                Left = true;
-                driving_time = LEFT_COLUMN_DISTANCE;
-                telemetry.addData("Left:", "True");
-            } else if (vuMark == RelicRecoveryVuMark.RIGHT) {
-                Right = true;
-                driving_time = RIGHT_COLUMN_DISTANCE;
-                telemetry.addData("Right:", "True");
-            } else {
-                telemetry.addData(">", "Cannot see it.");
-                telemetry.update();
-                driving_time = CENTER_COLUMN_DISTANCE;
-            }
-            stopper = false;
-        }
         if (vuMark != RelicRecoveryVuMark.UNKNOWN) {
             //telemetry.addData("VuMark", "%s visible", vuMark);
             OpenGLMatrix pose = ((VuforiaTrackableDefaultListener)relicTemplate.getListener()).getPose();
@@ -75,7 +47,35 @@ public class AutonomousRedBottom extends AutonomousBase {
             }
         }
         else {
-            // telemetry.addData("VuMark", "not visible");
+            telemetry.addData("VuMark", "not visible");
+            telemetry.update();
+        }
+        if (stopper) {
+            Center = false;
+            Right = false;
+            Left = false;
+            if (vuMark == RelicRecoveryVuMark.CENTER) {
+                Center = true;
+                driving_time = CENTER_COLUMN_DISTANCE;
+                telemetry.addData("Center:", "True");
+                telemetry.update();
+            } else if (vuMark == RelicRecoveryVuMark.LEFT) {
+                Left = true;
+                driving_time = LEFT_COLUMN_DISTANCE;
+                telemetry.addData("Left:", "True");
+                telemetry.update();
+            } else if (vuMark == RelicRecoveryVuMark.RIGHT) {
+                Right = true;
+                driving_time = RIGHT_COLUMN_DISTANCE;
+                telemetry.addData("Right:", "True");
+                telemetry.update();
+            } else {
+                telemetry.addData(">", "Cannot see it.");
+                telemetry.update();
+                driving_time = CENTER_COLUMN_DISTANCE;
+            }
+            stopper = false;
+            return driving_time;
         }
         return driving_time;
     }
@@ -90,6 +90,9 @@ public class AutonomousRedBottom extends AutonomousBase {
         parameters.vuforiaLicenseKey = "AVi+Uaj/////AAAAGfWmeyFp9kJor/1TJjz9wLwAbeI4DnCVS28yGBmbfAGBJFycflauxPe49eusMdcCy8oNTAz/0MVmgKGeUKkOcAYysjx4Vu5IqACsLpAv2E4xpJrfCkOyNYAjeY3FVCPweXd+FOczSSS2sBGHbKtxXWBDH+CWCW2xAyesC/xGyY8CepTmYrZMsOm6c9imaGwUzBhZDTZzRmgQ/mxi9rN4UvHEGp0NTKSi72+kn61f8zBy0rDhZ43UjoIwNknCKvyisezzpIBxqynePB3wtANO1g02zj7a8I1AWl0yuMEjfPM5WGdiDm+g85wm9rBqwL2WOKQnC527JVG50ZB4j0RGq3jES/DOfCNESzYCbC+TqpAF";
         parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
         this.vuforia = ClassFactory.createVuforiaLocalizer(parameters);
+        VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
+        VuforiaTrackable relicTemplate = relicTrackables.get(0);
+        relicTrackables.activate();
         telemetry.addData(">", "Press Play to start");
         telemetry.update();
         waitForStart();
