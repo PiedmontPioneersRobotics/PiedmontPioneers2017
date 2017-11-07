@@ -22,7 +22,8 @@ public class AutonomousRedBottom extends AutonomousBase {
     public static final double CENTER_COLUMN_DISTANCE = 1.35;
     public static final double RIGHT_COLUMN_DISTANCE = 1;
     public static final double LEFT_COLUMN_DISTANCE = 1.5;
-    double driving_time = 0.0;
+    public boolean stopper = true;
+    public double driving_time = 0.0;
     //check vuforia and return the distance needed to get to the correct cryptobox column
     public double checkVuforia() {
 
@@ -30,30 +31,31 @@ public class AutonomousRedBottom extends AutonomousBase {
         VuforiaTrackable relicTemplate = relicTrackables.get(0);
         vuMark = RelicRecoveryVuMark.from(relicTemplate);
 
+
         relicTrackables.activate();
-
-
-        Center = false;
-        Right = false;
-        Left = false;
-        if(vuMark == RelicRecoveryVuMark.CENTER){
-            Center = true;
-            driving_time = CENTER_COLUMN_DISTANCE;
-            telemetry.addData("Center:", "True");
-        } else if(vuMark == RelicRecoveryVuMark.LEFT){
-            Left = true;
-            driving_time = LEFT_COLUMN_DISTANCE;
-            telemetry.addData("Left:", "True");
-        } else if(vuMark == RelicRecoveryVuMark.RIGHT){
-            Right = true;
-            driving_time = RIGHT_COLUMN_DISTANCE;
-            telemetry.addData("Right:", "True");
-        }else{
-            telemetry.addData(">", "Cannot see it.");
-            telemetry.update();
-            driving_time = CENTER_COLUMN_DISTANCE;
+        if (stopper) {
+            Center = false;
+            Right = false;
+            Left = false;
+            if (vuMark == RelicRecoveryVuMark.CENTER) {
+                Center = true;
+                driving_time = CENTER_COLUMN_DISTANCE;
+                telemetry.addData("Center:", "True");
+            } else if (vuMark == RelicRecoveryVuMark.LEFT) {
+                Left = true;
+                driving_time = LEFT_COLUMN_DISTANCE;
+                telemetry.addData("Left:", "True");
+            } else if (vuMark == RelicRecoveryVuMark.RIGHT) {
+                Right = true;
+                driving_time = RIGHT_COLUMN_DISTANCE;
+                telemetry.addData("Right:", "True");
+            } else {
+                telemetry.addData(">", "Cannot see it.");
+                telemetry.update();
+                driving_time = CENTER_COLUMN_DISTANCE;
+            }
+            stopper = false;
         }
-
         if (vuMark != RelicRecoveryVuMark.UNKNOWN) {
             //telemetry.addData("VuMark", "%s visible", vuMark);
             OpenGLMatrix pose = ((VuforiaTrackableDefaultListener)relicTemplate.getListener()).getPose();
