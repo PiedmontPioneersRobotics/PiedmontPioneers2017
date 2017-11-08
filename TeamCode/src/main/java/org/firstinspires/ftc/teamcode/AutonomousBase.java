@@ -42,8 +42,8 @@ public abstract class AutonomousBase extends LinearOpMode {
     public boolean Right;
 
     //knock off jewel routine
-    public void KnockoffJewel(Boolean opMode) {
-        String jewelColor;
+    public void KnockoffJewel(String opMode) {
+        String jewelColor = "None";
         robot.jewelMover.setPosition(j_down);
         sleep(1000);
         //extend jewel arm
@@ -53,11 +53,11 @@ public abstract class AutonomousBase extends LinearOpMode {
         telemetry.addData("Green: ", robot.colorSensor.green());
         telemetry.addData("Blue: ", robot.colorSensor.blue());
         telemetry.update();
-        if (robot.colorSensor.red()>=1 && robot.colorSensor.blue()<=1) {
+        if (robot.colorSensor.red()>=1) {
             jewelColor = "Red";
             telemetry.addLine("Red");
             telemetry.update();
-        }else if (robot.colorSensor.red()<=1 && robot.colorSensor.blue()>=1){
+        }else if (robot.colorSensor.blue()>=1){
             jewelColor = "Blue";
             telemetry.addLine("Blue");
             telemetry.update();
@@ -66,43 +66,95 @@ public abstract class AutonomousBase extends LinearOpMode {
             telemetry.addLine("None");
             telemetry.update();
         }
-        if (jewelColor.equals("Red")) {
-            if (RedBottom) {
-                telemetry.addLine("RedBottom");
+        if (jewelColor == "Red") {
+            telemetry.addLine("The jewel is red.");
+            telemetry.addLine("About to check our mode/color.");
+            telemetry.update();
+            sleep(2000);
+            if (opMode == "RedBottom") {
+                telemetry.addLine("The jewel is red.");
+                telemetry.addLine("Our mode is RedBottom");
+                telemetry.addLine("Should twise away from jewel.");
+                telemetry.update();
+                sleep(1000);
                 leftTurn(0.25, 2);
                 rightTurn(0.25, 2);
-            } else if (RedTop) {
-                telemetry.addLine("RedTop");
+            } else if (opMode == "RedTop") {
+                telemetry.addLine("The jewel is red.");
+                telemetry.addLine("Our mode is RedTop");
+                telemetry.addLine("Should twise away from jewel.");
+                telemetry.update();
+                sleep(1000);
                 leftTurn(0.25, 2);
                 rightTurn(0.25, 2);
-            } else if (BlueBottom) {
-                telemetry.addLine("BlueBottom");
+            } else if (opMode == "BlueBottom") {
+                telemetry.addLine("The jewel is red.");
+                telemetry.addLine("Our mode is BlueBottom");
+                telemetry.addLine("Should twise towards jewel.");
+                telemetry.update();
+                sleep(1000);
                 rightTurn(0.25, 2);
                 leftTurn(0.25, 2);
-            } else if (BlueTop) {
-                telemetry.addLine("BlueTop");
+            } else if (opMode == "BlueTop") {
+                telemetry.addLine("The jewel is red.");
+                telemetry.addLine("Our mode is BlueTop");
+                telemetry.addLine("Should twise towards jewel.");
+                telemetry.update();
+                sleep(1000);
                 rightTurn(0.25, 2);
                 leftTurn(0.25, 2);
+            } else {
+                telemetry.addLine("We don't seem to have a mode?");
+                telemetry.update();
+                sleep(2000);
             }
-
-        } else if (jewelColor.equals("Blue")) {
-            if (RedBottom) {
-                telemetry.addLine("RedBottom");
+        } else if (jewelColor == "Blue") {
+            telemetry.addLine("The jewel is blue.");
+            telemetry.addLine("About to check our mode/color.");
+            telemetry.update();
+            sleep(2000);
+            if (opMode == "RedBottom") {
+                telemetry.addLine("The jewel is blue.");
+                telemetry.addLine("Our mode is RedBottom");
+                telemetry.addLine("Should twise towards jewel.");
+                telemetry.update();
+                sleep(1000);
                 rightTurn(0.25, 2);
                 leftTurn(0.25, 2);
-            } else if (RedTop) {
-                telemetry.addLine("RedTop");
+            } else if (opMode == "RedTop") {
+                telemetry.addLine("The jewel is blue.");
+                telemetry.addLine("Our mode is RedTop");
+                telemetry.addLine("Should twise towards jewel.");
+                telemetry.update();
+                sleep(1000);
                 rightTurn(0.25, 2);
                 leftTurn(0.25, 2);
-            } else if (BlueBottom) {
-                telemetry.addLine("BlueBottom");
+            } else if (opMode == "BlueBottom") {
+                telemetry.addLine("The jewel is blue.");
+                telemetry.addLine("Our mode is BlueBottom");
+                telemetry.addLine("Should twise away from jewel.");
+                telemetry.update();
+                sleep(1000);
                 leftTurn(0.25, 2);
                 rightTurn(0.25, 2);
-            } else if (BlueTop) {
-                telemetry.addLine("BlueTop");
+            } else if (opMode == "BlueTop") {
+                telemetry.addLine("The jewel is blue.");
+                telemetry.addLine("Our mode is BlueTop");
+                telemetry.addLine("Should twise away from jewel.");
+                telemetry.update();
+                sleep(1000);
                 leftTurn(0.25, 2);
                 rightTurn(0.25, 2);
+            } else {
+                telemetry.addLine("We don't seem to have a mode?");
+                telemetry.update();
+                sleep(2000);
             }
+        } else {
+            telemetry.addLine("The jewel color was not recognized as red or blue.");
+            telemetry.addLine("Not going to do anything");
+            telemetry.update();
+            sleep(2000);
         }
         robot.jewelMover.setPosition(j_up);
     }
