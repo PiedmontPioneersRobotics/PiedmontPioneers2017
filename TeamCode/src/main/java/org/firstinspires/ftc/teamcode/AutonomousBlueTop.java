@@ -81,7 +81,7 @@ public class AutonomousBlueTop extends AutonomousBase {
 // Drop glyph;
             if(BlueTop) {
                 holdGlyph();
-                KnockoffJewel(BlueTop);
+                KnockoffJewel("BlueTop");
                 driveBackward(0.25, 1.2);
                 leftTurn(0.25, 1.2);
                 driveForward(0.25, 0.45);

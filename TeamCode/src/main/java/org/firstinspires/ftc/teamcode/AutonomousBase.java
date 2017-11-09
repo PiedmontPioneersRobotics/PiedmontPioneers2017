@@ -20,13 +20,11 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 public abstract class AutonomousBase extends LinearOpMode {
-
-    public static final String TAG = "Vuforia VuMark Sample";
-    RelicRecoveryVuMark vuMark;
-
-    OpenGLMatrix lastLocation = null;
     private ElapsedTime runtime = new ElapsedTime();
+    public static final String TAG = "Vuforia VuMark Sample";
+    OpenGLMatrix lastLocation = null;
     VuforiaLocalizer vuforia;
+    RelicRecoveryVuMark vuMark;
     // READ THIS: This main code is for RedBottom!!
     public boolean RedBottom;
     public boolean BlueBottom;
@@ -247,11 +245,11 @@ public abstract class AutonomousBase extends LinearOpMode {
 
     //check vuforia and return the distance needed to get to the correct cryptobox column
     public double checkVuforia(){
-    return 0;
-    };
-    public double checkVuforia(VuforiaTrackable relicTemplate){
+        telemetry.addData("Not overriding", "!!");
+        telemetry.update();
         return 0;
     };
+
 
     //hold glyph
     public void holdGlyph(){
