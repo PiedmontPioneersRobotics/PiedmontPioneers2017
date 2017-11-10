@@ -17,18 +17,24 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 @Autonomous(name="Blue Bottom Autonomous", group ="Concept")
 
 public class AutonomousBlueBottom extends AutonomousBase {
-    public static final String TAG = "Vuforia VuMark Sample";
-    OpenGLMatrix lastLocation = null;
-    VuforiaLocalizer vuforia;
-    RelicRecoveryVuMark vuMark;
     // READ THIS: This main code is for BlueBottom!!
     public boolean RedTop = false;
     public boolean BlueTop = false;
     public boolean RedBottom = false;
     public boolean BlueBottom = true;
 
+    public static final double CENTER_COLUMN_DISTANCE = 1.35;
+    public static final double RIGHT_COLUMN_DISTANCE = 1;
+    public static final double LEFT_COLUMN_DISTANCE = 1.5;
+    public double driving_time = 1.0;
+    public static final String TAG = "Vuforia VuMark Sample";
+    OpenGLMatrix lastLocation = null;
+    VuforiaLocalizer vuforia;
+    RelicRecoveryVuMark vuMark;
     //check vuforia and return the distance needed to get to the correct cryptobox column
     @Override public double checkVuforia() {
+
+        telemetry.addData("Just checking","...");
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
         parameters.vuforiaLicenseKey = "AVi+Uaj/////AAAAGfWmeyFp9kJor/1TJjz9wLwAbeI4DnCVS28yGBmbfAGBJFycflauxPe49eusMdcCy8oNTAz/0MVmgKGeUKkOcAYysjx4Vu5IqACsLpAv2E4xpJrfCkOyNYAjeY3FVCPweXd+FOczSSS2sBGHbKtxXWBDH+CWCW2xAyesC/xGyY8CepTmYrZMsOm6c9imaGwUzBhZDTZzRmgQ/mxi9rN4UvHEGp0NTKSi72+kn61f8zBy0rDhZ43UjoIwNknCKvyisezzpIBxqynePB3wtANO1g02zj7a8I1AWl0yuMEjfPM5WGdiDm+g85wm9rBqwL2WOKQnC527JVG50ZB4j0RGq3jES/DOfCNESzYCbC+TqpAF";
@@ -36,13 +42,16 @@ public class AutonomousBlueBottom extends AutonomousBase {
         this.vuforia = ClassFactory.createVuforiaLocalizer(parameters);
         VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
         VuforiaTrackable relicTemplate = relicTrackables.get(0);
-        vuMark = RelicRecoveryVuMark.from(relicTemplate);
+        relicTemplate.setName("relicVuMarkTemplate");
+        waitForStart();
         relicTrackables.activate();
+        sleep(1000);
+
         RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
+        OpenGLMatrix pose = ((VuforiaTrackableDefaultListener)relicTemplate.getListener()).getPose();
 
         if (vuMark != RelicRecoveryVuMark.UNKNOWN) {
             //telemetry.addData("VuMark", "%s visible", vuMark);
-            OpenGLMatrix pose = ((VuforiaTrackableDefaultListener)relicTemplate.getListener()).getPose();
             // telemetry.addData("Pose", format(pose));
             if (pose != null) {
                 VectorF trans = pose.getTranslation();
@@ -63,26 +72,32 @@ public class AutonomousBlueBottom extends AutonomousBase {
             telemetry.addData("VuMark", "not visible");
             telemetry.update();
         }
+
         Center = false;
         Right = false;
         Left = false;
-        double distance = 0.0;
-        if(vuMark == RelicRecoveryVuMark.CENTER){
+        if (vuMark == RelicRecoveryVuMark.CENTER) {
             Center = true;
-            distance = 1;
-            telemetry.addData("Center ", "True!!");
-        } else if(vuMark == RelicRecoveryVuMark.LEFT){
+            driving_time = CENTER_COLUMN_DISTANCE;
+            telemetry.addData("Center:", "True");
+            telemetry.update();
+        } else if (vuMark == RelicRecoveryVuMark.LEFT) {
             Left = true;
-            distance = 2;
-            telemetry.addData("Left ", "True!!");
-        } else if(vuMark == RelicRecoveryVuMark.RIGHT){
+            driving_time = LEFT_COLUMN_DISTANCE;
+            telemetry.addData("Left:", "True");
+            telemetry.update();
+        } else if (vuMark == RelicRecoveryVuMark.RIGHT) {
             Right = true;
-            distance = 3;
-            telemetry.addData("Right ", "True!!");
-        }else{
-            distance = 0.0;
+            driving_time = RIGHT_COLUMN_DISTANCE;
+            telemetry.addData("Right:", "True");
+            telemetry.update();
+        } else {
+            telemetry.addData(">", "Cannot see it.");
+            telemetry.update();
+            driving_time = CENTER_COLUMN_DISTANCE;
         }
-        return distance;
+
+        return driving_time;
     }
 
     @Override public void runOpMode() {

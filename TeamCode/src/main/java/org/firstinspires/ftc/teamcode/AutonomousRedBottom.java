@@ -42,6 +42,7 @@ public class AutonomousRedBottom extends AutonomousBase {
         relicTemplate.setName("relicVuMarkTemplate");
         waitForStart();
         relicTrackables.activate();
+        sleep(1000);
 
         RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
         OpenGLMatrix pose = ((VuforiaTrackableDefaultListener)relicTemplate.getListener()).getPose();
@@ -68,7 +69,7 @@ public class AutonomousRedBottom extends AutonomousBase {
             telemetry.addData("VuMark", "not visible");
             telemetry.update();
         }
-        sleep(1000);
+
         Center = false;
         Right = false;
         Left = false;
@@ -92,6 +93,7 @@ public class AutonomousRedBottom extends AutonomousBase {
             telemetry.update();
             driving_time = CENTER_COLUMN_DISTANCE;
         }
+
         return driving_time;
     }
 
