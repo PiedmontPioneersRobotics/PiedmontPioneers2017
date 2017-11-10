@@ -20,10 +20,11 @@ public class AutonomousRedBottom extends AutonomousBase {
     // READ THIS: This main code is for RedBottom!!
     public boolean RedBottom = true;
 
-    public static final double CENTER_COLUMN_DISTANCE = 1.35;
-    public static final double RIGHT_COLUMN_DISTANCE = 1;
-    public static final double LEFT_COLUMN_DISTANCE = 1.5;
-    public double driving_time = 1.0;
+    //These distance are for a voltage between 13.00 & 13.10
+    public static final double CENTER_COLUMN_DISTANCE = 1.65;
+    public static final double RIGHT_COLUMN_DISTANCE = 1.35;
+    public static final double LEFT_COLUMN_DISTANCE = 1.95;
+    public double driving_time = 1.5;
     public static final String TAG = "Vuforia VuMark Sample";
     OpenGLMatrix lastLocation = null;
     VuforiaLocalizer vuforia;
@@ -114,14 +115,14 @@ public class AutonomousRedBottom extends AutonomousBase {
         driveForward(0.25, time_for_driving);
         telemetry.addData(">", "Driving forward by:", time_for_driving);
         telemetry.update();
-        rightTurn(0.25,1.2666);
+        rightTurn(0.25,1.12);
         telemetry.addData(">", "Turned right");
         telemetry.update();
         driveForward(0.25, 0.93);
         telemetry.addData(">", "Final drive forward");
         telemetry.update();
         dropGlyph();
-        driveForward(-0.25, 0.5);
+        driveBackward(0.25, 0.5);
         telemetry.update();
     }
 

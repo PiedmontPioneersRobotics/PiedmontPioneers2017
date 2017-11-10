@@ -41,7 +41,10 @@ public abstract class AutonomousBase extends LinearOpMode {
 
     //knock off jewel routine
     public void KnockoffJewel(String opMode) {
-        double turnTime = 0.3;
+        double turnTime1 = 0.4;
+        double turnTime2 = 0.3;
+        long motorSleep = 200;
+        double powerForTurn = 0.15;
         String jewelColor = "None";
         robot.jewelMover.setPosition(j_down);
         sleep(1500);
@@ -74,45 +77,45 @@ public abstract class AutonomousBase extends LinearOpMode {
                 telemetry.addLine("Our mode is RedBottom");
                 telemetry.addLine("Should twise away from jewel.");
                 telemetry.update();
-                leftTurn(0.25, turnTime);
+                leftTurn(powerForTurn, turnTime1);
                 stopDriving();
-                sleep(333);
-                rightTurn(0.25, turnTime);
+                sleep(motorSleep);
+                rightTurn(powerForTurn, turnTime2);
                 stopDriving();
-                sleep(333);
+                sleep(motorSleep);
             } else if (opMode == "RedTop") {
                 telemetry.addLine("The jewel is red.");
                 telemetry.addLine("Our mode is RedTop");
                 telemetry.addLine("Should twise away from jewel.");
                 telemetry.update();
-                leftTurn(0.25, turnTime);
+                leftTurn(powerForTurn, turnTime1);
                 stopDriving();
-                sleep(333);
-                rightTurn(0.25, turnTime);
+                sleep(motorSleep);
+                rightTurn(powerForTurn, turnTime2);
                 stopDriving();
-                sleep(333);
+                sleep(motorSleep);
             } else if (opMode == "BlueBottom") {
                 telemetry.addLine("The jewel is red.");
                 telemetry.addLine("Our mode is BlueBottom");
                 telemetry.addLine("Should twise towards jewel.");
                 telemetry.update();
-                rightTurn(0.25, turnTime);
+                rightTurn(motorSleep, turnTime1);
                 stopDriving();
-                sleep(333);
-                leftTurn(0.25, turnTime);
+                sleep(motorSleep);
+                leftTurn(powerForTurn, turnTime2);
                 stopDriving();
-                sleep(333);
+                sleep(motorSleep);
             } else if (opMode == "BlueTop") {
                 telemetry.addLine("The jewel is red.");
                 telemetry.addLine("Our mode is BlueTop");
                 telemetry.addLine("Should twise towards jewel.");
                 telemetry.update();
-                rightTurn(0.25, turnTime);
+                rightTurn(powerForTurn, turnTime1);
                 stopDriving();
-                sleep(333);
-                leftTurn(0.25, turnTime);
+                sleep(motorSleep);
+                leftTurn(powerForTurn, turnTime2);
                 stopDriving();
-                sleep(333);
+                sleep(motorSleep);
             } else {
                 telemetry.addLine("We don't seem to have a mode?");
                 telemetry.update();
@@ -127,45 +130,45 @@ public abstract class AutonomousBase extends LinearOpMode {
                 telemetry.addLine("Our mode is RedBottom");
                 telemetry.addLine("Should twise towards jewel.");
                 telemetry.update();
-                rightTurn(0.25, turnTime);
+                rightTurn(powerForTurn, turnTime1);
                 stopDriving();
-                sleep(333);
-                leftTurn(0.25, turnTime);
+                sleep(motorSleep);
+                leftTurn(powerForTurn, turnTime2);
                 stopDriving();
-                sleep(333);
+                sleep(motorSleep);
             } else if (opMode == "RedTop") {
                 telemetry.addLine("The jewel is blue.");
                 telemetry.addLine("Our mode is RedTop");
                 telemetry.addLine("Should twise towards jewel.");
                 telemetry.update();
-                rightTurn(0.25, turnTime);
+                rightTurn(powerForTurn, turnTime1);
                 stopDriving();
-                sleep(333);
-                leftTurn(0.25, turnTime);
+                sleep(motorSleep);
+                leftTurn(powerForTurn, turnTime2);
                 stopDriving();
-                sleep(333);
+                sleep(motorSleep);
             } else if (opMode == "BlueBottom") {
                 telemetry.addLine("The jewel is blue.");
                 telemetry.addLine("Our mode is BlueBottom");
                 telemetry.addLine("Should twise away from jewel.");
                 telemetry.update();
-                leftTurn(0.25, turnTime);
+                leftTurn(powerForTurn, turnTime1);
                 stopDriving();
-                sleep(333);
-                rightTurn(0.25, turnTime);
+                sleep(motorSleep);
+                rightTurn(powerForTurn, turnTime2);
                 stopDriving();
-                sleep(333);
+                sleep(motorSleep);
             } else if (opMode == "BlueTop") {
                 telemetry.addLine("The jewel is blue.");
                 telemetry.addLine("Our mode is BlueTop");
                 telemetry.addLine("Should twise away from jewel.");
                 telemetry.update();
-                leftTurn(0.25, turnTime);
+                leftTurn(powerForTurn, turnTime1);
                 stopDriving();
-                sleep(333);
-                rightTurn(0.25, turnTime);
+                sleep(motorSleep);
+                rightTurn(powerForTurn, turnTime2);
                 stopDriving();
-                sleep(333);
+                sleep(motorSleep);
             } else {
                 telemetry.addLine("We don't seem to have a mode?");
                 telemetry.update();

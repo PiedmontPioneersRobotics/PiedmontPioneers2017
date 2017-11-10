@@ -22,9 +22,9 @@ public class AutonomousBlueTop extends AutonomousBase {
     public boolean RedBottom = false;
     public boolean BlueBottom = false;
 
-    public static final double CENTER_COLUMN_DISTANCE = 1.35;
-    public static final double RIGHT_COLUMN_DISTANCE = 1;
-    public static final double LEFT_COLUMN_DISTANCE = 1.5;
+    public static final double CENTER_COLUMN_DISTANCE = 1.65;
+    public static final double RIGHT_COLUMN_DISTANCE = 1.35;
+    public static final double LEFT_COLUMN_DISTANCE = 1.95;
     public double driving_time = 1.0;
     public static final String TAG = "Vuforia VuMark Sample";
     OpenGLMatrix lastLocation = null;
