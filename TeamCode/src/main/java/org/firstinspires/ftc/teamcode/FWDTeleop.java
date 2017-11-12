@@ -32,11 +32,11 @@ public class FWDTeleop extends OpMode{
         telemetry.addData("lifter",  "%d", lifterPosition);
         telemetry.addData("Relic Arm",  "%d", relicGrabberPosition);
         boolean a_pressed;
-        boolean b_pressed;
+        boolean y_pressed;
         boolean up_pressed;
         boolean down_pressed;
+        y_pressed = gamepad1.y;
         a_pressed = gamepad1.a;
-        b_pressed = gamepad1.b;
         up_pressed = gamepad1.dpad_up;
         down_pressed = gamepad1.dpad_down;
         double rightSpeed;
@@ -77,14 +77,15 @@ public class FWDTeleop extends OpMode{
             robot.lifter.setPower(0.5);
             telemetry.addLine("Caution: Lifter is too low");
             telemetry.update();
-        } else if (a_pressed && !a_previously_pressed) {
+        } else if (y_pressed && !y_previously_pressed) {
             robot.lifter.setTargetPosition(lifterPosition + 2600);
             robot.lifter.setPower(0.5);
-        } else if (b_pressed && !b_previously_pressed) {
+        } else if (a_pressed && !a_previously_pressed) {
             robot.lifter.setTargetPosition(lifterPosition - 2600);
             robot.lifter.setPower(-0.5);
         }
         a_previously_pressed = a_pressed;
+        y_previously_pressed = y_pressed;
         //glyph grabber code
         if ((gamepad1.left_bumper)&&(gamepad1.left_bumper)) {
             robot.starboardGripper.setPosition(1);
