@@ -41,8 +41,8 @@ public abstract class AutonomousBase extends LinearOpMode {
 
     //knock off jewel routine
     public void KnockoffJewel(String opMode) {
-        double turnTime1 = 0.4;
-        double turnTime2 = 0.3;
+        double turnTime1 = 0.5;
+        double turnTime2 = 0.4;
         long motorSleep = 200;
         double powerForTurn = 0.15;
         String jewelColor = "None";
