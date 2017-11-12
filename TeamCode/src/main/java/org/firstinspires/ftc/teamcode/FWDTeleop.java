@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 public class FWDTeleop extends OpMode{
     HardwareFWD robot  = new HardwareFWD();
     boolean a_previously_pressed = false;
-    boolean b_previously_pressed = false;
+    boolean y_previously_pressed = false;
 
     @Override
     public void init() {
@@ -26,10 +26,10 @@ public class FWDTeleop extends OpMode{
         int lifterPosition;
         lifterPosition = robot.lifter.getCurrentPosition();
         telemetry.addData("lifter",  "%d", lifterPosition);
+        boolean y_pressed;
         boolean a_pressed;
-        boolean b_pressed;
+        y_pressed = gamepad1.y;
         a_pressed = gamepad1.a;
-        b_pressed = gamepad1.b;
         double rightSpeed;
         double leftSpeed;
         rightSpeed = gamepad1.right_stick_y;
@@ -68,14 +68,15 @@ public class FWDTeleop extends OpMode{
             robot.lifter.setPower(0.5);
             telemetry.addLine("Caution: Lifter is too low");
             telemetry.update();
-        } else if (a_pressed && !a_previously_pressed) {
+        } else if (y_pressed && !y_previously_pressed) {
             robot.lifter.setTargetPosition(lifterPosition + 2600);
             robot.lifter.setPower(0.5);
-        } else if (b_pressed && !b_previously_pressed) {
+        } else if (a_pressed && !a_previously_pressed) {
             robot.lifter.setTargetPosition(lifterPosition - 2600);
             robot.lifter.setPower(-0.5);
         }
         a_previously_pressed = a_pressed;
+        y_previously_pressed = y_pressed;
 
         if ((gamepad1.left_bumper)&&(gamepad1.left_bumper)) {
             robot.starboardGripper.setPosition(1);
