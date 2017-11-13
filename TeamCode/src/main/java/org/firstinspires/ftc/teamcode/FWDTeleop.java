@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 public class FWDTeleop extends OpMode{
     HardwareFWD robot  = new HardwareFWD();
     boolean a_previously_pressed = false;
-    boolean b_previously_pressed = false;
+    boolean y_previously_pressed = false;
     boolean up_previously_pressed = false;
     boolean down_previously_pressed = false;
 
