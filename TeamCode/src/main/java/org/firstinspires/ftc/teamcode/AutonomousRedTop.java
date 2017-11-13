@@ -16,21 +16,14 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 @Autonomous(name="Red Top Autonomous", group ="Concept")
 public class AutonomousRedTop extends AutonomousBase {
-    // READ THIS: This main code is for RedBottom!!
-    public boolean RedTop = true;
-    public boolean BlueTop = false;
-    public boolean RedBottom = false;
-    public boolean BlueBottom = false;
-
-    public static final double CENTER_COLUMN_DISTANCE = 1.65;
-    public static final double RIGHT_COLUMN_DISTANCE = 1.35;
-    public static final double LEFT_COLUMN_DISTANCE = 1.95;
+    public static final double CENTER_COLUMN_DISTANCE = 0.70;
+    public static final double RIGHT_COLUMN_DISTANCE = 0.31;
+    public static final double LEFT_COLUMN_DISTANCE = 1.09;
     public double driving_time = 1.0;
     public static final String TAG = "Vuforia VuMark Sample";
     OpenGLMatrix lastLocation = null;
     VuforiaLocalizer vuforia;
     RelicRecoveryVuMark vuMark;
-
     //check vuforia and return the distance needed to get to the correct cryptobox column
     @Override public double checkVuforia() {
         telemetry.addData("Just checking", "...");
@@ -42,11 +35,12 @@ public class AutonomousRedTop extends AutonomousBase {
         VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
         VuforiaTrackable relicTemplate = relicTrackables.get(0);
         relicTemplate.setName("relicVuMarkTemplate");
+        waitForStart();
         relicTrackables.activate();
         sleep(1000);
 
         RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
-        OpenGLMatrix pose = ((VuforiaTrackableDefaultListener) relicTemplate.getListener()).getPose();
+        OpenGLMatrix pose = ((VuforiaTrackableDefaultListener)relicTemplate.getListener()).getPose();
 
         if (vuMark != RelicRecoveryVuMark.UNKNOWN) {
             //telemetry.addData("VuMark", "%s visible", vuMark);
@@ -100,18 +94,22 @@ public class AutonomousRedTop extends AutonomousBase {
     @Override public void runOpMode() {
         robot.init(hardwareMap);
         telemetry.addData("Say", "Hello Driver");
-        telemetry.addData(">", "Press Play to start");
         telemetry.update();
-        telemetry.addData(">", "Start main loop");
+        telemetry.addData(">", "Press Play to start");
         telemetry.update();
         waitForStart();
 
         telemetry.addData(">", "Start main loop");
         telemetry.update();
+        raiseLifter();
         double time_for_driving = checkVuforia();
         telemetry.addData(">", "Preparing to drive.");
         telemetry.update();
         KnockoffJewel("RedTop");
+        driveForward(0.25, 1.7);
+        leftTurn(0.25, 1.4);
+        telemetry.addData(">", "Turned left");
+        telemetry.update();
         driveForward(0.25, time_for_driving);
         telemetry.addData(">", "Driving forward by:", time_for_driving);
         telemetry.update();
@@ -121,11 +119,11 @@ public class AutonomousRedTop extends AutonomousBase {
         driveForward(0.25, 1);
         telemetry.addData(">", "Final drive forward");
         telemetry.update();
+        lowerLifter();
+        sleep(2000);
         dropGlyph();
         driveBackward(0.25, 0.5);
         telemetry.update();
-        }
-
     }
 
     String format(OpenGLMatrix transformationMatrix) {
