@@ -34,7 +34,7 @@ public abstract class AutonomousBase extends LinearOpMode {
 
     HardwareFWD robot  = new HardwareFWD();
     public final static double j_up = 0.6;
-    public final static double j_down = 0.05;
+    public final static double j_down = 0;
     public boolean Center;
     public boolean Left;
     public boolean Right;
@@ -80,6 +80,7 @@ public abstract class AutonomousBase extends LinearOpMode {
                 sleep(2000);
                 leftTurn(powerForTurn, turnTime1);
                 stopDriving();
+                robot.jewelMover.setPosition(j_up);
                 sleep(motorSleep);
                 rightTurn(powerForTurn, turnTime2);
                 stopDriving();
@@ -92,6 +93,7 @@ public abstract class AutonomousBase extends LinearOpMode {
                 sleep(2000);
                 leftTurn(powerForTurn, turnTime1);
                 stopDriving();
+                robot.jewelMover.setPosition(j_up);
                 sleep(motorSleep);
                 rightTurn(powerForTurn, turnTime2);
                 stopDriving();
@@ -104,6 +106,7 @@ public abstract class AutonomousBase extends LinearOpMode {
                 sleep(2000);
                 rightTurn(powerForTurn, turnTime1);
                 stopDriving();
+                robot.jewelMover.setPosition(j_up);
                 sleep(motorSleep);
                 leftTurn(powerForTurn, turnTime2);
                 stopDriving();
@@ -116,6 +119,7 @@ public abstract class AutonomousBase extends LinearOpMode {
                 sleep(2000);
                 rightTurn(powerForTurn, turnTime1);
                 stopDriving();
+                robot.jewelMover.setPosition(j_up);
                 sleep(motorSleep);
                 leftTurn(powerForTurn, turnTime2);
                 stopDriving();
@@ -124,6 +128,7 @@ public abstract class AutonomousBase extends LinearOpMode {
                 telemetry.addLine("We don't seem to have a mode?");
                 telemetry.update();
                 sleep(2000);
+                robot.jewelMover.setPosition(j_up);
             }
 
         } else if (jewelColor == "Blue") {
@@ -138,6 +143,7 @@ public abstract class AutonomousBase extends LinearOpMode {
                 sleep(2000);
                 rightTurn(powerForTurn, turnTime1);
                 stopDriving();
+                robot.jewelMover.setPosition(j_up);
                 sleep(motorSleep);
                 leftTurn(powerForTurn, turnTime2);
                 stopDriving();
@@ -150,6 +156,7 @@ public abstract class AutonomousBase extends LinearOpMode {
                 sleep(2000);
                 rightTurn(powerForTurn, turnTime1);
                 stopDriving();
+                robot.jewelMover.setPosition(j_up);
                 sleep(motorSleep);
                 leftTurn(powerForTurn, turnTime2);
                 stopDriving();
@@ -162,6 +169,7 @@ public abstract class AutonomousBase extends LinearOpMode {
                 sleep(2000);
                 leftTurn(powerForTurn, turnTime1);
                 stopDriving();
+                robot.jewelMover.setPosition(j_up);
                 sleep(motorSleep);
                 rightTurn(powerForTurn, turnTime2);
                 stopDriving();
@@ -174,6 +182,7 @@ public abstract class AutonomousBase extends LinearOpMode {
                 sleep(2000);
                 leftTurn(powerForTurn, turnTime1);
                 stopDriving();
+                robot.jewelMover.setPosition(j_up);
                 sleep(motorSleep);
                 rightTurn(powerForTurn, turnTime2);
                 stopDriving();
@@ -182,14 +191,16 @@ public abstract class AutonomousBase extends LinearOpMode {
                 telemetry.addLine("We don't seem to have a mode?");
                 telemetry.update();
                 sleep(2000);
+                robot.jewelMover.setPosition(j_up);
             }
         } else {
             telemetry.addLine("The jewel color was not recognized as red or blue.");
             telemetry.addLine("Not going to do anything");
             telemetry.update();
             sleep(2000);
+            robot.jewelMover.setPosition(j_up);
         }
-        robot.jewelMover.setPosition(j_up);
+
     }
     double rightSpeed;
     double leftSpeed;
