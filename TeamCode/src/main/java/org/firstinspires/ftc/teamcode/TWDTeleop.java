@@ -11,7 +11,6 @@ public class TWDTeleop extends OpMode{
     public void init() {
         telemetry.addData("Say", "B4 init dog");
         robot.init(hardwareMap);
-        telemetry.addData("Say", "Hello Driver");
         telemetry.update();
     }
     @Override
