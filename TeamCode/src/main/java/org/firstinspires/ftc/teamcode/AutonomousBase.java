@@ -50,16 +50,16 @@ public abstract class AutonomousBase extends LinearOpMode {
         sleep(1500);
         //extend jewel arm
         float hsvValues[] = {0F,0F,0F};
-        Color.RGBToHSV(robot.colorSensor.red() * 8, robot.colorSensor.green() * 8, robot.colorSensor.blue() * 8, hsvValues);
+        Color.RGBToHSV(robot.colorSensor.red(), robot.colorSensor.green(), robot.colorSensor.blue(), hsvValues);
         telemetry.addData("Red: ", robot.colorSensor.red());
         telemetry.addData("Green: ", robot.colorSensor.green());
         telemetry.addData("Blue: ", robot.colorSensor.blue());
         telemetry.update();
-        if (robot.colorSensor.red()>=1) {
+        if (robot.colorSensor.red()>robot.colorSensor.blue()) {
             jewelColor = "Red";
             telemetry.addLine("Red");
             telemetry.update();
-        }else if (robot.colorSensor.blue()>=1){
+        }else if (robot.colorSensor.blue()>robot.colorSensor.red()){
             jewelColor = "Blue";
             telemetry.addLine("Blue");
             telemetry.update();
