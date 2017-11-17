@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -13,8 +14,12 @@ public class HardwareFWD {
     public DcMotor      lifter = null;
     public Servo        starboardGripper = null;
     public Servo        portGripper = null;
-    public Servo        jewelMover = null;//child
+    public Servo        jewelMover = null;
     public ColorSensor  colorSensor = null;
+
+    public DcMotor      RelicArm = null;
+    public Servo        RelicGrabber = null;
+
     HardwareMap hwMap           =  null;
     private ElapsedTime period  = new ElapsedTime();
     public HardwareFWD(){}
@@ -51,6 +56,13 @@ public class HardwareFWD {
         portGripper.setPosition(lgp);
         jewelMover.setPosition(1);
 
+        RelicArm  = hwMap.get(DcMotor.class, "RelicArm");
+        RelicArm.setDirection(DcMotor.Direction.FORWARD);
+        RelicArm.setPower(0);
+        RelicArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        RelicGrabber = hwMap.get(Servo.class, "RelicGrabber");
+        RelicGrabber.setPosition(0);
     }
 
  }
