@@ -6,7 +6,10 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+
 public class HardwareFWD {
+    public final static double j_up = 0.6;
+    public final static double j_down = 0;
     public DcMotor      Right1   = null;
     public DcMotor      Right2   = null;
     public DcMotor      Left1   = null;
@@ -45,6 +48,9 @@ public class HardwareFWD {
         lifter  = hwMap.get(DcMotor.class, "lifter");
         lifter.setDirection(DcMotor.Direction.FORWARD);
         lifter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        lifter.setPower(0.5);
+        lifter.setTargetPosition(0);
         jewelMover = hwMap.get(Servo.class, "Jewel Grabber");
         starboardGripper = hwMap.get(Servo.class, "Starboard gripper");
         portGripper = hwMap.get(Servo.class, "Port gripper");
@@ -54,7 +60,7 @@ public class HardwareFWD {
         double lgp = 0.2;       //left gripper position
         starboardGripper.setPosition(rgp);
         portGripper.setPosition(lgp);
-        jewelMover.setPosition(1);
+        jewelMover.setPosition(j_up);
 
         RelicArm  = hwMap.get(DcMotor.class, "RelicArm");
         RelicArm.setDirection(DcMotor.Direction.FORWARD);

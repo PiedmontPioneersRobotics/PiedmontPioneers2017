@@ -17,8 +17,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 @Autonomous(name="Blue Bottom Autonomous", group ="Concept")
 public class AutonomousBlueBottom extends AutonomousBase {
     public static final double CENTER_COLUMN_DISTANCE = 1.65;
-    public static final double RIGHT_COLUMN_DISTANCE = 1.35;
-    public static final double LEFT_COLUMN_DISTANCE = 1.95;
+    public static final double RIGHT_COLUMN_DISTANCE = 1.95;
+    public static final double LEFT_COLUMN_DISTANCE = 1.35;
     public double driving_time = 1.0;
     public static final String TAG = "Vuforia VuMark Sample";
     OpenGLMatrix lastLocation = null;
@@ -101,6 +101,7 @@ public class AutonomousBlueBottom extends AutonomousBase {
 
         telemetry.addData(">", "Start main loop");
         telemetry.update();
+        raiseLifter();
         double time_for_driving = checkVuforia();
         telemetry.addData(">", "Preparing to drive.");
         telemetry.update();
@@ -111,9 +112,11 @@ public class AutonomousBlueBottom extends AutonomousBase {
         rightTurn(0.25,1.22);
         telemetry.addData(">", "Turned right");
         telemetry.update();
+        lowerLifter();
         driveForward(0.25, 1);
         telemetry.addData(">", "Final drive forward");
         telemetry.update();
+        sleep(2000);
         dropGlyph();
         driveBackward(0.25, 0.5);
         telemetry.update();

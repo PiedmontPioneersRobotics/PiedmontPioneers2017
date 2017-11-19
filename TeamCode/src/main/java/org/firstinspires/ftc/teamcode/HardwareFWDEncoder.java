@@ -1,4 +1,5 @@
 package org.firstinspires.ftc.teamcode;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -13,6 +14,7 @@ public class HardwareFWDEncoder {
     public Servo    starboardGripper = null;
     public Servo    portGripper = null;
     public Servo    jewelMover = null;//child
+    public ColorSensor colorSensor = null;
     HardwareMap hwMap           =  null;
     private ElapsedTime period  = new ElapsedTime();
     public HardwareFWDEncoder(){}
@@ -42,6 +44,7 @@ public class HardwareFWDEncoder {
         starboardGripper.setPosition(0.5);
         portGripper = hwMap.get(Servo.class, "Port gripper");
         portGripper.setPosition(0.5);
+
 
     }
  }
