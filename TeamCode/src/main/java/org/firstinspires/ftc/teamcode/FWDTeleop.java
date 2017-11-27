@@ -9,6 +9,8 @@ public class FWDTeleop extends OpMode{
     boolean y_previously_pressed = false;
     boolean up_previously_pressed = false;
     boolean down_previously_pressed = false;
+    boolean b_previously_pressed = false;
+    boolean x_previously_pressed = false;
 
     @Override
     public void init() {
@@ -35,10 +37,14 @@ public class FWDTeleop extends OpMode{
         boolean y_pressed;
         boolean up_pressed;
         boolean down_pressed;
+        boolean b_pressed;
+        boolean x_pressed;
         y_pressed = gamepad1.y;
         a_pressed = gamepad1.a;
         up_pressed = gamepad1.dpad_up;
         down_pressed = gamepad1.dpad_down;
+        b_pressed = gamepad1.y;
+        x_pressed = gamepad1.a;
         double rightSpeed;
         double leftSpeed;
         rightSpeed = gamepad1.right_stick_y;
@@ -78,16 +84,31 @@ public class FWDTeleop extends OpMode{
             telemetry.addLine("Caution: Lifter is too low");
             telemetry.update();
         } else if (y_pressed && !y_previously_pressed) {
-            robot.lifter.setTargetPosition(lifterPosition + 2600);
+            robot.lifter.setTargetPosition(lifterPosition + 2800);
             robot.lifter.setPower(0.5);
         } else if (a_pressed && !a_previously_pressed) {
-            robot.lifter.setTargetPosition(lifterPosition - 2600);
+            robot.lifter.setTargetPosition(lifterPosition - 2800);
             robot.lifter.setPower(-0.5);
         }
         a_previously_pressed = a_pressed;
         y_previously_pressed = y_pressed;
+
+        /*
+        //mechanum wheel glyph grabber code
+        if (!(glyphIsIn) && (glyphSensor < 8 inches)) {
+            robot.rightMechanumGlyphSucker.setPower(1);
+            robot.leftMechanumGlyphSucker.setPower(1);
+        }
+        if (b_pressed && !b_previously_pressed) {
+            robot.rightMechanumGlyphSucker.setPower(1);
+            robot.leftMechanumGlyphSucker.setPower(-1);
+        } else if (x_pressed && !x_previously_pressed) {
+            robot.rightMechanumGlyphSucker.setPower(-1);
+            robot.leftMechanumGlyphSucker.setPower(-);
+        }*/
+
         //glyph grabber code
-        if ((gamepad1.left_bumper)&&(gamepad1.left_bumper)) {
+        if ((gamepad1.left_bumper)&&(gamepad1.right_bumper)) {
             robot.starboardGripper.setPosition(1);
             robot.portGripper.setPosition(0);
         } else {
@@ -100,21 +121,21 @@ public class FWDTeleop extends OpMode{
 
         }
         //relic grabber code
-        if (relicGrabberPosition > 8640) {
-            robot.lifter.setTargetPosition(lifterPosition - 10);
+        if (relicGrabberPosition > 360) {
+            robot.lifter.setTargetPosition(lifterPosition - 2);
             robot.lifter.setPower(-0.5);
-            telemetry.addLine("Caution: Lifter is too high");
+            telemetry.addLine("Caution: Relic Grabber out of position");
             telemetry.update();
         } else if (relicGrabberPosition < 0){
-            robot.lifter.setTargetPosition(lifterPosition + 10);
+            robot.lifter.setTargetPosition(lifterPosition + 2);
             robot.lifter.setPower(0.5);
-            telemetry.addLine("Caution: Lifter is too low");
+            telemetry.addLine("Caution: Relic Grabber out of position");
             telemetry.update();
         } else if (up_pressed && !up_previously_pressed) {
-            robot.lifter.setTargetPosition(lifterPosition + 2600);
+            robot.lifter.setTargetPosition(lifterPosition + 360);
             robot.lifter.setPower(0.5);
         } else if (down_pressed && !down_previously_pressed) {
-            robot.lifter.setTargetPosition(lifterPosition - 2600);
+            robot.lifter.setTargetPosition(lifterPosition - 360);
             robot.lifter.setPower(-0.5);
         }
         up_previously_pressed = up_pressed;
