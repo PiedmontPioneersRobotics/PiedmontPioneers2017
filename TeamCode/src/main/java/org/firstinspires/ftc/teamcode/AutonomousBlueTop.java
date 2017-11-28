@@ -16,9 +16,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 @Autonomous(name="Blue Top Autonomous", group ="Concept")
 public class AutonomousBlueTop extends AutonomousBase {
-    public static final double CENTER_COLUMN_DISTANCE = 0.70;
-    public static final double RIGHT_COLUMN_DISTANCE = 1.09;
-    public static final double LEFT_COLUMN_DISTANCE = 0.31;
+    public static final double CENTER_COLUMN_DISTANCE = 1;
+    public static final double RIGHT_COLUMN_DISTANCE = 1.49;
+    public static final double LEFT_COLUMN_DISTANCE = 0.51;
+    public int CryptoboxColumnCount = 0;
     public double driving_time = 1.0;
     public static final String TAG = "Vuforia VuMark Sample";
     OpenGLMatrix lastLocation = null;
@@ -106,23 +107,24 @@ public class AutonomousBlueTop extends AutonomousBase {
         telemetry.addData(">", "Preparing to drive.");
         telemetry.update();
         KnockoffJewel("BlueTop");
-        driveBackward(0.25, 1.90);
-        leftTurn(0.25, 1.4);
+        driveBackward(0.25, 1.6);
+        leftTurn(0.25, 1.5);
         telemetry.addData(">", "Turned left");
         telemetry.update();
         driveForward(0.25, time_for_driving);
         telemetry.addData(">", "Driving forward by:", time_for_driving);
         telemetry.update();
-        leftTurn(0.25,1.32);
+        leftTurn(0.25,1.3);
         telemetry.addData(">", "Turned left");
         telemetry.update();
-        lowerLifter();
-        driveForward(0.25, 1);
+        driveForward(0.25, 1.4);
         telemetry.addData(">", "Final drive forward");
         telemetry.update();
         sleep(2000);
         dropGlyph();
         driveBackward(0.25, 0.5);
+        lowerLifter();
+        driveForward(0.25, 0.5);
         telemetry.update();
     }
 
