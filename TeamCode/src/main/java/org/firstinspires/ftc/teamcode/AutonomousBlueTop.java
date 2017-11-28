@@ -107,7 +107,7 @@ public class AutonomousBlueTop extends AutonomousBase {
         telemetry.addData(">", "Preparing to drive.");
         telemetry.update();
         KnockoffJewel("BlueTop");
-        driveBackward(0.25, 1.8);
+        driveBackward(0.25, 1.6);
         leftTurn(0.25, 1.5);
         telemetry.addData(">", "Turned left");
         telemetry.update();
@@ -122,9 +122,9 @@ public class AutonomousBlueTop extends AutonomousBase {
         telemetry.update();
         sleep(2000);
         dropGlyph();
-        driveBackward(0.25, 1);
+        driveBackward(0.25, 0.5);
         lowerLifter();
-        driveForward(0.25, 1.25);
+        driveForward(0.25, 0.5);
         telemetry.update();
     }
 
