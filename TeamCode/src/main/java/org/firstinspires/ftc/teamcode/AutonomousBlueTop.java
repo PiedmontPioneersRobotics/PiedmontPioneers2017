@@ -123,6 +123,8 @@ public class AutonomousBlueTop extends AutonomousBase {
         sleep(2000);
         dropGlyph();
         driveBackward(0.25, 0.5);
+        lowerLifter();
+        driveForward(0.25, 0.5);
         telemetry.update();
     }
 

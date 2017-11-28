@@ -112,7 +112,6 @@ public class AutonomousBlueBottom extends AutonomousBase {
         rightTurn(0.25,1.22);
         telemetry.addData(">", "Turned right");
         telemetry.update();
-        lowerLifter();
         driveForward(0.25, 1);
         telemetry.addData(">", "Final drive forward");
         telemetry.update();
