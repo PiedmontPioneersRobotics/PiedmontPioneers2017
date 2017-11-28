@@ -18,7 +18,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 public class AutonomousBlueBottom extends AutonomousBase {
     public static final double CENTER_COLUMN_DISTANCE = 1.65;
     public static final double RIGHT_COLUMN_DISTANCE = 1.95;
-    public static final double LEFT_COLUMN_DISTANCE = 1.35;
+    public static final double LEFT_COLUMN_DISTANCE = 1.25;
     public int CryptoboxColumnCount = 0;
     public double driving_time = 1.0;
     public static final String TAG = "Vuforia VuMark Sample";
@@ -118,7 +118,7 @@ public class AutonomousBlueBottom extends AutonomousBase {
         telemetry.update();
         sleep(2000);
         dropGlyph();
-        driveBackward(0.25, 0.5);
+        pushGlyph();
         telemetry.update();
     }
 
