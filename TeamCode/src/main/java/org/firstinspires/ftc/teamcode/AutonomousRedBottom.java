@@ -118,9 +118,16 @@ public class AutonomousRedBottom extends AutonomousBase {
         driveForward(0.25, 1);
         telemetry.addData(">", "Final drive forward");
         telemetry.update();
-        sleep(2000);
         dropGlyph();
-        driveBackward(0.25, 0.5);
+        pushGlyph();
+        leftTurn(0.25, 2.5);
+        driveForward(1, 1.5);
+        holdGlyph();
+        raiseLifter();
+        leftTurn(1, 1.75);
+        driveForward(1, 1.6);
+        dropGlyph();
+        pushGlyph();
         telemetry.update();
     }
 

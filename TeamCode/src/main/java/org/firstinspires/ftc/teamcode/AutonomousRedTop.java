@@ -122,7 +122,7 @@ public class AutonomousRedTop extends AutonomousBase {
         telemetry.update();
         sleep(2000);
         dropGlyph();
-        driveBackward(0.25, 0.5);
+        pushGlyph();
         telemetry.update();
     }
 

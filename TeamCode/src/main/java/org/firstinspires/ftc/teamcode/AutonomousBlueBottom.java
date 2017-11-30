@@ -17,7 +17,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 @Autonomous(name="Blue Bottom Autonomous", group ="Concept")
 public class AutonomousBlueBottom extends AutonomousBase {
     public static final double CENTER_COLUMN_DISTANCE = 1.65;
-    public static final double RIGHT_COLUMN_DISTANCE = 1.95;
+    public static final double RIGHT_COLUMN_DISTANCE = 2;
     public static final double LEFT_COLUMN_DISTANCE = 1.25;
     public int CryptoboxColumnCount = 0;
     public double driving_time = 1.0;
@@ -110,13 +110,20 @@ public class AutonomousBlueBottom extends AutonomousBase {
         driveBackward(0.25, time_for_driving);
         telemetry.addData(">", "Driving backward by:", time_for_driving);
         telemetry.update();
-        rightTurn(0.25,1.22);
+        rightTurn(0.25,1.12);
         telemetry.addData(">", "Turned right");
         telemetry.update();
         driveForward(0.25, 1);
         telemetry.addData(">", "Final drive forward");
         telemetry.update();
-        sleep(2000);
+        dropGlyph();
+        pushGlyph();
+        leftTurn(0.25, 2.5);
+        driveForward(1, 1.5);
+        holdGlyph();
+        raiseLifter();
+        leftTurn(1, 1.75);
+        driveForward(1, 1.6);
         dropGlyph();
         pushGlyph();
         telemetry.update();

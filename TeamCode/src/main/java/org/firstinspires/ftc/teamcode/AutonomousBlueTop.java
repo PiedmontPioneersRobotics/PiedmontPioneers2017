@@ -16,8 +16,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 @Autonomous(name="Blue Top Autonomous", group ="Concept")
 public class AutonomousBlueTop extends AutonomousBase {
-    public static final double CENTER_COLUMN_DISTANCE = 1;
-    public static final double RIGHT_COLUMN_DISTANCE = 1.49;
+    public static final double CENTER_COLUMN_DISTANCE = 0.90;
+    public static final double RIGHT_COLUMN_DISTANCE = 1.29;
     public static final double LEFT_COLUMN_DISTANCE = 0.51;
     public int CryptoboxColumnCount = 0;
     public double driving_time = 1.0;
@@ -108,13 +108,13 @@ public class AutonomousBlueTop extends AutonomousBase {
         telemetry.update();
         KnockoffJewel("BlueTop");
         driveBackward(0.25, 1.6);
-        leftTurn(0.25, 1.5);
+        leftTurn(0.25, 1.25);
         telemetry.addData(">", "Turned left");
         telemetry.update();
         driveForward(0.25, time_for_driving);
         telemetry.addData(">", "Driving forward by:", time_for_driving);
         telemetry.update();
-        leftTurn(0.25,1.3);
+        leftTurn(0.25,1.35);
         telemetry.addData(">", "Turned left");
         telemetry.update();
         driveForward(0.25, 1.4);
@@ -122,9 +122,7 @@ public class AutonomousBlueTop extends AutonomousBase {
         telemetry.update();
         sleep(2000);
         dropGlyph();
-        driveBackward(0.25, 0.5);
-        lowerLifter();
-        driveForward(0.25, 0.5);
+        pushGlyph();
         telemetry.update();
     }
 

@@ -1,27 +1,38 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.robotcontroller.external.samples.SensorDigitalTouch;
+import org.firstinspires.ftc.robotcontroller.external.samples.SensorMRRangeSensor;
 
 
 public class HardwareFWD {
     public final static double j_up = 0.6;
     public final static double j_down = 0;
-    public DcMotor      Right1   = null;
-    public DcMotor      Right2   = null;
-    public DcMotor      Left1   = null;
-    public DcMotor      Left2   = null;
-    public DcMotor      lifter = null;
-    public Servo        starboardGripper = null;
-    public Servo        portGripper = null;
-    public Servo        jewelMover = null;
-    public ColorSensor  colorSensor = null;
+    public DcMotor                 Right1   = null;
+    public DcMotor                 Right2   = null;
+    public DcMotor                 Left1   = null;
+    public DcMotor                 Left2   = null;
+    public DcMotor                 lifter = null;
+    //public DcMotor                 rightMechanumGlyphSucker = null;
+    //public DcMotor                 leftMechanumGlyphSucker = null;
+    public Servo                   starboardGripper = null;
+    public Servo                   portGripper = null;
+    public Servo                   jewelMover = null;
+    //public Servo                   columnCounterArm = null;
+    public ColorSensor             colorSensor = null;
+    //public OpticalDistanceSensor   columnCounter = null;
+    //public SensorMRRangeSensor     glyphLocator = null;
+    public SensorDigitalTouch      glyphInSensor = null;
 
-    public DcMotor      RelicArm = null;
-    public Servo        RelicGrabber = null;
+    public DcMotor                 RelicArm = null;
+    public Servo                   RelicGrabber = null;
 
     HardwareMap hwMap           =  null;
     private ElapsedTime period  = new ElapsedTime();
@@ -52,11 +63,24 @@ public class HardwareFWD {
         lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         lifter.setPower(0.5);
         lifter.setTargetPosition(0);
+        //rightMechanumGlyphSucker = hwMap.get(DcMotor.class, "Right Mecanum Glyph Sucker");
+        //rightMechanumGlyphSucker.setDirection(DcMotor.Direction.FORWARD);
+        //rightMechanumGlyphSucker.setPower(0);
+        //rightMechanumGlyphSucker.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //leftMechanumGlyphSucker = hwMap.get(DcMotor.class, "Right Mecanum Glyph Sucker");
+        //leftMechanumGlyphSucker.setDirection(DcMotor.Direction.FORWARD);
+        //leftMechanumGlyphSucker.setPower(0);
+        //leftMechanumGlyphSucker.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         jewelMover = hwMap.get(Servo.class, "Jewel Grabber");
         starboardGripper = hwMap.get(Servo.class, "Starboard gripper");
         portGripper = hwMap.get(Servo.class, "Port gripper");
+        //columnCounterArm = hwMap.get(Servo.class, "Column Counter Arm");
+        //columnCounterArm.setPosition(1);
         colorSensor = hwMap.get(ColorSensor.class, "Color Sensor");
         colorSensor.enableLed(true);    //color sensor light
+        //columnCounter = hwMap.get(OpticalDistanceSensor.class, "Column Counter");
+        //glyphLocator = hwMap.get(SensorMRRangeSensor.class, "Glyph Locator");
+        glyphInSensor = hwMap.get(SensorDigitalTouch.class, "Glyph In Sensor");
         double rgp = 1 - 0.2;   //right gripper position
         double lgp = 0.2;       //left gripper position
         starboardGripper.setPosition(rgp);

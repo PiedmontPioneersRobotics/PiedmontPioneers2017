@@ -95,20 +95,24 @@ public class FWDTeleop extends OpMode{
 
         /*
         //mechanum wheel glyph grabber code
-        if (!(glyphIsIn) && (glyphSensor < 8 inches)) {
+        if (!(glyphIsIn) && (glyphLocator < 8 inches)) {
             robot.rightMechanumGlyphSucker.setPower(1);
             robot.leftMechanumGlyphSucker.setPower(1);
         }
         if (b_pressed && !b_previously_pressed) {
-            robot.rightMechanumGlyphSucker.setPower(1);
-            robot.leftMechanumGlyphSucker.setPower(-1);
+            while (runtime.seconds() < 1) {
+                robot.rightMechanumGlyphSucker.setPower(1);
+            r   obot.leftMechanumGlyphSucker.setPower(-1);
+            }
         } else if (x_pressed && !x_previously_pressed) {
-            robot.rightMechanumGlyphSucker.setPower(-1);
-            robot.leftMechanumGlyphSucker.setPower(-);
+            while (runtime.seconds() < 1) {
+                robot.rightMechanumGlyphSucker.setPower(-1);
+                robot.leftMechanumGlyphSucker.setPower(-);
+            }
         }*/
 
         //glyph grabber code
-        if ((gamepad1.left_bumper)&&(gamepad1.right_bumper)) {
+        if (gamepad1.left_bumper) {
             robot.starboardGripper.setPosition(1);
             robot.portGripper.setPosition(0);
         } else {

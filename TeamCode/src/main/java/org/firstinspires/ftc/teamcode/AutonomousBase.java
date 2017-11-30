@@ -47,7 +47,7 @@ public abstract class AutonomousBase extends LinearOpMode {
         double powerForTurn = 0.15;
         String jewelColor = "None";
         robot.jewelMover.setPosition(j_down);
-        sleep(1500);
+        sleep(500);
         //extend jewel arm
         float hsvValues[] = {0F,0F,0F};
         Color.RGBToHSV(robot.colorSensor.red(), robot.colorSensor.green(), robot.colorSensor.blue(), hsvValues);
@@ -127,7 +127,6 @@ public abstract class AutonomousBase extends LinearOpMode {
             } else {
                 telemetry.addLine("We don't seem to have a mode?");
                 telemetry.update();
-                sleep(2000);
                 robot.jewelMover.setPosition(j_up);
             }
 
@@ -190,14 +189,13 @@ public abstract class AutonomousBase extends LinearOpMode {
             } else {
                 telemetry.addLine("We don't seem to have a mode?");
                 telemetry.update();
-                sleep(2000);
                 robot.jewelMover.setPosition(j_up);
             }
         } else {
             telemetry.addLine("The jewel color was not recognized as red or blue.");
             telemetry.addLine("Not going to do anything");
             telemetry.update();
-            sleep(2000);
+            sleep(1000);
             robot.jewelMover.setPosition(j_up);
         }
 
@@ -335,7 +333,16 @@ public abstract class AutonomousBase extends LinearOpMode {
         robot.lifter.setTargetPosition(0);
         robot.lifter.setPower(-0.5);
     }
-
+    public void pushGlyph () {
+        sleep(750);
+        driveBackward(0.25, 0.5);
+        sleep(750);
+        lowerLifter();
+        sleep(2000);
+        driveForward(0.25, 0.7);
+        sleep(750);
+        driveBackward(0.25, 0.4);
+    }
      public abstract void runOpMode();
 
 
