@@ -29,7 +29,7 @@ public class HardwareFWD {
     public ColorSensor             colorSensor = null;
     //public OpticalDistanceSensor   columnCounter = null;
     //public SensorMRRangeSensor     glyphLocator = null;
-    public SensorDigitalTouch      glyphInSensor = null;
+    //public DigitalChannel          glyphInSensor = null;
 
     public DcMotor                 RelicArm = null;
     public Servo                   RelicGrabber = null;
@@ -80,7 +80,8 @@ public class HardwareFWD {
         colorSensor.enableLed(true);    //color sensor light
         //columnCounter = hwMap.get(OpticalDistanceSensor.class, "Column Counter");
         //glyphLocator = hwMap.get(SensorMRRangeSensor.class, "Glyph Locator");
-        glyphInSensor = hwMap.get(SensorDigitalTouch.class, "Glyph In Sensor");
+        //glyphInSensor = hwMap.get(DigitalChannel.class, "Glyph In Sensor");
+        //glyphInSensor.setMode(DigitalChannel.Mode.INPUT);
         double rgp = 1 - 0.2;   //right gripper position
         double lgp = 0.2;       //left gripper position
         starboardGripper.setPosition(rgp);

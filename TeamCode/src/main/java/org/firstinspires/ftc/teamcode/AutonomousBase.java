@@ -30,6 +30,7 @@ public abstract class AutonomousBase extends LinearOpMode {
     public boolean BlueBottom;
     public boolean RedTop;
     public boolean BlueTop;
+    public int columnCounts = 0;
 
 
     HardwareFWD robot  = new HardwareFWD();
@@ -343,6 +344,49 @@ public abstract class AutonomousBase extends LinearOpMode {
         sleep(750);
         driveBackward(0.25, 0.4);
     }
+
+
+
+    //code for counting columns
+    //severe AI: be warned
+    /*
+    public void countColumns (String opMode) {
+        robot.columnCounterArm.setPosition(0.5);
+        if (opMode == "RedBottom") {
+            while (columnCounts < 4) {
+                driveForward(1, 0.01);
+                if ((robot.columnCounter.getLightDetected() < 1) && (robot.columnCounter.getLightDetected() > 0)) {
+                    columnCounts += 1;
+                }
+            }
+        } else if (opMode == "BlueBottom") {
+            while (columnCounts < 4) {
+                driveBackward(1, 0.01);
+                if ((robot.columnCounter.getLightDetected() < 1) && (robot.columnCounter.getLightDetected() > 0)) {
+                    columnCounts += 1;
+                }
+            }
+        } else if (opMode == "RedTop") {
+            while (columnCounts < 4) {
+                driveForward(1, 0.01);
+                if ((robot.columnCounter.getLightDetected() < 1) && (robot.columnCounter.getLightDetected() > 0)) {
+                    columnCounts += 1;
+                }
+            }
+        } else if (opMode == "BlueTop") {
+            while (columnCounts < 4) {
+                driveBackward(1, 0.01);
+                if ((robot.columnCounter.getLightDetected() < 1) && (robot.columnCounter.getLightDetected() > 0)) {
+                    columnCounts += 1;
+                }
+            }
+        } else {
+            telemetry.addLine("We don't seem to have a mode?");
+            telemetry.update();
+            robot.columnCounterArm.setPosition(1);
+        }
+    } */
+
      public abstract void runOpMode();
 
 

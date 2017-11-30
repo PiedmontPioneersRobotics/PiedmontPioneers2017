@@ -95,20 +95,23 @@ public class FWDTeleop extends OpMode{
 
         /*
         //mechanum wheel glyph grabber code
-        if (!(glyphIsIn) && (glyphLocator < 8 inches)) {
+        if (!(glyphInSensor.getState() == false) && (glyphLocator.getDistance(DistanceUnit.CM) < 8 inches)) {
             robot.rightMechanumGlyphSucker.setPower(1);
             robot.leftMechanumGlyphSucker.setPower(1);
         }
         if (b_pressed && !b_previously_pressed) {
             while (runtime.seconds() < 1) {
                 robot.rightMechanumGlyphSucker.setPower(1);
-            r   obot.leftMechanumGlyphSucker.setPower(-1);
+                robot.leftMechanumGlyphSucker.setPower(-1);
             }
         } else if (x_pressed && !x_previously_pressed) {
             while (runtime.seconds() < 1) {
                 robot.rightMechanumGlyphSucker.setPower(-1);
                 robot.leftMechanumGlyphSucker.setPower(-);
             }
+        } else {
+            robot.rightMechanumGlyphSucker.setPower(0);
+            robot.leftMechanumGlyphSucker.setPower(0);
         }*/
 
         //glyph grabber code
