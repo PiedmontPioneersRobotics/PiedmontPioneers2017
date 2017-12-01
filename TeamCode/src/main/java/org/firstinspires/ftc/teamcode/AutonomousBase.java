@@ -350,31 +350,31 @@ public abstract class AutonomousBase extends LinearOpMode {
     //code for counting columns
     //severe AI: be warned
     /*
-    public void countColumns (String opMode) {
+    public void countColumns (String opMode, int columns) {
         robot.columnCounterArm.setPosition(0.5);
         if (opMode == "RedBottom") {
-            while (columnCounts < 4) {
+            while (columnCounts <= columns) {
                 driveForward(1, 0.01);
                 if ((robot.columnCounter.getLightDetected() < 1) && (robot.columnCounter.getLightDetected() > 0)) {
                     columnCounts += 1;
                 }
             }
         } else if (opMode == "BlueBottom") {
-            while (columnCounts < 4) {
+            while (columnCounts <= columns) {
                 driveBackward(1, 0.01);
                 if ((robot.columnCounter.getLightDetected() < 1) && (robot.columnCounter.getLightDetected() > 0)) {
                     columnCounts += 1;
                 }
             }
         } else if (opMode == "RedTop") {
-            while (columnCounts < 4) {
+            while (columnCounts <= columns) {
                 driveForward(1, 0.01);
                 if ((robot.columnCounter.getLightDetected() < 1) && (robot.columnCounter.getLightDetected() > 0)) {
                     columnCounts += 1;
                 }
             }
         } else if (opMode == "BlueTop") {
-            while (columnCounts < 4) {
+            while (columnCounts <= columns) {
                 driveBackward(1, 0.01);
                 if ((robot.columnCounter.getLightDetected() < 1) && (robot.columnCounter.getLightDetected() > 0)) {
                     columnCounts += 1;
@@ -383,8 +383,9 @@ public abstract class AutonomousBase extends LinearOpMode {
         } else {
             telemetry.addLine("We don't seem to have a mode?");
             telemetry.update();
-            robot.columnCounterArm.setPosition(1);
         }
+        robot.columnCounterArm.setPosition(1);
+        columnCounts = 0;
     } */
 
      public abstract void runOpMode();

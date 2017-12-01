@@ -72,20 +72,24 @@ public class AutonomousRedBottom extends AutonomousBase {
         Left = false;
         if (vuMark == RelicRecoveryVuMark.CENTER) {
             Center = true;
+            CryptoboxColumnCount = 2;
             driving_time = CENTER_COLUMN_DISTANCE;
             telemetry.addData("Center:", "True");
             telemetry.update();
         } else if (vuMark == RelicRecoveryVuMark.LEFT) {
             Left = true;
+            CryptoboxColumnCount = 3;
             driving_time = LEFT_COLUMN_DISTANCE;
             telemetry.addData("Left:", "True");
             telemetry.update();
         } else if (vuMark == RelicRecoveryVuMark.RIGHT) {
             Right = true;
+            CryptoboxColumnCount = 1;
             driving_time = RIGHT_COLUMN_DISTANCE;
             telemetry.addData("Right:", "True");
             telemetry.update();
         } else {
+            CryptoboxColumnCount = 2;
             telemetry.addData(">", "Cannot see it.");
             telemetry.update();
             driving_time = CENTER_COLUMN_DISTANCE;
@@ -109,6 +113,7 @@ public class AutonomousRedBottom extends AutonomousBase {
         telemetry.addData(">", "Preparing to drive.");
         telemetry.update();
         KnockoffJewel("RedBottom");
+        //countColumns("RedBottom", columnCounts);
         driveForward(0.25, time_for_driving);
         telemetry.addData(">", "Driving forward by:", time_for_driving);
         telemetry.update();
