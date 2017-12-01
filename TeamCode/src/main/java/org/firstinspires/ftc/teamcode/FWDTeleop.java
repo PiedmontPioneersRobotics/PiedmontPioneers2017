@@ -101,13 +101,13 @@ public class FWDTeleop extends OpMode{
         }
         if (b_pressed && !b_previously_pressed) {
             while (runtime.seconds() < 1) {
-                robot.rightMechanumGlyphSucker.setPower(1);
+                robot.rightMechanumGlyphSucker.setPower(-1);
                 robot.leftMechanumGlyphSucker.setPower(-1);
             }
         } else if (x_pressed && !x_previously_pressed) {
             while (runtime.seconds() < 1) {
                 robot.rightMechanumGlyphSucker.setPower(-1);
-                robot.leftMechanumGlyphSucker.setPower(-);
+                robot.leftMechanumGlyphSucker.setPower(-1);
             }
         } else {
             robot.rightMechanumGlyphSucker.setPower(0);
