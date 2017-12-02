@@ -351,32 +351,32 @@ public abstract class AutonomousBase extends LinearOpMode {
     //severe AI: be warned
 
     public void countColumns (String opMode, int columns) {
-        robot.columnCounterArm.setPosition(0.5);
+        robot.columnCounterArm.setPosition(0);
         if (opMode == "RedBottom") {
             while (columnCounts <= columns) {
                 driveForward(1, 0.01);
-                if ((robot.columnCounter.getLightDetected() < 1) && (robot.columnCounter.getLightDetected() > 0)) {
+                if ((robot.columnCounter.getLightDetected() < 0.08) && (robot.columnCounter.getLightDetected() > 0.06)) {
                     columnCounts += 1;
                 }
             }
         } else if (opMode == "BlueBottom") {
             while (columnCounts <= columns) {
                 driveBackward(1, 0.01);
-                if ((robot.columnCounter.getLightDetected() < 1) && (robot.columnCounter.getLightDetected() > 0)) {
+                if ((robot.columnCounter.getLightDetected() < 0.08) && (robot.columnCounter.getLightDetected() > 0.06)) {
                     columnCounts += 1;
                 }
             }
         } else if (opMode == "RedTop") {
             while (columnCounts <= columns) {
                 driveForward(1, 0.01);
-                if ((robot.columnCounter.getLightDetected() < 1) && (robot.columnCounter.getLightDetected() > 0)) {
+                if ((robot.columnCounter.getLightDetected() < 0.08) && (robot.columnCounter.getLightDetected() > 0.06)) {
                     columnCounts += 1;
                 }
             }
         } else if (opMode == "BlueTop") {
             while (columnCounts <= columns) {
                 driveBackward(1, 0.01);
-                if ((robot.columnCounter.getLightDetected() < 1) && (robot.columnCounter.getLightDetected() > 0)) {
+                if ((robot.columnCounter.getLightDetected() < 0.08) && (robot.columnCounter.getLightDetected() > 0.06)) {
                     columnCounts += 1;
                 }
             }
@@ -384,7 +384,7 @@ public abstract class AutonomousBase extends LinearOpMode {
             telemetry.addLine("We don't seem to have a mode?");
             telemetry.update();
         }
-        robot.columnCounterArm.setPosition(1);
+        robot.columnCounterArm.setPosition(0.5);
         columnCounts = 0;
     }
 

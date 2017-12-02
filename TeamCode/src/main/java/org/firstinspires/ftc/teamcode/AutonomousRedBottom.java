@@ -109,14 +109,14 @@ public class AutonomousRedBottom extends AutonomousBase {
         telemetry.addData(">", "Start main loop");
         telemetry.update();
         raiseLifter();
-        double time_for_driving = checkVuforia();
+        //double time_for_driving = checkVuforia();
         telemetry.addData(">", "Preparing to drive.");
         telemetry.update();
         KnockoffJewel("RedBottom");
-        //countColumns("RedBottom", columnCounts);
-        driveForward(0.25, time_for_driving);
+        countColumns("RedBottom", columnCounts);
+        /*driveForward(0.25, time_for_driving);
         telemetry.addData(">", "Driving forward by:", time_for_driving);
-        telemetry.update();
+        telemetry.update();*/
         rightTurn(0.25,1.02);
         telemetry.addData(">", "Turned right");
         telemetry.update();
