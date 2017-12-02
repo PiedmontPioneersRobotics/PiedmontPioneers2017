@@ -25,9 +25,9 @@ public class HardwareFWD {
     public Servo                   starboardGripper = null;
     public Servo                   portGripper = null;
     public Servo                   jewelMover = null;
-    //public Servo                   columnCounterArm = null;
+    public Servo                   columnCounterArm = null;
     public ColorSensor             colorSensor = null;
-    //public OpticalDistanceSensor   columnCounter = null;
+    public OpticalDistanceSensor   columnCounter = null;
     //public SensorMRRangeSensor     glyphLocator = null;
     //public DigitalChannel          glyphInSensor = null;
 

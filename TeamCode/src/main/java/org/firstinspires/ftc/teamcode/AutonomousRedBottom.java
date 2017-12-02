@@ -20,7 +20,7 @@ public class AutonomousRedBottom extends AutonomousBase {
     //These distance are for a voltage between 13.00 & 13.10
     public static final double CENTER_COLUMN_DISTANCE = 1.65;
     public static final double RIGHT_COLUMN_DISTANCE = 1.35;
-    public static final double LEFT_COLUMN_DISTANCE = 1.95;
+    public static final double LEFT_COLUMN_DISTANCE = 2.05;
     public int CryptoboxColumnCount = 0;
     public double driving_time = 1.5;
     public static final String TAG = "Vuforia VuMark Sample";
@@ -117,7 +117,7 @@ public class AutonomousRedBottom extends AutonomousBase {
         driveForward(0.25, time_for_driving);
         telemetry.addData(">", "Driving forward by:", time_for_driving);
         telemetry.update();
-        rightTurn(0.25,1.22);
+        rightTurn(0.25,1.02);
         telemetry.addData(">", "Turned right");
         telemetry.update();
         driveForward(0.25, 1);
@@ -125,11 +125,12 @@ public class AutonomousRedBottom extends AutonomousBase {
         telemetry.update();
         dropGlyph();
         pushGlyph();
+        //start rampage
         leftTurn(0.25, 2.5);
-        driveForward(1, 1.5);
+        driveForward(1, 1.8);
         holdGlyph();
         raiseLifter();
-        leftTurn(1, 1.75);
+        leftTurn(0.25, 2.7);
         driveForward(1, 1.6);
         dropGlyph();
         pushGlyph();

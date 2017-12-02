@@ -48,7 +48,7 @@ public abstract class AutonomousBase extends LinearOpMode {
         double powerForTurn = 0.15;
         String jewelColor = "None";
         robot.jewelMover.setPosition(j_down);
-        sleep(500);
+        sleep(2000);
         //extend jewel arm
         float hsvValues[] = {0F,0F,0F};
         Color.RGBToHSV(robot.colorSensor.red(), robot.colorSensor.green(), robot.colorSensor.blue(), hsvValues);
@@ -349,7 +349,7 @@ public abstract class AutonomousBase extends LinearOpMode {
 
     //code for counting columns
     //severe AI: be warned
-    /*
+
     public void countColumns (String opMode, int columns) {
         robot.columnCounterArm.setPosition(0.5);
         if (opMode == "RedBottom") {
@@ -386,7 +386,7 @@ public abstract class AutonomousBase extends LinearOpMode {
         }
         robot.columnCounterArm.setPosition(1);
         columnCounts = 0;
-    } */
+    }
 
      public abstract void runOpMode();
 
