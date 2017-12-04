@@ -74,8 +74,10 @@ public class FWDTeleop extends OpMode{
             robot.portGripper.setPosition(0);
         } */
 
+        //mecanum wheels code
+
         //lifter code
-        if (lifterPosition > 8640) {
+        if(lifterPosition > 8640) {
             robot.lifter.setTargetPosition(lifterPosition - 10);
             robot.lifter.setPower(-0.5);
             telemetry.addLine("Caution: Lifter is too high");
@@ -94,6 +96,74 @@ public class FWDTeleop extends OpMode{
         }
         a_previously_pressed = a_pressed;
         y_previously_pressed = y_pressed;
+       /*public void findHextants(double stickY,double stickX) {
+            double hextant = 0.0;
+            if ((stickY > 0) && (stickY < 1) && (stickX > -1)&& (stickX < 0)) {
+                telemetry.addData("This is:","Quadrant 1");
+                telemetry.update();
+                if ((stickY > 0) && (stickY < 0.25) && (stickX > -1) && (stickX > 0)){
+                    telemetry.addData("Q1:", "Hextant 1");
+                    telemetry.update();
+                } else if ((stickY > 0.25) && (stickY < 0.5) && (stickX > -1) && (stickX > 0)){
+                    telemetry.addData("Q1:", "Hextant 2");
+                    telemetry.update();
+                } else if ((stickY > 0.5) && (stickY < 0.75) && (stickX > -1) &&(stickX > 0)){
+                    telemetry.addData("Q1:", "Hextant 3");
+                    telemetry.update();
+                } else if ((stickY > 0.75) && (stickY < 1) && (stickX > -1) &&(stickX > 0)){
+                    telemetry.addData("Q1:", "Hextant 4");
+                    telemetry.update();
+                }
+            } else if ((stickY > 0) && (stickY < 1) && (stickX < 1) &&(stickX > 0)) {
+                telemetry.addData("This is:","Quadrant 2");
+                telemetry.update();
+                if ((stickY > 0) && (stickY < 0.25) && (stickX < 1) &&(stickX > 0)){
+                    telemetry.addData("Q2:", "Hextant 5");
+                    telemetry.update();
+                } else if ((stickY > 0.25) && (stickY < 0.5) && (stickX < 1) &&(stickX > 0)){
+                    telemetry.addData("Q2:", "Hextant 6");
+                    telemetry.update();
+                } else if ((stickY > 0.5) && (stickY < 0.75) && (stickX < 1) &&(stickX > 0)){
+                    telemetry.addData("Q2:", "Hextant 7");
+                    telemetry.update();
+                } else if ((stickY > 0.75) && (stickY < 1) && (stickX < 1) &&(stickX > 0)){
+                    telemetry.addData("Q2:", "Hextant 8");
+                    telemetry.update();
+                }
+            } else if ((stickY < 0) && (stickY > -1) && (stickX < 1) &&(stickX > 0)) {
+                telemetry.addData("This is:","Quadrant 3");
+                telemetry.update();
+                if ((stickY < 0) && (stickY > -0.25) && (stickX < 1) &&(stickX > 0)){
+                    telemetry.addData("Q3:", "Hextant 9");
+                    telemetry.update();
+                } else if ((stickY < -0.25) && (stickY > -0.5) && (stickX < 1)&&(stickX > 0)){
+                    telemetry.addData("Q3:", "Hextant 10");
+                    telemetry.update();
+                } else if ((stickY < -0.5) && (stickY > -0.75) && (stickX < 1)&& (stickX > 0)){
+                    telemetry.addData("Q3:", "Hextant 11");
+                    telemetry.update();
+                } else if ((stickY < -0.75) && (stickY > -1) && (stickX < 1)&& (stickX > 0)){
+                    telemetry.addData("Q3:", "Hextant 12");
+                    telemetry.update();
+                }
+            } else if ((stickY > 0) && (stickY < 1) && (stickX > -1)&& (stickX < 0)) {
+                telemetry.addData("This is:","Quadrant 4");
+                telemetry.update();
+                if ((stickY > 0) && (stickY < 0.25) && (stickX > -1)&& (stickX < 0)){
+                    telemetry.addData("Q4:", "Hextant 13");
+                    telemetry.update();
+                } else if ((stickY > 0.25) && (stickY < 0.5) && (stickX > -1)&& (stickX < 0)){
+                    telemetry.addData("Q4:", "Hextant 14");
+                    telemetry.update();
+                } else if ((stickY > 0.5) && (stickY < 0.75) && (stickX > -1)&& (stickX < 0)){
+                    telemetry.addData("Q4:", "Hextant 15");
+                    telemetry.update();
+                } else if ((stickY > 0.75) && (stickY < 1) && (stickX > -1)&& (stickX < 0)){
+                    telemetry.addData("Q4:", "Hextant 16");
+                    telemetry.update();
+                }
+            }
+        }*/
 
         /*
         //mechanum wheel glyph grabber code

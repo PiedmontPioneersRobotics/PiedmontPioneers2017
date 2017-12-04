@@ -50,21 +50,21 @@ public abstract class AutonomousBase extends LinearOpMode {
         robot.jewelMover.setPosition(j_down);
         sleep(2000);
         //extend jewel arm
-        float hsvValues[] = {0F,0F,0F};
+        float hsvValues[] = {0F, 0F, 0F};
         Color.RGBToHSV(robot.colorSensor.red(), robot.colorSensor.green(), robot.colorSensor.blue(), hsvValues);
         telemetry.addData("Red: ", robot.colorSensor.red());
         telemetry.addData("Green: ", robot.colorSensor.green());
         telemetry.addData("Blue: ", robot.colorSensor.blue());
         telemetry.update();
-        if (robot.colorSensor.red()>robot.colorSensor.blue()) {
+        if (robot.colorSensor.red() > robot.colorSensor.blue()) {
             jewelColor = "Red";
             telemetry.addLine("Red");
             telemetry.update();
-        }else if (robot.colorSensor.blue()>robot.colorSensor.red()){
+        } else if (robot.colorSensor.blue() > robot.colorSensor.red()) {
             jewelColor = "Blue";
             telemetry.addLine("Blue");
             telemetry.update();
-        }else {
+        } else {
             jewelColor = "None";
             telemetry.addLine("None");
             telemetry.update();
@@ -378,6 +378,7 @@ public abstract class AutonomousBase extends LinearOpMode {
         robot.lifter.setTargetPosition(0);
         robot.lifter.setPower(-0.5);
     }
+    //push the glyph in
     public void pushGlyph () {
         sleep(750);
         driveBackward(0.25, 0.5);
@@ -388,7 +389,20 @@ public abstract class AutonomousBase extends LinearOpMode {
         sleep(750);
         driveBackward(0.25, 0.4);
     }
-
+    //rampage code (going for second glyph)
+    public void rampage () {
+        //start rampage
+        telemetry.addData(">", "Rampage code, I'm going for the second glyph!");
+        leftTurn(0.25, 2.5);
+        driveForward(1, 1.8);
+        holdGlyph();
+        raiseLifter();
+        leftTurn(0.25, 3);
+        driveForward(1, 1.6);
+        dropGlyph();
+        pushGlyph();
+        telemetry.update();
+    }
 
 
     //code for counting columns
@@ -401,6 +415,7 @@ public abstract class AutonomousBase extends LinearOpMode {
                 specialDriveForward(1, 0.3, 0.01);
                 if ((robot.columnCounter.getLightDetected() < 0.04) && (robot.columnCounter.getLightDetected() > 0.035)) {
                     columnCounts += 1;
+                    robot.columnCounterArm.setPosition(0);
                 }
             }
         } else if (opMode == "BlueBottom") {
@@ -408,20 +423,23 @@ public abstract class AutonomousBase extends LinearOpMode {
                 driveBackward(0.5, 0.01);
                 if ((robot.columnCounter.getLightDetected() < 0.04) && (robot.columnCounter.getLightDetected() > 0.035)) {
                     columnCounts += 1;
+                    robot.columnCounterArm.setPosition(0.5);
                 }
             }
         } else if (opMode == "RedTop") {
             while (columnCounts <= columns) {
-                specialDriveForward(0.6, 0.55, 0.01);
-                if ((robot.columnCounter.getLightDetected() < 0.08) && (robot.columnCounter.getLightDetected() > 0.06)) {
+                specialDriveForward(1, 0.3, 0.01);
+                if ((robot.columnCounter.getLightDetected() < 0.04) && (robot.columnCounter.getLightDetected() > 0.035)) {
                     columnCounts += 1;
+                    robot.columnCounterArm.setPosition(0.5);
                 }
             }
         } else if (opMode == "BlueTop") {
             while (columnCounts <= columns) {
                 driveBackward(0.5, 0.01);
-                if ((robot.columnCounter.getLightDetected() < 0.08) && (robot.columnCounter.getLightDetected() > 0.06)) {
+                if ((robot.columnCounter.getLightDetected() < 0.04) && (robot.columnCounter.getLightDetected() > 0.035)) {
                     columnCounts += 1;
+                    robot.columnCounterArm.setPosition(0.5);
                 }
             }
         } else {
