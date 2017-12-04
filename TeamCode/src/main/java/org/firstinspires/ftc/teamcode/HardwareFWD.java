@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
@@ -20,6 +21,7 @@ public class HardwareFWD {
     public DcMotor                 Left1   = null;
     public DcMotor                 Left2   = null;
     public DcMotor                 lifter = null;
+    public DcMotor                 platformPusher = null;
     //public DcMotor                 rightMechanumGlyphSucker = null;
     //public DcMotor                 leftMechanumGlyphSucker = null;
     public Servo                   starboardGripper = null;
@@ -31,7 +33,7 @@ public class HardwareFWD {
     //public SensorMRRangeSensor     glyphLocator = null;
     //public DigitalChannel          glyphInSensor = null;
 
-    public DcMotor                 RelicArm = null;
+    //public DcMotor                 RelicArm = null;
     //public Servo                   RelicGrabber = null;
 
     HardwareMap hwMap           =  null;
@@ -63,6 +65,10 @@ public class HardwareFWD {
         lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         lifter.setPower(0.5);
         lifter.setTargetPosition(0);
+        platformPusher  = hwMap.get(DcMotor.class, "Platform Pusher");
+        platformPusher.setDirection(DcMotor.Direction.FORWARD);
+        platformPusher.setPower(0);
+        platformPusher.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         //rightMechanumGlyphSucker = hwMap.get(DcMotor.class, "Right Mecanum Glyph Sucker");
         //rightMechanumGlyphSucker.setDirection(DcMotor.Direction.FORWARD);
         //rightMechanumGlyphSucker.setPower(0);
@@ -75,7 +81,7 @@ public class HardwareFWD {
         starboardGripper = hwMap.get(Servo.class, "Starboard gripper");
         portGripper = hwMap.get(Servo.class, "Port gripper");
         columnCounterArm = hwMap.get(Servo.class, "Column Counter Arm");
-        columnCounterArm.setPosition(0);
+        columnCounterArm.setPosition(0.5);
         colorSensor = hwMap.get(ColorSensor.class, "Color Sensor");
         colorSensor.enableLed(true);    //color sensor light
         columnCounter = hwMap.get(OpticalDistanceSensor.class, "Column Counter");
@@ -88,10 +94,10 @@ public class HardwareFWD {
         portGripper.setPosition(lgp);
         jewelMover.setPosition(j_up);
 
-        RelicArm  = hwMap.get(DcMotor.class, "RelicArm");
-        RelicArm.setDirection(DcMotor.Direction.FORWARD);
-        RelicArm.setPower(0);
-        RelicArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //RelicArm  = hwMap.get(DcMotor.class, "RelicArm");
+        //RelicArm.setDirection(DcMotor.Direction.FORWARD);
+        //RelicArm.setPower(0);
+        //RelicArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         //RelicGrabber = hwMap.get(Servo.class, "RelicGrabber");
         //RelicGrabber.setPosition(0);

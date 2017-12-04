@@ -29,9 +29,9 @@ public class FWDTeleopJude extends OpMode{
         int lifterPosition;
         lifterPosition = robot.lifter.getCurrentPosition();
         int relicGrabberPosition;
-        relicGrabberPosition = robot.RelicArm.getCurrentPosition();
+        //relicGrabberPosition = robot.RelicArm.getCurrentPosition();
         telemetry.addData("lifter",  "%d", lifterPosition);
-        telemetry.addData("Relic Arm",  "%d", relicGrabberPosition);
+        //telemetry.addData("Relic Arm",  "%d", relicGrabberPosition);
         boolean a_pressed;
         boolean y_pressed;
         boolean up_pressed;
@@ -98,6 +98,8 @@ public class FWDTeleopJude extends OpMode{
             telemetry.addData("port gripper", "%.2f", lgp);
 
         }
+
+        /*
         //relic grabber code
         if (relicGrabberPosition > 8640) {
             robot.lifter.setTargetPosition(lifterPosition - 10);
@@ -118,7 +120,9 @@ public class FWDTeleopJude extends OpMode{
         }
         up_previously_pressed = up_pressed;
         down_previously_pressed = down_pressed;
+        */
     }
+
     @Override
     public void stop() {
     }

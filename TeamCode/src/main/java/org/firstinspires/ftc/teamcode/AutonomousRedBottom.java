@@ -130,7 +130,7 @@ public class AutonomousRedBottom extends AutonomousBase {
         driveForward(1, 1.8);
         holdGlyph();
         raiseLifter();
-        leftTurn(0.25, 2.7);
+        leftTurn(0.25, 2.75);
         driveForward(1, 1.6);
         dropGlyph();
         pushGlyph();

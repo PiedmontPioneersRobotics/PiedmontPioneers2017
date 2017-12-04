@@ -398,15 +398,15 @@ public abstract class AutonomousBase extends LinearOpMode {
         robot.columnCounterArm.setPosition(0);
         if (opMode == "RedBottom") {
             while (columnCounts <= columns) {
-                specialDriveForward(0.6, 0.55, 0.01);
-                if ((robot.columnCounter.getLightDetected() < 0.08) && (robot.columnCounter.getLightDetected() > 0.06)) {
+                specialDriveForward(1, 0.3, 0.01);
+                if ((robot.columnCounter.getLightDetected() < 0.04) && (robot.columnCounter.getLightDetected() > 0.035)) {
                     columnCounts += 1;
                 }
             }
         } else if (opMode == "BlueBottom") {
             while (columnCounts <= columns) {
                 driveBackward(0.5, 0.01);
-                if ((robot.columnCounter.getLightDetected() < 0.08) && (robot.columnCounter.getLightDetected() > 0.06)) {
+                if ((robot.columnCounter.getLightDetected() < 0.04) && (robot.columnCounter.getLightDetected() > 0.035)) {
                     columnCounts += 1;
                 }
             }

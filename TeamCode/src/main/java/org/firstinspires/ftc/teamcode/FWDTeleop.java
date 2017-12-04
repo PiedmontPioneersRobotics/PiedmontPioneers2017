@@ -30,9 +30,11 @@ public class FWDTeleop extends OpMode{
         int lifterPosition;
         lifterPosition = robot.lifter.getCurrentPosition();
         int relicGrabberPosition;
-        relicGrabberPosition = robot.RelicArm.getCurrentPosition();
+        //relicGrabberPosition = robot.RelicArm.getCurrentPosition();
+        //int platformPusherPosition;
+        //platformPusherPosition = robot.platformPusher.getCurrentPosition();
         telemetry.addData("lifter",  "%d", lifterPosition);
-        telemetry.addData("Relic Arm",  "%d", relicGrabberPosition);
+        //telemetry.addData("Relic Arm",  "%d", relicGrabberPosition);
         boolean a_pressed;
         boolean y_pressed;
         boolean up_pressed;
@@ -43,8 +45,8 @@ public class FWDTeleop extends OpMode{
         a_pressed = gamepad1.a;
         up_pressed = gamepad1.dpad_up;
         down_pressed = gamepad1.dpad_down;
-        b_pressed = gamepad1.y;
-        x_pressed = gamepad1.a;
+        b_pressed = gamepad1.b;
+        x_pressed = gamepad1.x;
         double rightSpeed;
         double leftSpeed;
         rightSpeed = gamepad1.right_stick_y;
@@ -127,6 +129,7 @@ public class FWDTeleop extends OpMode{
             telemetry.addData("port gripper", "%.2f", lgp);
 
         }
+        /*
         //relic grabber code
         if (relicGrabberPosition > 360) {
             robot.lifter.setTargetPosition(lifterPosition - 2);
@@ -146,7 +149,16 @@ public class FWDTeleop extends OpMode{
             robot.lifter.setPower(-0.5);
         }
         up_previously_pressed = up_pressed;
-        down_previously_pressed = down_pressed;
+        down_previously_pressed = down_pressed;*/
+
+        //platform pusher code
+        if (gamepad1.b) {
+            robot.platformPusher.setPower(0.2);
+        } else if (gamepad1.x) {
+            robot.platformPusher.setPower(-0.2);
+        } else {
+            robot.platformPusher.setPower(0);
+        }
     }
     @Override
     public void stop() {
