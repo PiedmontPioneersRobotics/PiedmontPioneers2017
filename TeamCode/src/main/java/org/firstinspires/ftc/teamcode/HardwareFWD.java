@@ -32,7 +32,7 @@ public class HardwareFWD {
     //public DigitalChannel          glyphInSensor = null;
 
     public DcMotor                 RelicArm = null;
-    public Servo                   RelicGrabber = null;
+    //public Servo                   RelicGrabber = null;
 
     HardwareMap hwMap           =  null;
     private ElapsedTime period  = new ElapsedTime();
@@ -74,11 +74,11 @@ public class HardwareFWD {
         jewelMover = hwMap.get(Servo.class, "Jewel Grabber");
         starboardGripper = hwMap.get(Servo.class, "Starboard gripper");
         portGripper = hwMap.get(Servo.class, "Port gripper");
-        //columnCounterArm = hwMap.get(Servo.class, "Column Counter Arm");
-        //columnCounterArm.setPosition(1);
+        columnCounterArm = hwMap.get(Servo.class, "Column Counter Arm");
+        columnCounterArm.setPosition(0);
         colorSensor = hwMap.get(ColorSensor.class, "Color Sensor");
         colorSensor.enableLed(true);    //color sensor light
-        //columnCounter = hwMap.get(OpticalDistanceSensor.class, "Column Counter");
+        columnCounter = hwMap.get(OpticalDistanceSensor.class, "Column Counter");
         //glyphLocator = hwMap.get(SensorMRRangeSensor.class, "Glyph Locator");
         //glyphInSensor = hwMap.get(DigitalChannel.class, "Glyph In Sensor");
         //glyphInSensor.setMode(DigitalChannel.Mode.INPUT);
@@ -93,8 +93,8 @@ public class HardwareFWD {
         RelicArm.setPower(0);
         RelicArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        RelicGrabber = hwMap.get(Servo.class, "RelicGrabber");
-        RelicGrabber.setPosition(0);
+        //RelicGrabber = hwMap.get(Servo.class, "RelicGrabber");
+        //RelicGrabber.setPosition(0);
     }
 
  }

@@ -233,6 +233,28 @@ public abstract class AutonomousBase extends LinearOpMode {
         robot.Left2.setPower(0);
     }
 
+    //special drive forward
+    public void specialDriveForward(double speedRight, double speedLeft, double time) {
+        telemetry.addData(">", "Start drive forward");
+        telemetry.addData("Right speed:", "%.2f", rightSpeed);
+        telemetry.addData("Left speed:", "%.2f", leftSpeed);
+        telemetry.update();
+        runtime.reset();
+        leftSpeed = speedLeft;
+        rightSpeed = -speedRight;
+        while (opModeIsActive() && (runtime.seconds() < time)) {
+            robot.Right1.setPower(rightSpeed);
+            robot.Right2.setPower(rightSpeed);
+            robot.Left1.setPower(leftSpeed);
+            robot.Left2.setPower(leftSpeed);
+        }
+
+        robot.Right1.setPower(0);
+        robot.Right2.setPower(0);
+        robot.Left1.setPower(0);
+        robot.Left2.setPower(0);
+    }
+
     //drive backward
     public void driveBackward(double speed, double time) {
         telemetry.addData(">", "Start drive backward");
@@ -242,6 +264,28 @@ public abstract class AutonomousBase extends LinearOpMode {
         runtime.reset();
         leftSpeed = -speed;
         rightSpeed = speed;
+        while (opModeIsActive() && (runtime.seconds() < time)) {
+            robot.Right1.setPower(rightSpeed);
+            robot.Right2.setPower(rightSpeed);
+            robot.Left1.setPower(leftSpeed);
+            robot.Left2.setPower(leftSpeed);
+        }
+
+        robot.Right1.setPower(0);
+        robot.Right2.setPower(0);
+        robot.Left1.setPower(0);
+        robot.Left2.setPower(0);
+    }
+
+    //special drive backward
+    public void specialDriveBackward(double speedRight, double speedLeft, double time) {
+        telemetry.addData(">", "Start drive backward");
+        telemetry.addData("Right speed:", "%.2f", rightSpeed);
+        telemetry.addData("Left speed:", "%.2f", leftSpeed);
+        telemetry.update();
+        runtime.reset();
+        leftSpeed = -speedLeft;
+        rightSpeed = speedRight;
         while (opModeIsActive() && (runtime.seconds() < time)) {
             robot.Right1.setPower(rightSpeed);
             robot.Right2.setPower(rightSpeed);
@@ -365,18 +409,19 @@ public abstract class AutonomousBase extends LinearOpMode {
     //severe AI: be warned
 
     public void countColumns (String opMode, int columns) {
-        robot.columnCounterArm.setPosition(0.5);
+        robot.columnCounterArm.setPosition(0);
         if (opMode == "RedBottom") {
             while (columnCounts <= columns) {
-                driveForward(1, 0.01);
-                robot.columnCounterArm.setPosition(0.5);
-                if ((robot.columnCounter.getLightDetected() < 1) && (robot.columnCounter.getLightDetected() > 0)) {
+                specialDriveForward(0.6, 0.55, 0.01);
+                if ((robot.columnCounter.getLightDetected() < 0.08) && (robot.columnCounter.getLightDetected() > 0.06)) {
                     columnCounts += 1;
                     robot.columnCounterArm.setPosition(0);
                 }
             }
         } else if (opMode == "BlueBottom") {
             while (columnCounts <= columns) {
+                driveBackward(0.5, 0.01);
+                if ((robot.columnCounter.getLightDetected() < 0.08) && (robot.columnCounter.getLightDetected() > 0.06)) {
                 driveBackward(1, 0.01);
                 robot.columnCounterArm.setPosition(0.5);
                 if ((robot.columnCounter.getLightDetected() < 1) && (robot.columnCounter.getLightDetected() > 0)) {
@@ -386,18 +431,16 @@ public abstract class AutonomousBase extends LinearOpMode {
             }
         } else if (opMode == "RedTop") {
             while (columnCounts <= columns) {
-                driveForward(1, 0.01);
-                robot.columnCounterArm.setPosition(0.5);
-                if ((robot.columnCounter.getLightDetected() < 1) && (robot.columnCounter.getLightDetected() > 0)) {
+                specialDriveForward(0.6, 0.55, 0.01);
+                if ((robot.columnCounter.getLightDetected() < 0.08) && (robot.columnCounter.getLightDetected() > 0.06)) {
                     columnCounts += 1;
                     robot.columnCounterArm.setPosition(0);
                 }
             }
         } else if (opMode == "BlueTop") {
             while (columnCounts <= columns) {
-                driveBackward(1, 0.01);
-                robot.columnCounterArm.setPosition(0.5);
-                if ((robot.columnCounter.getLightDetected() < 1) && (robot.columnCounter.getLightDetected() > 0)) {
+                driveBackward(0.5, 0.01);
+                if ((robot.columnCounter.getLightDetected() < 0.08) && (robot.columnCounter.getLightDetected() > 0.06)) {
                     columnCounts += 1;
                     robot.columnCounterArm.setPosition(0);
                 }
@@ -406,7 +449,7 @@ public abstract class AutonomousBase extends LinearOpMode {
             telemetry.addLine("We don't seem to have a mode?");
             telemetry.update();
         }
-        robot.columnCounterArm.setPosition(1);
+        robot.columnCounterArm.setPosition(0.5);
         columnCounts = 0;
     }
 
