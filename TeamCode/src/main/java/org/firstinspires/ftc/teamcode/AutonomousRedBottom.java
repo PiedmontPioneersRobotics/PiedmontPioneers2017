@@ -125,16 +125,7 @@ public class AutonomousRedBottom extends AutonomousBase {
         telemetry.update();
         dropGlyph();
         pushGlyph();
-        //start rampage
-        leftTurn(0.25, 2.5);
-        driveForward(1, 1.8);
-        holdGlyph();
-        raiseLifter();
-        leftTurn(0.25, 2.7);
-        driveForward(1, 1.6);
-        dropGlyph();
-        pushGlyph();
-        telemetry.update();
+        rampage();
     }
 
     String format(OpenGLMatrix transformationMatrix) {
