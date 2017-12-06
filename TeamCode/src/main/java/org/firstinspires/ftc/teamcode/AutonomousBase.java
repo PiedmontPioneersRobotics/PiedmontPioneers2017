@@ -393,7 +393,7 @@ public abstract class AutonomousBase extends LinearOpMode {
     public void rampage () {
         //start rampage
         telemetry.addData(">", "Rampage code, I'm going for the second glyph!");
-        leftTurn(0.25, 2.5);
+        leftTurn(0.25, 3);
         driveForward(1, 1.8);
         holdGlyph();
         raiseLifter();
@@ -412,17 +412,22 @@ public abstract class AutonomousBase extends LinearOpMode {
         robot.columnCounterArm.setPosition(0);
         if (opMode == "RedBottom") {
             while (columnCounts <= columns) {
+                telemetry.addData("Columns passed:", columnCounts);
+                telemetry.update();
                 specialDriveForward(1, 0.3, 0.01);
-                if ((robot.columnCounter.getLightDetected() < 0.04) && (robot.columnCounter.getLightDetected() > 0.035)) {
+                if ((robot.columnCounter.getLightDetected() < 0.03) && (robot.columnCounter.getLightDetected() > 0.01)) {
                     columnCounts += 1;
                     robot.columnCounterArm.setPosition(0);
                 }
             }
         } else if (opMode == "BlueBottom") {
             while (columnCounts <= columns) {
-                driveBackward(0.5, 0.01);
-                if ((robot.columnCounter.getLightDetected() < 0.04) && (robot.columnCounter.getLightDetected() > 0.035)) {
+                telemetry.addData("Columns passed:", columnCounts);
+                telemetry.update();
+                specialDriveBackward(1, 0.3, 0.01);;
+                if ((robot.columnCounter.getLightDetected() < 0.03) && (robot.columnCounter.getLightDetected() > 0.01)) {
                     columnCounts += 1;
+                    sleep(1000);
                     robot.columnCounterArm.setPosition(0.5);
                 }
             }
@@ -431,6 +436,7 @@ public abstract class AutonomousBase extends LinearOpMode {
                 specialDriveForward(1, 0.3, 0.01);
                 if ((robot.columnCounter.getLightDetected() < 0.04) && (robot.columnCounter.getLightDetected() > 0.035)) {
                     columnCounts += 1;
+                    sleep(1000);
                     robot.columnCounterArm.setPosition(0.5);
                 }
             }
@@ -439,11 +445,13 @@ public abstract class AutonomousBase extends LinearOpMode {
                 driveBackward(0.5, 0.01);
                 if ((robot.columnCounter.getLightDetected() < 0.04) && (robot.columnCounter.getLightDetected() > 0.035)) {
                     columnCounts += 1;
+                    sleep(1000);
                     robot.columnCounterArm.setPosition(0.5);
                 }
             }
         } else {
             telemetry.addLine("We don't seem to have a mode?");
+            sleep(1000);
             telemetry.update();
         }
         robot.columnCounterArm.setPosition(0.5);
