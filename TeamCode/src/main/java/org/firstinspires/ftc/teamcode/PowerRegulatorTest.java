@@ -57,7 +57,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
 */
 @TeleOp(name = "PowerRegulatorTest", group = "Sensor")
-@Disabled
 public class PowerRegulatorTest extends LinearOpMode {
 
     final int BLUE_LED_CHANNEL = 0;
