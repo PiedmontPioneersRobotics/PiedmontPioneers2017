@@ -125,7 +125,7 @@ public class AutonomousRedBottom extends AutonomousBase {
         telemetry.update();
         dropGlyph();
         pushGlyph();
-        rampage();
+        //rampage();
     }
 
     String format(OpenGLMatrix transformationMatrix) {

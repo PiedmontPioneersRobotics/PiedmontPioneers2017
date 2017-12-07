@@ -2,6 +2,9 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import static java.lang.Math.atan;
+import static java.lang.Math.round;
+
 @TeleOp(name="FWDTeleop: Teleop", group="FWD")
 public class FWDTeleop extends OpMode{
     HardwareFWD robot  = new HardwareFWD();
@@ -96,74 +99,70 @@ public class FWDTeleop extends OpMode{
         }
         a_previously_pressed = a_pressed;
         y_previously_pressed = y_pressed;
-       /*public void findHextants(double stickY,double stickX) {
+
+       //HEXTANT code
+    /*
+        double angle = round(atan(length/width)/22.5);
+        public void findHextants(double stickY,double stickX) {
             double hextant = 0.0;
-            if ((stickY > 0) && (stickY < 1) && (stickX > -1)&& (stickX < 0)) {
-                telemetry.addData("This is:","Quadrant 1");
-                telemetry.update();
-                if ((stickY > 0) && (stickY < 0.25) && (stickX > -1) && (stickX > 0)){
-                    telemetry.addData("Q1:", "Hextant 1");
-                    telemetry.update();
-                } else if ((stickY > 0.25) && (stickY < 0.5) && (stickX > -1) && (stickX > 0)){
-                    telemetry.addData("Q1:", "Hextant 2");
-                    telemetry.update();
-                } else if ((stickY > 0.5) && (stickY < 0.75) && (stickX > -1) &&(stickX > 0)){
-                    telemetry.addData("Q1:", "Hextant 3");
-                    telemetry.update();
-                } else if ((stickY > 0.75) && (stickY < 1) && (stickX > -1) &&(stickX > 0)){
-                    telemetry.addData("Q1:", "Hextant 4");
-                    telemetry.update();
-                }
-            } else if ((stickY > 0) && (stickY < 1) && (stickX < 1) &&(stickX > 0)) {
-                telemetry.addData("This is:","Quadrant 2");
-                telemetry.update();
-                if ((stickY > 0) && (stickY < 0.25) && (stickX < 1) &&(stickX > 0)){
-                    telemetry.addData("Q2:", "Hextant 5");
-                    telemetry.update();
-                } else if ((stickY > 0.25) && (stickY < 0.5) && (stickX < 1) &&(stickX > 0)){
-                    telemetry.addData("Q2:", "Hextant 6");
-                    telemetry.update();
-                } else if ((stickY > 0.5) && (stickY < 0.75) && (stickX < 1) &&(stickX > 0)){
-                    telemetry.addData("Q2:", "Hextant 7");
-                    telemetry.update();
-                } else if ((stickY > 0.75) && (stickY < 1) && (stickX < 1) &&(stickX > 0)){
-                    telemetry.addData("Q2:", "Hextant 8");
-                    telemetry.update();
-                }
-            } else if ((stickY < 0) && (stickY > -1) && (stickX < 1) &&(stickX > 0)) {
-                telemetry.addData("This is:","Quadrant 3");
-                telemetry.update();
-                if ((stickY < 0) && (stickY > -0.25) && (stickX < 1) &&(stickX > 0)){
-                    telemetry.addData("Q3:", "Hextant 9");
-                    telemetry.update();
-                } else if ((stickY < -0.25) && (stickY > -0.5) && (stickX < 1)&&(stickX > 0)){
-                    telemetry.addData("Q3:", "Hextant 10");
-                    telemetry.update();
-                } else if ((stickY < -0.5) && (stickY > -0.75) && (stickX < 1)&& (stickX > 0)){
-                    telemetry.addData("Q3:", "Hextant 11");
-                    telemetry.update();
-                } else if ((stickY < -0.75) && (stickY > -1) && (stickX < 1)&& (stickX > 0)){
-                    telemetry.addData("Q3:", "Hextant 12");
-                    telemetry.update();
-                }
-            } else if ((stickY > 0) && (stickY < 1) && (stickX > -1)&& (stickX < 0)) {
-                telemetry.addData("This is:","Quadrant 4");
-                telemetry.update();
-                if ((stickY > 0) && (stickY < 0.25) && (stickX > -1)&& (stickX < 0)){
-                    telemetry.addData("Q4:", "Hextant 13");
-                    telemetry.update();
-                } else if ((stickY > 0.25) && (stickY < 0.5) && (stickX > -1)&& (stickX < 0)){
-                    telemetry.addData("Q4:", "Hextant 14");
-                    telemetry.update();
-                } else if ((stickY > 0.5) && (stickY < 0.75) && (stickX > -1)&& (stickX < 0)){
-                    telemetry.addData("Q4:", "Hextant 15");
-                    telemetry.update();
-                } else if ((stickY > 0.75) && (stickY < 1) && (stickX > -1)&& (stickX < 0)){
-                    telemetry.addData("Q4:", "Hextant 16");
-                    telemetry.update();
-                }
-            }
-        }*/
+        }
+        //mecanum wheels code for LeftTop Quadrant
+        public void mecanumGoLeft(double speed, double time) {
+            robot.leftForwardMecanumWheel.setPower(-speed);
+            robot.rightForwardMecanumWheel.setPower(speed);
+            robot.leftBackwardMecanumWheel.setPower(speed);
+            robot.rightBackwardMecanumWheel.setPower(-speed);
+            sleep(time);
+            robot.leftForwardMecanumWheel.setPower(0);
+            robot.rightForwardMecanumWheel.setPower(0);
+            robot.leftBackwardMecanumWheel.setPower(0);
+            robot.rightBackwardMecanumWheel.setPower(0);
+        }
+        public void mecanumGoLeftLeftForward(double speed, double time) {
+            robot.leftForwardMecanumWheel.setPower(-speed/2);
+            robot.rightForwardMecanumWheel.setPower(speed);
+            robot.leftBackwardMecanumWheel.setPower(speed);
+            robot.rightBackwardMecanumWheel.setPower(-speed/2);
+            sleep(time);
+            robot.leftForwardMecanumWheel.setPower(0);
+            robot.rightForwardMecanumWheel.setPower(0);
+            robot.leftBackwardMecanumWheel.setPower(0);
+            robot.rightBackwardMecanumWheel.setPower(0);
+        }
+        public void mecanumGoLeftForward(double speed, double time) {
+            robot.leftForwardMecanumWheel.setPower(0);
+            robot.rightForwardMecanumWheel.setPower(speed);
+            robot.leftBackwardMecanumWheel.setPower(speed);
+            robot.rightBackwardMecanumWheel.setPower(0);
+            sleep(time);
+            robot.leftForwardMecanumWheel.setPower(0);
+            robot.rightForwardMecanumWheel.setPower(0);
+            robot.leftBackwardMecanumWheel.setPower(0);
+            robot.rightBackwardMecanumWheel.setPower(0);
+        }
+        public void mecanumGoLeftForwardForward(double speed, double time) {
+            robot.leftForwardMecanumWheel.setPower(speed/2);
+            robot.rightForwardMecanumWheel.setPower(speed);
+            robot.leftBackwardMecanumWheel.setPower(speed);
+            robot.rightBackwardMecanumWheel.setPower(speed/2);
+            sleep(time);
+            robot.leftForwardMecanumWheel.setPower(0);
+            robot.rightForwardMecanumWheel.setPower(0);
+            robot.leftBackwardMecanumWheel.setPower(0);
+            robot.rightBackwardMecanumWheel.setPower(0);
+        }
+        public void mecanumGoForward(double speed, double time) {
+            robot.leftForwardMecanumWheel.setPower(speed);
+            robot.rightForwardMecanumWheel.setPower(speed);
+            robot.leftBackwardMecanumWheel.setPower(speed);
+            robot.rightBackwardMecanumWheel.setPower(speed);
+            sleep(time);
+            robot.leftForwardMecanumWheel.setPower(0);
+            robot.rightForwardMecanumWheel.setPower(0);
+            robot.leftBackwardMecanumWheel.setPower(0);
+            robot.rightBackwardMecanumWheel.setPower(0);
+        }
+        */
 
         /*
         //mechanum wheel glyph grabber code
