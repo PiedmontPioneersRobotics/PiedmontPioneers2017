@@ -342,6 +342,27 @@ public abstract class AutonomousBase extends LinearOpMode {
         robot.Left1.setPower(0);
         robot.Left2.setPower(0);
     }
+//mecanum drive left
+    public void driveLeft(double speed, double time) {
+        telemetry.addData(">", "Start drive forward");
+        telemetry.addData("Right speed:", "%.2f", rightSpeed);
+        telemetry.addData("Left speed:", "%.2f", leftSpeed);
+        telemetry.update();
+        runtime.reset();
+        leftSpeed = speed;
+        rightSpeed = -speed;
+        while (opModeIsActive() && (runtime.seconds() < time)) {
+            robot.Right1.setPower(rightSpeed);
+            robot.Right2.setPower(leftSpeed);
+            robot.Left1.setPower(leftSpeed);
+            robot.Left2.setPower(rightSpeed);
+        }
+
+        robot.Right1.setPower(0);
+        robot.Right2.setPower(0);
+        robot.Left1.setPower(0);
+        robot.Left2.setPower(0);
+    }
 
     //check vuforia and return the distance needed to get to the correct cryptobox column
     public double checkVuforia(){
@@ -393,12 +414,12 @@ public abstract class AutonomousBase extends LinearOpMode {
     public void rampage () {
         //start rampage
         telemetry.addData(">", "Rampage code, I'm going for the second glyph!");
-        leftTurn(0.25, 3);
+        leftTurn(0.25, 2);
         driveForward(1, 1.8);
         holdGlyph();
         raiseLifter();
-        leftTurn(0.25, 3);
-        driveForward(1, 1.6);
+        driveBackward(1, 1.6);
+        leftTurn(0.25, 2);
         dropGlyph();
         pushGlyph();
         telemetry.update();
@@ -417,7 +438,7 @@ public abstract class AutonomousBase extends LinearOpMode {
                 specialDriveForward(1, 0.3, 0.01);
                 if ((robot.columnCounter.getLightDetected() < 0.03) && (robot.columnCounter.getLightDetected() > 0.01)) {
                     columnCounts += 1;
-                    robot.columnCounterArm.setPosition(0);
+                    robot.columnCounterArm.setPosition(0.5);
                 }
             }
         } else if (opMode == "BlueBottom") {

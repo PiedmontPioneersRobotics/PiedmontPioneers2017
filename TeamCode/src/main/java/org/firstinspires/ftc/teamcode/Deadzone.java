@@ -86,20 +86,20 @@ public class Deadzone extends OpMode{
         //lifter code
         if(lifterPosition > 8640) {
             robot.lifter.setTargetPosition(lifterPosition - 10);
-            robot.lifter.setPower(-0.5);
+            robot.lifter.setPower(-1);
             telemetry.addLine("Caution: Lifter is too high");
             telemetry.update();
         } else if (lifterPosition < 0){
             robot.lifter.setTargetPosition(lifterPosition + 10);
-            robot.lifter.setPower(0.5);
+            robot.lifter.setPower(1);
             telemetry.addLine("Caution: Lifter is too low");
             telemetry.update();
         } else if (y_pressed && !y_previously_pressed) {
             robot.lifter.setTargetPosition(lifterPosition + 2800);
-            robot.lifter.setPower(0.5);
+            robot.lifter.setPower(1);
         } else if (a_pressed && !a_previously_pressed) {
             robot.lifter.setTargetPosition(lifterPosition - 2800);
-            robot.lifter.setPower(-0.5);
+            robot.lifter.setPower(-1);
         }
         a_previously_pressed = a_pressed;
         y_previously_pressed = y_pressed;
