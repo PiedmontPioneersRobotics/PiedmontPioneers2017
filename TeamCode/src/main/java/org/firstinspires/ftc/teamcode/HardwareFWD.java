@@ -22,8 +22,8 @@ public class HardwareFWD {
     public DcMotor                 Left2   = null;
     public DcMotor                 lifter = null;
     public DcMotor                 platformPusher = null;
-    //public DcMotor                 rightMechanumGlyphSucker = null;
-    //public DcMotor                 leftMechanumGlyphSucker = null;
+    //public DcMotor                 rightMecanumGlyphSucker = null;
+    //public DcMotor                 leftMecanumGlyphSucker = null;
     public Servo                   starboardGripper = null;
     public Servo                   portGripper = null;
     public Servo                   jewelMover = null;
@@ -33,8 +33,9 @@ public class HardwareFWD {
     //public SensorMRRangeSensor     glyphLocator = null;
     //public DigitalChannel          glyphInSensor = null;
 
-    //public DcMotor                 RelicArm = null;
-    //public Servo                   RelicGrabber = null;
+    //public DcMotor                 relicArm = null;
+    //public Servo                   relicGrabber = null;
+    //public Servo                   relicWrist = null;
 
     HardwareMap hwMap           =  null;
     private ElapsedTime period  = new ElapsedTime();
@@ -69,14 +70,14 @@ public class HardwareFWD {
         platformPusher.setDirection(DcMotor.Direction.FORWARD);
         platformPusher.setPower(0);
         platformPusher.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        //rightMechanumGlyphSucker = hwMap.get(DcMotor.class, "Right Mecanum Glyph Sucker");
-        //rightMechanumGlyphSucker.setDirection(DcMotor.Direction.FORWARD);
-        //rightMechanumGlyphSucker.setPower(0);
-        //rightMechanumGlyphSucker.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        //leftMechanumGlyphSucker = hwMap.get(DcMotor.class, "Right Mecanum Glyph Sucker");
-        //leftMechanumGlyphSucker.setDirection(DcMotor.Direction.FORWARD);
-        //leftMechanumGlyphSucker.setPower(0);
-        //leftMechanumGlyphSucker.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //rightMecanumGlyphSucker = hwMap.get(DcMotor.class, "Right Mecanum Glyph Sucker");
+        //rightMecanumGlyphSucker.setDirection(DcMotor.Direction.FORWARD);
+        //rightMecanumGlyphSucker.setPower(0);
+        //rightMecanumGlyphSucker.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //leftMecanumGlyphSucker = hwMap.get(DcMotor.class, "Right Mecanum Glyph Sucker");
+        //leftMecanumGlyphSucker.setDirection(DcMotor.Direction.FORWARD);
+        //leftMecanumGlyphSucker.setPower(0);
+        //leftMecanumGlyphSucker.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         jewelMover = hwMap.get(Servo.class, "Jewel Grabber");
         starboardGripper = hwMap.get(Servo.class, "Starboard gripper");
         portGripper = hwMap.get(Servo.class, "Port gripper");
@@ -94,13 +95,15 @@ public class HardwareFWD {
         portGripper.setPosition(lgp);
         jewelMover.setPosition(j_up);
 
-        //RelicArm  = hwMap.get(DcMotor.class, "RelicArm");
-        //RelicArm.setDirection(DcMotor.Direction.FORWARD);
-        //RelicArm.setPower(0);
-        //RelicArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //relicArm  = hwMap.get(DcMotor.class, "RelicArm");
+        //relicArm.setDirection(DcMotor.Direction.FORWARD);
+        //relicArm.setPower(0);
+        //relicArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        //RelicGrabber = hwMap.get(Servo.class, "RelicGrabber");
-        //RelicGrabber.setPosition(0);
+        //relicGrabber = hwMap.get(Servo.class, "RelicGrabber");
+        //relicGrabber.setPosition(0);
+        //relicWrist = hwMap.get(Servo.class, "RelicWrist");
+        //relicWrist.setPosition(0);
     }
 
  }

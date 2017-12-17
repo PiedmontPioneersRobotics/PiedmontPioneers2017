@@ -19,6 +19,8 @@ public class HardwareFWDMecanum {
     public DcMotor                 platformPusher = null;
     //public DcMotor                 rightMechanumGlyphSucker = null;
     //public DcMotor                 leftMechanumGlyphSucker = null;
+
+    /*
     public Servo                   starboardGripper = null;
     public Servo                   portGripper = null;
     public Servo                   jewelMover = null;
@@ -30,6 +32,7 @@ public class HardwareFWDMecanum {
 
     //public DcMotor                 RelicArm = null;
     //public Servo                   RelicGrabber = null;
+    */
 
     HardwareMap hwMap           =  null;
     private ElapsedTime period  = new ElapsedTime();
@@ -61,6 +64,8 @@ public class HardwareFWDMecanum {
         Left2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         Left2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         Left2.setPower(0);
+
+        /*
         lifter  = hwMap.get(DcMotor.class, "lifter");
         lifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         lifter.setDirection(DcMotor.Direction.FORWARD);
@@ -104,6 +109,7 @@ public class HardwareFWDMecanum {
 
         //RelicGrabber = hwMap.get(Servo.class, "RelicGrabber");
         //RelicGrabber.setPosition(0);
+        */
     }
 
  }

@@ -32,8 +32,8 @@ public class FWDTeleop extends OpMode{
     public void loop() {
         int lifterPosition;
         lifterPosition = robot.lifter.getCurrentPosition();
-        int relicGrabberPosition;
-        //relicGrabberPosition = robot.RelicArm.getCurrentPosition();
+        int relicArmPosition;
+        //relicArmPosition = robot.RelicArm.getCurrentPosition();
         //int platformPusherPosition;
         //platformPusherPosition = robot.platformPusher.getCurrentPosition();
         telemetry.addData("lifter",  "%d", lifterPosition);
@@ -46,36 +46,48 @@ public class FWDTeleop extends OpMode{
         boolean x_pressed;
         y_pressed = gamepad1.y;
         a_pressed = gamepad1.a;
-        up_pressed = gamepad1.dpad_up;
-        down_pressed = gamepad1.dpad_down;
+        up_pressed = gamepad2.y;
+        down_pressed = gamepad2.a;
         b_pressed = gamepad1.b;
         x_pressed = gamepad1.x;
         double rightSpeed;
         double leftSpeed;
-        rightSpeed = gamepad1.right_stick_y;
-        leftSpeed = -gamepad1.left_stick_y;
-        rightSpeed = rightSpeed * rightSpeed * rightSpeed;
-        leftSpeed = leftSpeed * leftSpeed * leftSpeed;
-        robot.Right1.setPower(rightSpeed);
-        robot.Right2.setPower(rightSpeed);
-        robot.Left1.setPower(leftSpeed);
-        robot.Left2.setPower(leftSpeed);
-        telemetry.addData("left",  "%.2f", leftSpeed);
-        telemetry.addData("left",  "%.2f", leftSpeed);
-        telemetry.addData("right",  "%.2f", rightSpeed);
-        telemetry.addData("right",  "%.2f", rightSpeed);
+        if(!gamepad1.dpad_left && !gamepad1.dpad_right) {
+            rightSpeed = gamepad1.right_stick_y;
+            leftSpeed = -gamepad1.left_stick_y;
+            rightSpeed = rightSpeed * rightSpeed * rightSpeed;
+            leftSpeed = leftSpeed * leftSpeed * leftSpeed;
+            robot.Right1.setPower(rightSpeed);
+            robot.Right2.setPower(rightSpeed);
+            robot.Left1.setPower(leftSpeed);
+            robot.Left2.setPower(leftSpeed);
+            telemetry.addData("left",  "%.2f", leftSpeed);
+            telemetry.addData("left",  "%.2f", leftSpeed);
+            telemetry.addData("right",  "%.2f", rightSpeed);
+            telemetry.addData("right",  "%.2f", rightSpeed);
+        } else if(gamepad1.dpad_left) {
+            robot.Right1.setPower(1);
+            robot.Right2.setPower(-1);
+            robot.Left1.setPower(-1);
+            robot.Left2.setPower(1);
+        } else if(gamepad1.dpad_right) {
+            robot.Right1.setPower(-1);
+            robot.Right2.setPower(1);
+            robot.Left1.setPower(1);
+            robot.Left2.setPower(-1);
+        }
+/*
+        robot.relicArm.setPower(gamepad2.left_stick_y);
+        robot.relicGrabber.setPosition(gamepad2.right_trigger);
 
-        /* if (gamepad1.left_bumper) {
-            robot.starboardGripper.setPosition(0);
-            robot.portGripper.setPosition(1);
-
-        }else if (gamepad1.right_bumper) {
-            robot.starboardGripper.setPosition(1);
-            robot.portGripper.setPosition(0);
-        }else {
-            robot.starboardGripper.setPosition(1);
-            robot.portGripper.setPosition(0);
-        } */
+        if (up_pressed && !up_previously_pressed) {
+            robot.relicWrist.setPosition(0);
+        } else if (down_pressed && !down_previously_pressed) {
+            robot.relicWrist.setPosition(1);
+        }
+        up_previously_pressed = up_pressed;
+        down_previously_pressed = down_pressed;
+*/
 
         //mecanum wheels code
 
@@ -165,24 +177,23 @@ public class FWDTeleop extends OpMode{
         */
 
         /*
-        //mechanum wheel glyph grabber code
-        if (!(glyphInSensor.getState() == false) && (glyphLocator.getDistance(DistanceUnit.CM) < 8 inches)) {
-            robot.rightMechanumGlyphSucker.setPower(1);
-            robot.leftMechanumGlyphSucker.setPower(1);
-        }
+        //mecanum wheel glyph grabber code
         if (b_pressed && !b_previously_pressed) {
             while (runtime.seconds() < 1) {
-                robot.rightMechanumGlyphSucker.setPower(-1);
-                robot.leftMechanumGlyphSucker.setPower(-1);
+                robot.rightmecanumGlyphSucker.setPower(-1);
+                robot.leftmecanumGlyphSucker.setPower(-1);
             }
+        } else if (!(glyphInSensor.getState() == false) && (glyphLocator.getDistance(DistanceUnit.CM) < 8)) {
+            robot.rightmecanumGlyphSucker.setPower(1);
+            robot.leftmecanumGlyphSucker.setPower(1);
         } else if (x_pressed && !x_previously_pressed) {
             while (runtime.seconds() < 1) {
-                robot.rightMechanumGlyphSucker.setPower(-1);
-                robot.leftMechanumGlyphSucker.setPower(-1);
+                robot.rightmecanumGlyphSucker.setPower(-1);
+                robot.leftmecanumGlyphSucker.setPower(-1);
             }
         } else {
-            robot.rightMechanumGlyphSucker.setPower(0);
-            robot.leftMechanumGlyphSucker.setPower(0);
+            robot.rightmecanumGlyphSucker.setPower(0);
+            robot.leftmecanumGlyphSucker.setPower(0);
         }*/
 
         //glyph grabber code
@@ -198,33 +209,13 @@ public class FWDTeleop extends OpMode{
             telemetry.addData("port gripper", "%.2f", lgp);
 
         }
-        /*
-        //relic grabber code
-        if (relicGrabberPosition > 360) {
-            robot.lifter.setTargetPosition(lifterPosition - 2);
-            robot.lifter.setPower(-0.5);
-            telemetry.addLine("Caution: Relic Grabber out of position");
-            telemetry.update();
-        } else if (relicGrabberPosition < 0){
-            robot.lifter.setTargetPosition(lifterPosition + 2);
-            robot.lifter.setPower(0.5);
-            telemetry.addLine("Caution: Relic Grabber out of position");
-            telemetry.update();
-        } else if (up_pressed && !up_previously_pressed) {
-            robot.lifter.setTargetPosition(lifterPosition + 360);
-            robot.lifter.setPower(0.5);
-        } else if (down_pressed && !down_previously_pressed) {
-            robot.lifter.setTargetPosition(lifterPosition - 360);
-            robot.lifter.setPower(-0.5);
-        }
-        up_previously_pressed = up_pressed;
-        down_previously_pressed = down_pressed;*/
+
 
         //platform pusher code
         if (gamepad1.b) {
-            robot.platformPusher.setPower(0.2);
+            robot.platformPusher.setPower(1);
         } else if (gamepad1.x) {
-            robot.platformPusher.setPower(-0.2);
+            robot.platformPusher.setPower(-1);
         } else {
             robot.platformPusher.setPower(0);
         }
