@@ -53,41 +53,70 @@ public class FWDTeleop extends OpMode{
         double rightSpeed;
         double leftSpeed;
         if(!gamepad1.dpad_left && !gamepad1.dpad_right) {
+            rightSpeed = gamepad1.right_stick_y;                       //
+            leftSpeed = -gamepad1.left_stick_y;                        //
+            rightSpeed = rightSpeed * rightSpeed * rightSpeed;         //
+            leftSpeed = leftSpeed * leftSpeed * leftSpeed;             //
+            robot.Right1.setPower(rightSpeed);                         //
+            robot.Right2.setPower(rightSpeed);                         //
+            robot.Left1.setPower(leftSpeed);                           //
+            robot.Left2.setPower(leftSpeed);                           //
+            telemetry.addData("left",  "%.2f", leftSpeed);             //
+            telemetry.addData("left",  "%.2f", leftSpeed);             //
+            telemetry.addData("right",  "%.2f", rightSpeed);           //
+            telemetry.addData("right",  "%.2f", rightSpeed);           //
+        } else if(gamepad1.dpad_left) {                                //
+            robot.Right1.setPower(1);                                 //
+            robot.Right2.setPower(-1);                               //
+            robot.Left1.setPower(-1);                               //
+            robot.Left2.setPower(1);                               //
+        } else if(gamepad1.dpad_right) {                          //
+            robot.Right1.setPower(-1);                           //
+            robot.Right2.setPower(1);                           //
+            robot.Left1.setPower(1);                           //
+            robot.Left2.setPower(-1);                         //
+        }                                                    //
+                                                            //
+                                                           //
+        /*  //code for super fast motors, to be placed ===//
+        if(gamepad1.right_stick_y>0.9) {
+            robot.Right1.setPower(1);
+            robot.Right2.setPower(1);
+            robot.Left1.setPower(-1);
+            robot.Left2.setPower(-1);
+        } else if(gamepad1.right_stick_y<-0.9) {
+            robot.Right1.setPower(-1);
+            robot.Right2.setPower(-1);
+            robot.Left1.setPower(1);
+            robot.Left2.setPower(1);
+        } else {
             rightSpeed = gamepad1.right_stick_y;
-            leftSpeed = -gamepad1.left_stick_y;
-            rightSpeed = rightSpeed * rightSpeed * rightSpeed;
-            leftSpeed = leftSpeed * leftSpeed * leftSpeed;
+            rightSpeed = rightSpeed * rightSpeed * rightSpeed * 0.1;
             robot.Right1.setPower(rightSpeed);
             robot.Right2.setPower(rightSpeed);
+            telemetry.addData("right",  "%.2f", rightSpeed);
+            telemetry.addData("right",  "%.2f", rightSpeed);
+            leftSpeed = gamepad1.right_stick_y;
+            leftSpeed = leftSpeed * leftSpeed * leftSpeed * 0.1;
             robot.Left1.setPower(leftSpeed);
             robot.Left2.setPower(leftSpeed);
             telemetry.addData("left",  "%.2f", leftSpeed);
             telemetry.addData("left",  "%.2f", leftSpeed);
-            telemetry.addData("right",  "%.2f", rightSpeed);
-            telemetry.addData("right",  "%.2f", rightSpeed);
-        } else if(gamepad1.dpad_left) {
-            robot.Right1.setPower(1);
-            robot.Right2.setPower(-1);
-            robot.Left1.setPower(-1);
-            robot.Left2.setPower(1);
-        } else if(gamepad1.dpad_right) {
-            robot.Right1.setPower(-1);
-            robot.Right2.setPower(1);
-            robot.Left1.setPower(1);
-            robot.Left2.setPower(-1);
-        }
-/*
-        robot.relicArm.setPower(gamepad2.left_stick_y);
-        robot.relicGrabber.setPosition(gamepad2.right_trigger);
+        }*/
+
+
+        //robot.relicArm.setPower(gamepad2.left_stick_y);
+        robot.relicGrabber.setPosition(0.25+gamepad2.right_trigger*0.5);
+
 
         if (up_pressed && !up_previously_pressed) {
             robot.relicWrist.setPosition(0);
         } else if (down_pressed && !down_previously_pressed) {
-            robot.relicWrist.setPosition(1);
+            robot.relicWrist.setPosition(0.5);
         }
         up_previously_pressed = up_pressed;
         down_previously_pressed = down_pressed;
-*/
+
 
         //mecanum wheels code
 

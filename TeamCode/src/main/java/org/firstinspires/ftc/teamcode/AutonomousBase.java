@@ -414,12 +414,13 @@ public abstract class AutonomousBase extends LinearOpMode {
     public void rampage () {
         //start rampage
         telemetry.addData(">", "Rampage code, I'm going for the second glyph!");
-        leftTurn(0.25, 2);
+        leftTurn(0.25, 2.5);
         driveForward(1, 1.8);
         holdGlyph();
         raiseLifter();
         driveBackward(1, 1.6);
-        leftTurn(0.25, 2);
+        leftTurn(0.25, 2.5);
+        driveForward(1, 0.5);
         dropGlyph();
         pushGlyph();
         telemetry.update();

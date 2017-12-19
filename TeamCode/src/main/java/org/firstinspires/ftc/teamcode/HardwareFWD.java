@@ -34,8 +34,8 @@ public class HardwareFWD {
     //public DigitalChannel          glyphInSensor = null;
 
     //public DcMotor                 relicArm = null;
-    //public Servo                   relicGrabber = null;
-    //public Servo                   relicWrist = null;
+    public Servo                   relicGrabber = null;
+    public Servo                   relicWrist = null;
 
     HardwareMap hwMap           =  null;
     private ElapsedTime period  = new ElapsedTime();
@@ -100,10 +100,10 @@ public class HardwareFWD {
         //relicArm.setPower(0);
         //relicArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        //relicGrabber = hwMap.get(Servo.class, "RelicGrabber");
-        //relicGrabber.setPosition(0);
-        //relicWrist = hwMap.get(Servo.class, "RelicWrist");
-        //relicWrist.setPosition(0);
+        relicGrabber = hwMap.get(Servo.class, "RelicGrabber");
+        relicGrabber.setPosition(0);
+        relicWrist = hwMap.get(Servo.class, "RelicWrist");
+        relicWrist.setPosition(0);
     }
 
  }
