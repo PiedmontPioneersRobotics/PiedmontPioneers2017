@@ -139,10 +139,10 @@ public class FWDTeleop extends OpMode{
                 leftSpeed = leftSpeed * leftSpeed * leftSpeed * 0.5;
                 robot.Left1.setPower(-leftSpeed);
                 robot.Left2.setPower(-leftSpeed);
-                telemetry.addData("left",  "%.2f", leftSpeed);
-                telemetry.addData("left",  "%.2f", leftSpeed);
+                telemetry.addData("left", "%.2f", leftSpeed);
+                telemetry.addData("left", "%.2f", leftSpeed);
             }
-        } else if(gamepad1.dpad_left) {                                //
+         if(gamepad1.dpad_left) {                                //
             robot.Right1.setPower(1);                                 //
             robot.Right2.setPower(-1);                               //
             robot.Left1.setPower(-1);                               //
@@ -207,28 +207,67 @@ public class FWDTeleop extends OpMode{
             robot.leftBackwardMecanumWheel.setPower(FRBLspeed);
             robot.rightBackwardMecanumWheel.setPower(FLBRspeed);
         }
-        public void mecanumRotation(speed) {
-            if (gamepad1.right_stick_x < 0){
-                robot.leftForwardMecanumWheel.setPower(-speed);
-                robot.rightForwardMecanumWheel.setPower(speed);
-                robot.leftBackwardMecanumWheel.setPower(-speed);
-                robot.rightBackwardMecanumWheel.setPower(speed);
-                telemetry.addData("You are rotating:", "LEFT");
-                telemetry.update();
-            } else if (gamepad1.right_stick_x > 0){
-                robot.leftForwardMecanumWheel.setPower(speed);
-                robot.rightForwardMecanumWheel.setPower(-speed);
-                robot.leftBackwardMecanumWheel.setPower(speed);
-                robot.rightBackwardMecanumWheel.setPower(-speed);
-                telemetry.addData("You are rotating:", "RIGHT");
-                telemetry.update();
-            }
+        //mecanum wheels code for LeftTop Quadrant
+        public void mecanumGoLeft(double speed, double time) {
+            robot.leftForwardMecanumWheel.setPower(-speed);
+            robot.rightForwardMecanumWheel.setPower(speed);
+            robot.leftBackwardMecanumWheel.setPower(speed);
+            robot.rightBackwardMecanumWheel.setPower(-speed);
+            sleep(time);
+            robot.leftForwardMecanumWheel.setPower(0);
+            robot.rightForwardMecanumWheel.setPower(0);
+            robot.leftBackwardMecanumWheel.setPower(0);
+            robot.rightBackwardMecanumWheel.setPower(0);
+        }
+        public void mecanumGoLeftLeftForward(double speed, double time) {
+            robot.leftForwardMecanumWheel.setPower(-speed/2);
+            robot.rightForwardMecanumWheel.setPower(speed);
+            robot.leftBackwardMecanumWheel.setPower(speed);
+            robot.rightBackwardMecanumWheel.setPower(-speed/2);
+            sleep(time);
+            robot.leftForwardMecanumWheel.setPower(0);
+            robot.rightForwardMecanumWheel.setPower(0);
+            robot.leftBackwardMecanumWheel.setPower(0);
+            robot.rightBackwardMecanumWheel.setPower(0);
+        }
+        public void mecanumGoLeftForward(double speed, double time) {
+            robot.leftForwardMecanumWheel.setPower(0);
+            robot.rightForwardMecanumWheel.setPower(speed);
+            robot.leftBackwardMecanumWheel.setPower(speed);
+            robot.rightBackwardMecanumWheel.setPower(0);
+            sleep(time);
+            robot.leftForwardMecanumWheel.setPower(0);
+            robot.rightForwardMecanumWheel.setPower(0);
+            robot.leftBackwardMecanumWheel.setPower(0);
+            robot.rightBackwardMecanumWheel.setPower(0);
+        }
+        public void mecanumGoLeftForwardForward(double speed, double time) {
+            robot.leftForwardMecanumWheel.setPower(speed/2);
+            robot.rightForwardMecanumWheel.setPower(speed);
+            robot.leftBackwardMecanumWheel.setPower(speed);
+            robot.rightBackwardMecanumWheel.setPower(speed/2);
+            sleep(time);
+            robot.leftForwardMecanumWheel.setPower(0);
+            robot.rightForwardMecanumWheel.setPower(0);
+            robot.leftBackwardMecanumWheel.setPower(0);
+            robot.rightBackwardMecanumWheel.setPower(0);
+        }
+        public void mecanumGoForward(double speed, double time) {
+            robot.leftForwardMecanumWheel.setPower(speed);
+            robot.rightForwardMecanumWheel.setPower(speed);
+            robot.leftBackwardMecanumWheel.setPower(speed);
+            robot.rightBackwardMecanumWheel.setPower(speed);
+            sleep(time);
+            robot.leftForwardMecanumWheel.setPower(0);
+            robot.rightForwardMecanumWheel.setPower(0);
+            robot.leftBackwardMecanumWheel.setPower(0);
+            robot.rightBackwardMecanumWheel.setPower(0);
         }
         */
 
         /*
         //mecanum wheel glyph grabber code
-        if (b_pressed) {
+        if (b_pressed && !b_previously_pressed) {
             while (runtime.seconds() < 1) {
                 robot.rightmecanumGlyphSucker.setPower(-1);
                 robot.leftmecanumGlyphSucker.setPower(-1);
@@ -236,7 +275,7 @@ public class FWDTeleop extends OpMode{
         } else if (!(glyphInSensor.getState() == false) && (glyphLocator.getDistance(DistanceUnit.CM) < 8)) {
             robot.rightmecanumGlyphSucker.setPower(1);
             robot.leftmecanumGlyphSucker.setPower(1);
-        } else if (x_pressed) {
+        } else if (x_pressed && !x_previously_pressed) {
             while (runtime.seconds() < 1) {
                 robot.rightmecanumGlyphSucker.setPower(-1);
                 robot.leftmecanumGlyphSucker.setPower(-1);
