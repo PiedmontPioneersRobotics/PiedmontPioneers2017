@@ -52,6 +52,7 @@ public class FWDTeleop extends OpMode{
         x_pressed = gamepad1.x;
         double rightSpeed;
         double leftSpeed;
+
         if(!gamepad1.dpad_left && !gamepad1.dpad_right) {
             rightSpeed = gamepad1.right_stick_y;
             leftSpeed = -gamepad1.left_stick_y;
@@ -103,6 +104,55 @@ public class FWDTeleop extends OpMode{
             telemetry.addData("left",  "%.2f", leftSpeed);
             telemetry.addData("left",  "%.2f", leftSpeed);
         }*/
+            rightSpeed = gamepad1.right_stick_y;
+            leftSpeed = -gamepad1.left_stick_y;
+            if(rightSpeed < 0.05 && rightSpeed>-0.05){
+                rightSpeed = 0;
+            }
+            if(leftSpeed < 0.05 && leftSpeed>-0.05){
+                leftSpeed = 0;
+            }
+
+            if(gamepad1.right_stick_y>0.9) {
+                robot.Right1.setPower(1);
+                robot.Right2.setPower(1);
+            } else if(gamepad1.right_stick_y<-0.9) {
+                robot.Right1.setPower(-1);
+                robot.Right2.setPower(-1);
+            } else {
+                rightSpeed = gamepad1.right_stick_y;
+                rightSpeed = rightSpeed * rightSpeed * rightSpeed * 0.5;
+                robot.Right1.setPower(rightSpeed);
+                robot.Right2.setPower(rightSpeed);
+                telemetry.addData("right",  "%.2f", rightSpeed);
+                telemetry.addData("right",  "%.2f", rightSpeed);
+            }
+
+            if(gamepad1.left_stick_y>0.9) {
+                robot.Left1.setPower(-1);
+                robot.Left2.setPower(-1);
+            } else if(gamepad1.left_stick_y<-0.9) {
+                robot.Left1.setPower(1);
+                robot.Left2.setPower(1);
+            } else {
+                leftSpeed = gamepad1.left_stick_y;
+                leftSpeed = leftSpeed * leftSpeed * leftSpeed * 0.5;
+                robot.Left1.setPower(-leftSpeed);
+                robot.Left2.setPower(-leftSpeed);
+                telemetry.addData("left",  "%.2f", leftSpeed);
+                telemetry.addData("left",  "%.2f", leftSpeed);
+            }
+        } else if(gamepad1.dpad_left) {                                //
+            robot.Right1.setPower(1);                                 //
+            robot.Right2.setPower(-1);                               //
+            robot.Left1.setPower(-1);                               //
+            robot.Left2.setPower(1);                               //
+        } else if(gamepad1.dpad_right) {                          //
+            robot.Right1.setPower(-1);                           //
+            robot.Right2.setPower(1);                           //
+            robot.Left1.setPower(1);                           //
+            robot.Left2.setPower(-1);                         //
+        }                                                    //
 
 
         //robot.relicArm.setPower(gamepad2.left_stick_y);
@@ -178,7 +228,7 @@ public class FWDTeleop extends OpMode{
 
         /*
         //mecanum wheel glyph grabber code
-        if (b_pressed && !b_previously_pressed) {
+        if (b_pressed) {
             while (runtime.seconds() < 1) {
                 robot.rightmecanumGlyphSucker.setPower(-1);
                 robot.leftmecanumGlyphSucker.setPower(-1);
@@ -186,7 +236,7 @@ public class FWDTeleop extends OpMode{
         } else if (!(glyphInSensor.getState() == false) && (glyphLocator.getDistance(DistanceUnit.CM) < 8)) {
             robot.rightmecanumGlyphSucker.setPower(1);
             robot.leftmecanumGlyphSucker.setPower(1);
-        } else if (x_pressed && !x_previously_pressed) {
+        } else if (x_pressed) {
             while (runtime.seconds() < 1) {
                 robot.rightmecanumGlyphSucker.setPower(-1);
                 robot.leftmecanumGlyphSucker.setPower(-1);
