@@ -53,12 +53,12 @@ public class FWDTeleop extends OpMode{
         double rightSpeed;
         double leftSpeed;
         if(!gamepad1.dpad_left && !gamepad1.dpad_right) {
-            rightSpeed = gamepad1.right_stick_y;                       //
-            leftSpeed = -gamepad1.left_stick_y;                        //
-            rightSpeed = rightSpeed * rightSpeed * rightSpeed;         //
-            leftSpeed = leftSpeed * leftSpeed * leftSpeed;             //
-            robot.Right1.setPower(rightSpeed);                         //
-            robot.Right2.setPower(rightSpeed);                         //
+            rightSpeed = gamepad1.right_stick_y;
+            leftSpeed = -gamepad1.left_stick_y;
+            rightSpeed = rightSpeed * rightSpeed * rightSpeed;
+            leftSpeed = leftSpeed * leftSpeed * leftSpeed;
+            robot.Right1.setPower(rightSpeed);
+            robot.Right2.setPower(rightSpeed);
             robot.Left1.setPower(leftSpeed);                           //
             robot.Left2.setPower(leftSpeed);                           //
             telemetry.addData("left",  "%.2f", leftSpeed);             //
@@ -143,65 +143,36 @@ public class FWDTeleop extends OpMode{
 
        //HEXTANT code
     /*
-        double angle = round(atan(length/width)/22.5);
-        public void findHextants(double stickY,double stickX) {
-            double hextant = 0.0;
+        public void mecanumTranslation() {
+            double radians = Math.atan(gamepad1.left_stick_x/gamepad1.left_stick_y);
+            telemetry.addData("The radian is", radians);
+            telemetry.update();
+            double FLBRspeed = Math.sin(radians+pi/4);
+            double FRBLspeed = Math.sin(radians+pi*3/4);
+            telemetry.addData("The Front Left Back Right speed is (FLBR):", FLBRspeed);
+            telemetry.addData("The Front Right Back Left speed is (FRBL):", FRBLspeed);
+            telemetry.update();
+            robot.leftForwardMecanumWheel.setPower(FLBRspeed);
+            robot.rightForwardMecanumWheel.setPower(FRBLspeed);
+            robot.leftBackwardMecanumWheel.setPower(FRBLspeed);
+            robot.rightBackwardMecanumWheel.setPower(FLBRspeed);
         }
-        //mecanum wheels code for LeftTop Quadrant
-        public void mecanumGoLeft(double speed, double time) {
-            robot.leftForwardMecanumWheel.setPower(-speed);
-            robot.rightForwardMecanumWheel.setPower(speed);
-            robot.leftBackwardMecanumWheel.setPower(speed);
-            robot.rightBackwardMecanumWheel.setPower(-speed);
-            sleep(time);
-            robot.leftForwardMecanumWheel.setPower(0);
-            robot.rightForwardMecanumWheel.setPower(0);
-            robot.leftBackwardMecanumWheel.setPower(0);
-            robot.rightBackwardMecanumWheel.setPower(0);
-        }
-        public void mecanumGoLeftLeftForward(double speed, double time) {
-            robot.leftForwardMecanumWheel.setPower(-speed/2);
-            robot.rightForwardMecanumWheel.setPower(speed);
-            robot.leftBackwardMecanumWheel.setPower(speed);
-            robot.rightBackwardMecanumWheel.setPower(-speed/2);
-            sleep(time);
-            robot.leftForwardMecanumWheel.setPower(0);
-            robot.rightForwardMecanumWheel.setPower(0);
-            robot.leftBackwardMecanumWheel.setPower(0);
-            robot.rightBackwardMecanumWheel.setPower(0);
-        }
-        public void mecanumGoLeftForward(double speed, double time) {
-            robot.leftForwardMecanumWheel.setPower(0);
-            robot.rightForwardMecanumWheel.setPower(speed);
-            robot.leftBackwardMecanumWheel.setPower(speed);
-            robot.rightBackwardMecanumWheel.setPower(0);
-            sleep(time);
-            robot.leftForwardMecanumWheel.setPower(0);
-            robot.rightForwardMecanumWheel.setPower(0);
-            robot.leftBackwardMecanumWheel.setPower(0);
-            robot.rightBackwardMecanumWheel.setPower(0);
-        }
-        public void mecanumGoLeftForwardForward(double speed, double time) {
-            robot.leftForwardMecanumWheel.setPower(speed/2);
-            robot.rightForwardMecanumWheel.setPower(speed);
-            robot.leftBackwardMecanumWheel.setPower(speed);
-            robot.rightBackwardMecanumWheel.setPower(speed/2);
-            sleep(time);
-            robot.leftForwardMecanumWheel.setPower(0);
-            robot.rightForwardMecanumWheel.setPower(0);
-            robot.leftBackwardMecanumWheel.setPower(0);
-            robot.rightBackwardMecanumWheel.setPower(0);
-        }
-        public void mecanumGoForward(double speed, double time) {
-            robot.leftForwardMecanumWheel.setPower(speed);
-            robot.rightForwardMecanumWheel.setPower(speed);
-            robot.leftBackwardMecanumWheel.setPower(speed);
-            robot.rightBackwardMecanumWheel.setPower(speed);
-            sleep(time);
-            robot.leftForwardMecanumWheel.setPower(0);
-            robot.rightForwardMecanumWheel.setPower(0);
-            robot.leftBackwardMecanumWheel.setPower(0);
-            robot.rightBackwardMecanumWheel.setPower(0);
+        public void mecanumRotation(speed) {
+            if (gamepad1.right_stick_x < 0){
+                robot.leftForwardMecanumWheel.setPower(-speed);
+                robot.rightForwardMecanumWheel.setPower(speed);
+                robot.leftBackwardMecanumWheel.setPower(-speed);
+                robot.rightBackwardMecanumWheel.setPower(speed);
+                telemetry.addData("You are rotating:", "LEFT");
+                telemetry.update();
+            } else if (gamepad1.right_stick_x > 0){
+                robot.leftForwardMecanumWheel.setPower(speed);
+                robot.rightForwardMecanumWheel.setPower(-speed);
+                robot.leftBackwardMecanumWheel.setPower(speed);
+                robot.rightBackwardMecanumWheel.setPower(-speed);
+                telemetry.addData("You are rotating:", "RIGHT");
+                telemetry.update();
+            }
         }
         */
 
