@@ -58,16 +58,38 @@ public class Deadzone extends OpMode{
         if(leftSpeed < 0.05 && leftSpeed>-0.05){
             leftSpeed = 0;
         }
-        rightSpeed = rightSpeed * rightSpeed * rightSpeed;
-        leftSpeed = leftSpeed * leftSpeed * leftSpeed;
-        robot.Right1.setPower(rightSpeed);
-        robot.Right2.setPower(rightSpeed);
-        robot.Left1.setPower(leftSpeed);
-        robot.Left2.setPower(leftSpeed);
-        telemetry.addData("left",  "%.2f", leftSpeed);
-        telemetry.addData("left",  "%.2f", leftSpeed);
-        telemetry.addData("right",  "%.2f", rightSpeed);
-        telemetry.addData("right",  "%.2f", rightSpeed);
+
+        if(gamepad1.right_stick_y>0.9) {
+            robot.Right1.setPower(1);
+            robot.Right2.setPower(1);
+        } else if(gamepad1.right_stick_y<-0.9) {
+            robot.Right1.setPower(-1);
+            robot.Right2.setPower(-1);
+        } else {
+            rightSpeed = gamepad1.right_stick_y;
+            rightSpeed = rightSpeed * rightSpeed * rightSpeed * 0.5;
+            robot.Right1.setPower(rightSpeed);
+            robot.Right2.setPower(rightSpeed);
+            telemetry.addData("right",  "%.2f", rightSpeed);
+            telemetry.addData("right",  "%.2f", rightSpeed);
+        }
+
+        if(gamepad1.left_stick_y>0.9) {
+            robot.Left1.setPower(-1);
+            robot.Left2.setPower(-1);
+        } else if(gamepad1.left_stick_y<-0.9) {
+            robot.Left1.setPower(1);
+            robot.Left2.setPower(1);
+        } else {
+            leftSpeed = gamepad1.left_stick_y;
+            leftSpeed = leftSpeed * leftSpeed * leftSpeed * 0.5;
+            robot.Left1.setPower(-leftSpeed);
+            robot.Left2.setPower(-leftSpeed);
+            telemetry.addData("left",  "%.2f", leftSpeed);
+            telemetry.addData("left",  "%.2f", leftSpeed);
+        }
+
+
 
         /* if (gamepad1.left_bumper) {
             robot.starboardGripper.setPosition(0);
