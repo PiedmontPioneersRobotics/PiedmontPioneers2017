@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -30,7 +31,7 @@ public class HardwareFWDMecanumGrabber {
     public ColorSensor             colorSensor = null;
     public OpticalDistanceSensor   columnCounter = null;
     public ModernRoboticsI2cRangeSensor glyphLocatorTop = null;
-    public ModernRoboticsI2cRangeSensor glyphLocatorBottom = null;
+    public DigitalChannel          glyphInSensor = null;
 
     //public DcMotor                 relicArm = null;
     public Servo                   relicGrabber = null;
@@ -93,8 +94,9 @@ public class HardwareFWDMecanumGrabber {
         colorSensor = hwMap.get(ColorSensor.class, "Color Sensor");
         colorSensor.enableLed(true);    //color sensor light
         columnCounter = hwMap.get(OpticalDistanceSensor.class, "Column Counter");
-        glyphLocatorTop = hwMap.get(ModernRoboticsI2cRangeSensor.class, "Glyph Locator Top");
-        glyphLocatorBottom = hwMap.get(ModernRoboticsI2cRangeSensor.class, "Glyph Locator Bottom");
+        glyphLocatorTop = hwMap.get(ModernRoboticsI2cRangeSensor.class, "Glyph Locator");
+        glyphInSensor = hwMap.get(DigitalChannel.class, "sensor_digital");
+        glyphInSensor.setMode(DigitalChannel.Mode.INPUT);
         double rgp = 1 - 0.2;   //right gripper position
         double lgp = 0.2;       //left gripper position
         starboardGripper.setPosition(rgp);
