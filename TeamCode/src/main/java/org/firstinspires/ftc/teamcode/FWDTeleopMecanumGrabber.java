@@ -53,7 +53,7 @@ public class FWDTeleopMecanumGrabber extends OpMode{
 
 
         //driving code
-        if (gamepad1.right_stick_button) {
+        if (gamepad1.left_stick_button) {
 
             //mecanum drive
             double radians = Math.atan(gamepad1.left_stick_x/gamepad1.left_stick_y);
@@ -80,7 +80,7 @@ public class FWDTeleopMecanumGrabber extends OpMode{
                 robot.Left2.setPower(0);
             }
 
-            //deazone left
+            //deadzone left
             if(gamepad1.left_stick_y < 0.05 && gamepad1.left_stick_y>-0.05){
                 robot.Right1.setPower(0);
                 robot.Left1.setPower(0);
