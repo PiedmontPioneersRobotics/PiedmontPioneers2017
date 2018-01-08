@@ -19,7 +19,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 public class AutonomousRedBottom extends AutonomousBase {
     //These distance are for a voltage between 13.00 & 13.10
     public static final double CENTER_COLUMN_DISTANCE = 1.65;
-    public static final double RIGHT_COLUMN_DISTANCE = 1.35;
+    public static final double RIGHT_COLUMN_DISTANCE = 1.25;
     public static final double LEFT_COLUMN_DISTANCE = 2.05;
     public int CryptoboxColumnCount = 0;
     public double driving_time = 1.5;
