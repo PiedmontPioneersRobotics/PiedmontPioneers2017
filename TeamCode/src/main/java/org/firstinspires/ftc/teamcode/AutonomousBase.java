@@ -431,53 +431,53 @@ public abstract class AutonomousBase extends LinearOpMode {
     //severe AI: be warned
 
     public void countColumns (String opMode, int columns) {
-        robot.columnCounterArm.setPosition(0);
+       // robot.columnCounterArm.setPosition(0);
         if (opMode == "RedBottom") {
-            while (columnCounts <= columns) {
-                telemetry.addData("Columns passed:", columnCounts);
-                telemetry.update();
-                specialDriveForward(1, 0.3, 0.01);
-                if ((robot.columnCounter.getLightDetected() < 0.03) && (robot.columnCounter.getLightDetected() > 0.01)) {
-                    columnCounts += 1;
-                    robot.columnCounterArm.setPosition(0.5);
-                }
-            }
+            //while (columnCounts <= columns) {
+             //   telemetry.addData("Columns passed:", columnCounts);
+             //   telemetry.update();
+              //  specialDriveForward(1, 0.3, 0.01);
+               // if ((robot.columnCounter.getLightDetected() < 0.03) && (robot.columnCounter.getLightDetected() > 0.01)) {
+               //     columnCounts += 1;
+               //     robot.columnCounterArm.setPosition(0.5);
+              //  }
+            //}
         } else if (opMode == "BlueBottom") {
-            while (columnCounts <= columns) {
-                telemetry.addData("Columns passed:", columnCounts);
-                telemetry.update();
-                specialDriveBackward(1, 0.3, 0.01);;
-                if ((robot.columnCounter.getLightDetected() < 0.03) && (robot.columnCounter.getLightDetected() > 0.01)) {
-                    columnCounts += 1;
-                    sleep(1000);
-                    robot.columnCounterArm.setPosition(0.5);
-                }
-            }
+            //while (columnCounts <= columns) {
+              // telemetry.addData("Columns passed:", columnCounts);
+               // telemetry.update();
+               // specialDriveBackward(1, 0.3, 0.01);;
+                //if ((robot.columnCounter.getLightDetected() < 0.03) && (robot.columnCounter.getLightDetected() > 0.01)) {
+                //    columnCounts += 1;
+                //    sleep(1000);
+                //    robot.columnCounterArm.setPosition(0.5);
+                //}
+            //}
         } else if (opMode == "RedTop") {
-            while (columnCounts <= columns) {
-                specialDriveForward(1, 0.3, 0.01);
-                if ((robot.columnCounter.getLightDetected() < 0.04) && (robot.columnCounter.getLightDetected() > 0.035)) {
-                    columnCounts += 1;
-                    sleep(1000);
-                    robot.columnCounterArm.setPosition(0.5);
-                }
-            }
+            //while (columnCounts <= columns) {
+            //    specialDriveForward(1, 0.3, 0.01);
+            //    if ((robot.columnCounter.getLightDetected() < 0.04) && (robot.columnCounter.getLightDetected() > 0.035)) {
+            //        columnCounts += 1;
+            //        sleep(1000);
+            //        robot.columnCounterArm.setPosition(0.5);
+            //   }
+            //}
         } else if (opMode == "BlueTop") {
-            while (columnCounts <= columns) {
-                driveBackward(0.5, 0.01);
-                if ((robot.columnCounter.getLightDetected() < 0.04) && (robot.columnCounter.getLightDetected() > 0.035)) {
-                    columnCounts += 1;
-                    sleep(1000);
-                    robot.columnCounterArm.setPosition(0.5);
-                }
-            }
+            //while (columnCounts <= columns) {
+             //   driveBackward(0.5, 0.01);
+             //   if ((robot.columnCounter.getLightDetected() < 0.04) && (robot.columnCounter.getLightDetected() > 0.035)) {
+             //      columnCounts += 1;
+             //       sleep(1000);
+             //       robot.columnCounterArm.setPosition(0.5);
+             //   }
+            //}
         } else {
             telemetry.addLine("We don't seem to have a mode?");
             sleep(1000);
             telemetry.update();
         }
-        robot.columnCounterArm.setPosition(0.5);
-        columnCounts = 0;
+       // robot.columnCounterArm.setPosition(0.5);
+        //columnCounts = 0;
     }
 
      public abstract void runOpMode();
