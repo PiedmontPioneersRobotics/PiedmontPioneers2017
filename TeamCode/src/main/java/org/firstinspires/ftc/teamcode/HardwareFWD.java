@@ -26,10 +26,11 @@ public class HardwareFWD {
     //public DcMotor                 leftMecanumGlyphSucker = null;
     public Servo                   starboardGripper = null;
     public Servo                   portGripper = null;
+    public Servo                   RelicGripper = null;
     public Servo                   jewelMover = null;
-    public Servo                   columnCounterArm = null;
+   // public Servo                   columnCounterArm = null;
     public ColorSensor             colorSensor = null;
-    public OpticalDistanceSensor   columnCounter = null;
+   // public OpticalDistanceSensor   columnCounter = null;
     //public SensorMRRangeSensor     glyphLocator = null;
     //public DigitalChannel          glyphInSensor = null;
 
@@ -81,19 +82,22 @@ public class HardwareFWD {
         jewelMover = hwMap.get(Servo.class, "Jewel Grabber");
         starboardGripper = hwMap.get(Servo.class, "Starboard gripper");
         portGripper = hwMap.get(Servo.class, "Port gripper");
-        columnCounterArm = hwMap.get(Servo.class, "Column Counter Arm");
-        columnCounterArm.setPosition(0.5);
+        RelicGripper = hwMap.get(Servo.class, "Relic Gripper");
+      //  columnCounterArm = hwMap.get(Servo.class, "Column Counter Arm");
+      //  columnCounterArm.setPosition(0.5);
         colorSensor = hwMap.get(ColorSensor.class, "Color Sensor");
         colorSensor.enableLed(true);    //color sensor light
-        columnCounter = hwMap.get(OpticalDistanceSensor.class, "Column Counter");
+     //   columnCounter = hwMap.get(OpticalDistanceSensor.class, "Column Counter");
         //glyphLocator = hwMap.get(SensorMRRangeSensor.class, "Glyph Locator");
         //glyphInSensor = hwMap.get(DigitalChannel.class, "Glyph In Sensor");
         //glyphInSensor.setMode(DigitalChannel.Mode.INPUT);
         double rgp = 1 - 0.2;   //right gripper position
         double lgp = 0.2;       //left gripper position
+        double RGP = 180;       //relic gripper position
         starboardGripper.setPosition(rgp);
         portGripper.setPosition(lgp);
         jewelMover.setPosition(j_up);
+        RelicGripper.setPosition(RGP);
 
         relicArm  = hwMap.get(DcMotor.class, "RelicArm");
         relicArm.setDirection(DcMotor.Direction.FORWARD);
