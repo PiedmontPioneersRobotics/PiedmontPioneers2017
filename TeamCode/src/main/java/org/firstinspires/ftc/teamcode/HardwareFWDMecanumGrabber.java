@@ -16,26 +16,32 @@ import org.firstinspires.ftc.robotcontroller.external.samples.SensorMRRangeSenso
 public class HardwareFWDMecanumGrabber {
     public final static double j_up = 0.6;
     public final static double j_down = 0;
+    /*
     public DcMotor                 Right1   = null;
     public DcMotor                 Right2   = null;
     public DcMotor                 Left1   = null;
     public DcMotor                 Left2   = null;
     public DcMotor                 lifter = null;
     public DcMotor                 platformPusher = null;
+    */
     public DcMotor                 rightMecanumGlyphSucker = null;
     public DcMotor                 leftMecanumGlyphSucker = null;
     public Servo                   starboardGripper = null;
     public Servo                   portGripper = null;
+    /*
     public Servo                   jewelMover = null;
     public Servo                   columnCounterArm = null;
     public ColorSensor             colorSensor = null;
     public OpticalDistanceSensor   columnCounter = null;
+    */
     public ModernRoboticsI2cRangeSensor glyphLocatorTop = null;
     public DigitalChannel          glyphInSensor = null;
 
+    /*
     //public DcMotor                 relicArm = null;
     public Servo                   relicGrabber = null;
     public Servo                   relicWrist = null;
+    */
 
     HardwareMap hwMap           =  null;
     private ElapsedTime period  = new ElapsedTime();
@@ -43,6 +49,7 @@ public class HardwareFWDMecanumGrabber {
     public void init(HardwareMap ahwMap) {
 
         hwMap = ahwMap;
+        /*
         Right1  = hwMap.get(DcMotor.class, "Right1");
         Right1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         Right1.setDirection(DcMotor.Direction.FORWARD);
@@ -78,22 +85,25 @@ public class HardwareFWDMecanumGrabber {
         platformPusher.setDirection(DcMotor.Direction.FORWARD);
         platformPusher.setPower(0);
         platformPusher.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        */
         rightMecanumGlyphSucker = hwMap.get(DcMotor.class, "Right Mecanum Glyph Sucker");
         rightMecanumGlyphSucker.setDirection(DcMotor.Direction.FORWARD);
         rightMecanumGlyphSucker.setPower(0);
         rightMecanumGlyphSucker.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        leftMecanumGlyphSucker = hwMap.get(DcMotor.class, "Right Mecanum Glyph Sucker");
+        leftMecanumGlyphSucker = hwMap.get(DcMotor.class, "Left Mecanum Glyph Sucker");
         leftMecanumGlyphSucker.setDirection(DcMotor.Direction.FORWARD);
         leftMecanumGlyphSucker.setPower(0);
         leftMecanumGlyphSucker.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        jewelMover = hwMap.get(Servo.class, "Jewel Grabber");
+        //jewelMover = hwMap.get(Servo.class, "Jewel Grabber");
         starboardGripper = hwMap.get(Servo.class, "Starboard gripper");
         portGripper = hwMap.get(Servo.class, "Port gripper");
+        /*
         columnCounterArm = hwMap.get(Servo.class, "Column Counter Arm");
         columnCounterArm.setPosition(0.5);
         colorSensor = hwMap.get(ColorSensor.class, "Color Sensor");
         colorSensor.enableLed(true);    //color sensor light
         columnCounter = hwMap.get(OpticalDistanceSensor.class, "Column Counter");
+        */
         glyphLocatorTop = hwMap.get(ModernRoboticsI2cRangeSensor.class, "Glyph Locator");
         glyphInSensor = hwMap.get(DigitalChannel.class, "sensor_digital");
         glyphInSensor.setMode(DigitalChannel.Mode.INPUT);
@@ -101,17 +111,19 @@ public class HardwareFWDMecanumGrabber {
         double lgp = 0.2;       //left gripper position
         starboardGripper.setPosition(rgp);
         portGripper.setPosition(lgp);
-        jewelMover.setPosition(j_up);
+        //jewelMover.setPosition(j_up);
 
         //relicArm  = hwMap.get(DcMotor.class, "RelicArm");
         //relicArm.setDirection(DcMotor.Direction.FORWARD);
         //relicArm.setPower(0);
         //relicArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
+        /*
         relicGrabber = hwMap.get(Servo.class, "RelicGrabber");
         relicGrabber.setPosition(0);
         relicWrist = hwMap.get(Servo.class, "RelicWrist");
         relicWrist.setPosition(0);
+        */
     }
 
  }

@@ -155,7 +155,7 @@ public class FWDTeleop extends OpMode{
         }                                                    //
 
 
-        //robot.relicArm.setPower(gamepad2.left_stick_y);
+        robot.relicArm.setPower(gamepad2.left_stick_y);
         robot.relicGrabber.setPosition(0.25+gamepad2.right_trigger*0.5);
 
 
@@ -299,7 +299,7 @@ public class FWDTeleop extends OpMode{
 
         }
 
-
+/*
         //platform pusher code
         if (gamepad1.b) {
             robot.platformPusher.setPower(1);
@@ -308,6 +308,7 @@ public class FWDTeleop extends OpMode{
         } else {
             robot.platformPusher.setPower(0);
         }
+        */
     }
     @Override
     public void stop() {

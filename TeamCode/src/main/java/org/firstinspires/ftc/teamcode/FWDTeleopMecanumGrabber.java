@@ -38,20 +38,20 @@ public class FWDTeleopMecanumGrabber extends OpMode{
         //sucker code
         if (gamepad1.b) {
             robot.rightMecanumGlyphSucker.setPower(-1);
-            robot.leftMecanumGlyphSucker.setPower(-1);
+            robot.leftMecanumGlyphSucker.setPower(1);
         } else if ((robot.glyphLocatorTop.getDistance(DistanceUnit.CM) < 2) && (robot.glyphInSensor.getState() == true)) {
             robot.rightMecanumGlyphSucker.setPower(0);
             robot.leftMecanumGlyphSucker.setPower(0);
         } else {
             robot.rightMecanumGlyphSucker.setPower(1);
-            robot.leftMecanumGlyphSucker.setPower(1);
+            robot.leftMecanumGlyphSucker.setPower(-1);
         }
 
         double rightSpeed;
         double leftSpeed;
 
 
-
+/*
         //driving code
         if (gamepad1.left_stick_button) {
 
@@ -120,6 +120,7 @@ public class FWDTeleopMecanumGrabber extends OpMode{
                 telemetry.addData("left", "%.2f", leftSpeed);
             }
         }
+        */
 
     }
     @Override
