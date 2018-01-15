@@ -123,7 +123,7 @@ public class AutonomousBlueBottom extends AutonomousBase {
         telemetry.update();
         dropGlyph();
         pushGlyph();
-        rampage();
+        //rampage();
     }
 
     String format(OpenGLMatrix transformationMatrix) {

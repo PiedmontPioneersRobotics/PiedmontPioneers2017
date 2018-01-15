@@ -14,7 +14,7 @@ import org.firstinspires.ftc.robotcontroller.external.samples.SensorMRRangeSenso
 
 
 public class HardwareFWD {
-    public final static double j_up = 0.6;
+    public final static double j_up = 0.5;
     public final static double j_down = 0;
     public DcMotor                 Right1   = null;
     public DcMotor                 Right2   = null;
@@ -26,7 +26,7 @@ public class HardwareFWD {
     //public DcMotor                 leftMecanumGlyphSucker = null;
     public Servo                   starboardGripper = null;
     public Servo                   portGripper = null;
-    public Servo                   RelicGripper = null;
+   // public Servo                   RelicGripper = null;
     public Servo                   jewelMover = null;
    // public Servo                   columnCounterArm = null;
     public ColorSensor             colorSensor = null;
@@ -82,7 +82,6 @@ public class HardwareFWD {
         jewelMover = hwMap.get(Servo.class, "Jewel Grabber");
         starboardGripper = hwMap.get(Servo.class, "Starboard gripper");
         portGripper = hwMap.get(Servo.class, "Port gripper");
-        RelicGripper = hwMap.get(Servo.class, "Relic Gripper");
       //  columnCounterArm = hwMap.get(Servo.class, "Column Counter Arm");
       //  columnCounterArm.setPosition(0.5);
         colorSensor = hwMap.get(ColorSensor.class, "Color Sensor");
@@ -97,7 +96,6 @@ public class HardwareFWD {
         starboardGripper.setPosition(rgp);
         portGripper.setPosition(lgp);
         jewelMover.setPosition(j_up);
-        RelicGripper.setPosition(RGP);
 
         relicArm  = hwMap.get(DcMotor.class, "RelicArm");
         relicArm.setDirection(DcMotor.Direction.FORWARD);
