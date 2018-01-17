@@ -1,9 +1,11 @@
 package org.firstinspires.ftc.teamcode;
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.hardware.IntegratingGyroscope;
 import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -26,14 +28,13 @@ public class HardwareFWD {
     //public DcMotor                 leftMecanumGlyphSucker = null;
     public Servo                   starboardGripper = null;
     public Servo                   portGripper = null;
-    public Servo                   RelicGripper = null;
     public Servo                   jewelMover = null;
    // public Servo                   columnCounterArm = null;
     public ColorSensor             colorSensor = null;
    // public OpticalDistanceSensor   columnCounter = null;
     //public SensorMRRangeSensor     glyphLocator = null;
     //public DigitalChannel          glyphInSensor = null;
-
+    public ModernRoboticsI2cGyro   gyro = null;
     public DcMotor                 relicArm = null;
     public Servo                   relicGrabber = null;
     public Servo                   relicWrist = null;
@@ -82,7 +83,6 @@ public class HardwareFWD {
         jewelMover = hwMap.get(Servo.class, "Jewel Grabber");
         starboardGripper = hwMap.get(Servo.class, "Starboard gripper");
         portGripper = hwMap.get(Servo.class, "Port gripper");
-        RelicGripper = hwMap.get(Servo.class, "Relic Gripper");
       //  columnCounterArm = hwMap.get(Servo.class, "Column Counter Arm");
       //  columnCounterArm.setPosition(0.5);
         colorSensor = hwMap.get(ColorSensor.class, "Color Sensor");
@@ -97,7 +97,8 @@ public class HardwareFWD {
         starboardGripper.setPosition(rgp);
         portGripper.setPosition(lgp);
         jewelMover.setPosition(j_up);
-        RelicGripper.setPosition(RGP);
+        gyro = hwMap.get(ModernRoboticsI2cGyro.class, "gyro");
+        gyro.calibrate();
 
         relicArm  = hwMap.get(DcMotor.class, "RelicArm");
         relicArm.setDirection(DcMotor.Direction.FORWARD);

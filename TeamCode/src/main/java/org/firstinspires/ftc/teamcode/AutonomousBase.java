@@ -426,6 +426,33 @@ public abstract class AutonomousBase extends LinearOpMode {
         telemetry.update();
     }
 
+    public void clockwiseTurn (int degrees) {
+        robot.gyro.resetZAxisIntegrator();
+        while (robot.gyro.getIntegratedZValue() < degrees) {
+            robot.Right1.setPower(0.25);
+            robot.Left1.setPower(0.25);
+            robot.Right2.setPower(0.25);
+            robot.Left2.setPower(0.25);
+        }
+        robot.Right1.setPower(0);
+        robot.Left1.setPower(0);
+        robot.Right2.setPower(0);
+        robot.Left2.setPower(0);
+    }
+
+    public void counterclockwiseTurn (int degrees) {
+        robot.gyro.resetZAxisIntegrator();
+        while (robot.gyro.getIntegratedZValue() < degrees) {
+            robot.Right1.setPower(-0.25);
+            robot.Left1.setPower(-0.25);
+            robot.Right2.setPower(-0.25);
+            robot.Left2.setPower(-0.25);
+        }
+        robot.Right1.setPower(0);
+        robot.Left1.setPower(0);
+        robot.Right2.setPower(0);
+        robot.Left2.setPower(0);
+    }
 
     //code for counting columns
     //severe AI: be warned

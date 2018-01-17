@@ -17,7 +17,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 @Autonomous(name="Blue Top Autonomous", group ="Concept")
 public class AutonomousBlueTop extends AutonomousBase {
     public static final double CENTER_COLUMN_DISTANCE = 0.90;
-    public static final double RIGHT_COLUMN_DISTANCE = 1.15;
+    public static final double RIGHT_COLUMN_DISTANCE = 1.05;
     public static final double LEFT_COLUMN_DISTANCE = 0.41;
     public int CryptoboxColumnCount = 0;
     public double driving_time = 1.0;
