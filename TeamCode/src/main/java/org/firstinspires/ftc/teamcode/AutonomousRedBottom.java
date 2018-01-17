@@ -117,15 +117,14 @@ public class AutonomousRedBottom extends AutonomousBase {
         driveForward(0.25, time_for_driving);
         telemetry.addData(">", "Driving forward by:", time_for_driving);
         telemetry.update();
-        rightTurn(0.25,1.02);
+        clockwiseTurn(90);
         telemetry.addData(">", "Turned right");
         telemetry.update();
         driveForward(0.25, 1);
         telemetry.addData(">", "Final drive forward");
         telemetry.update();
         dropGlyph();
-        pushGlyph();
-        //rampage();
+        rampage();
     }
 
     String format(OpenGLMatrix transformationMatrix) {
