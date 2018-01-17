@@ -16,7 +16,7 @@ import org.firstinspires.ftc.robotcontroller.external.samples.SensorMRRangeSenso
 
 
 public class HardwareFWD {
-    public final static double j_up = 0.6;
+    public final static double j_up = 0.5;
     public final static double j_down = 0;
     public DcMotor                 Right1   = null;
     public DcMotor                 Right2   = null;
