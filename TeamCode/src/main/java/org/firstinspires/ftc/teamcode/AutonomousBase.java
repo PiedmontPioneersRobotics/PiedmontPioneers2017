@@ -421,7 +421,7 @@ public abstract class AutonomousBase extends LinearOpMode {
 
     public void clockwiseTurn (int degrees) {
         robot.gyro.resetZAxisIntegrator();
-        while (robot.gyro.getIntegratedZValue() < (degrees-offset)) {
+        while (robot.gyro.getIntegratedZValue() > (-degrees+offset)) {
             robot.Right1.setPower(0.25);
             robot.Left1.setPower(0.25);
             robot.Right2.setPower(0.25);
