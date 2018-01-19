@@ -410,10 +410,11 @@ public abstract class AutonomousBase extends LinearOpMode {
         driveForward(1, 1.8);
         holdGlyph();
         raiseLifter();
-        driveBackward(1, 1.6);
+        driveBackward(1, 1);
         counterclockwiseTurn(180);
-        driveForward(1, 0.5);
+        driveForward(1, 1);
         dropGlyph();
+        driveBackward(1, 0.5);
         counterclockwiseTurn(180);
         driveBackward(1, 1);
         telemetry.update();
