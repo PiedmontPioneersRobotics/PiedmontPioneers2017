@@ -115,15 +115,17 @@ public class AutonomousBlueBottom extends AutonomousBase {
         driveBackward(0.25, time_for_driving);
         telemetry.addData(">", "Driving backward by:", time_for_driving);
         telemetry.update();
-        rightTurn(0.25,1.12);
+        //rightTurn(0.25,1.12);
+        clockwiseTurn(85);
         telemetry.addData(">", "Turned right");
         telemetry.update();
         driveForward(0.25, 1);
         telemetry.addData(">", "Final drive forward");
         telemetry.update();
         dropGlyph();
-        pushGlyph();
-        //rampage();
+        //pushGlyph();
+        rampage();
+        driveForward(1, 0.2);
     }
 
     String format(OpenGLMatrix transformationMatrix) {

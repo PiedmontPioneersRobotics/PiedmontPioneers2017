@@ -154,7 +154,7 @@ public class FWDTeleop extends OpMode{
             robot.Left2.setPower(-1);                         //
         }                                                    //
 
-
+/*
         robot.relicArm.setPower(gamepad2.left_stick_y);
         robot.relicGrabber.setPosition(0.25+gamepad2.right_trigger*0.5);
 
@@ -162,10 +162,11 @@ public class FWDTeleop extends OpMode{
         if (up_pressed && !up_previously_pressed) {
             robot.relicWrist.setPosition(0);
         } else if (down_pressed && !down_previously_pressed) {
-            robot.relicWrist.setPosition(0.5);
+            robot.relicWrist.setPosition(1);
         }
         up_previously_pressed = up_pressed;
         down_previously_pressed = down_pressed;
+        */
 
 
         //mecanum wheels code
@@ -183,10 +184,10 @@ public class FWDTeleop extends OpMode{
             telemetry.update();
         } else if (y_pressed && !y_previously_pressed) {
             robot.lifter.setTargetPosition(lifterPosition + 2800);
-            robot.lifter.setPower(0.5);
+            robot.lifter.setPower(1);
         } else if (a_pressed && !a_previously_pressed) {
             robot.lifter.setTargetPosition(lifterPosition - 2800);
-            robot.lifter.setPower(-0.5);
+            robot.lifter.setPower(-1);
         }
         a_previously_pressed = a_pressed;
         y_previously_pressed = y_pressed;
@@ -299,7 +300,7 @@ public class FWDTeleop extends OpMode{
 
         }
 
-/*
+
         //platform pusher code
         if (gamepad1.b) {
             robot.platformPusher.setPower(1);
@@ -308,7 +309,8 @@ public class FWDTeleop extends OpMode{
         } else {
             robot.platformPusher.setPower(0);
         }
-        */
+
+
     }
     @Override
     public void stop() {

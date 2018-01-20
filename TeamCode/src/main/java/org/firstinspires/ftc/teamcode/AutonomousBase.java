@@ -409,6 +409,7 @@ public abstract class AutonomousBase extends LinearOpMode {
         counterclockwiseTurn(180);
         driveForward(1, 1.8);
         holdGlyph();
+        sleep(1000);
         raiseLifter();
         driveBackward(1, 1);
         counterclockwiseTurn(180);
@@ -418,6 +419,7 @@ public abstract class AutonomousBase extends LinearOpMode {
         counterclockwiseTurn(180);
         driveBackward(1, 1);
         telemetry.update();
+        lowerLifter();
     }
 
     public void clockwiseTurn (int degrees) {
