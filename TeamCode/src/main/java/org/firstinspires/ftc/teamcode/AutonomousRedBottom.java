@@ -123,6 +123,7 @@ public class AutonomousRedBottom extends AutonomousBase {
         lowerLifter();
         driveForward(0.25, 1);
         telemetry.addData(">", "Final drive forward");
+        //robot.relicWrist.setPosition(0.5);
         telemetry.update();
         dropGlyph();
         rampage();

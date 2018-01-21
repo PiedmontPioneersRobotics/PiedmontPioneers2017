@@ -121,6 +121,7 @@ public class AutonomousBlueBottom extends AutonomousBase {
         telemetry.update();
         driveForward(0.25, 1);
         telemetry.addData(">", "Final drive forward");
+        //robot.relicWrist.setPosition(0.5);
         telemetry.update();
         dropGlyph();
         //pushGlyph();
