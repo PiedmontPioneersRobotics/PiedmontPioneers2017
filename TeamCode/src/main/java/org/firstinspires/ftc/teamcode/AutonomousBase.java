@@ -381,14 +381,14 @@ public abstract class AutonomousBase extends LinearOpMode {
     //raise lifter
     public void raiseLifter(){
         //these values may be switched! Check it next time!!
-        robot.lifter.setTargetPosition(2600);
+        robot.lifter.setTargetPosition(robot.lifter.getCurrentPosition()+2880);
         robot.lifter.setPower(0.5);
     }
 
     //lower lifter
     public void lowerLifter(){
         //these values may be switched! Check it next time!!
-        robot.lifter.setTargetPosition(0);
+        robot.lifter.setTargetPosition(robot.lifter.getCurrentPosition()-2880);
         robot.lifter.setPower(-0.5);
     }
     //push the glyph in
@@ -410,7 +410,6 @@ public abstract class AutonomousBase extends LinearOpMode {
         driveForward(1, 1.8);
         holdGlyph();
         sleep(1000);
-        raiseLifter();
         driveBackward(1, 1);
         counterclockwiseTurn(180);
         driveForward(1, 1);

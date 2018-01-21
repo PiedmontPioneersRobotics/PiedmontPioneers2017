@@ -126,6 +126,7 @@ public class AutonomousBlueBottom extends AutonomousBase {
         //pushGlyph();
         rampage();
         driveForward(1, 0.2);
+
     }
 
     String format(OpenGLMatrix transformationMatrix) {
