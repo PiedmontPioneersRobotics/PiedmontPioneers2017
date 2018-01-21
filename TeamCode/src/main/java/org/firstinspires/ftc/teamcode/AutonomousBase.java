@@ -417,6 +417,31 @@ public abstract class AutonomousBase extends LinearOpMode {
             counterclockwiseTurn(180);
             driveBackward(1, 1);
             telemetry.update();
+        } else if(top == true && Blue == false) {
+            counterclockwiseTurn(90);
+            driveForward(1, 0.9);
+            clockwiseTurn(90);
+            driveForward(1, 2.25);
+            holdGlyph();
+            raiseLifter();
+            driveBackward(1, 1.6);
+            counterclockwiseTurn(180);
+            driveForward(1, 0.65);
+            dropGlyph();
+            driveBackward(1, 0.1);
+            telemetry.update();
+        } else if(top == true && Blue == true) {
+            clockwiseTurn(150);
+            driveForward(1, 2.25);
+            holdGlyph();
+            raiseLifter();
+            driveBackward(1, 1.6);
+            counterclockwiseTurn(180);
+            driveForward(1, 0.65);
+            dropGlyph();
+            counterclockwiseTurn(180);
+            driveBackward(1, 1);
+            telemetry.update();
         }
 
         //start rampage

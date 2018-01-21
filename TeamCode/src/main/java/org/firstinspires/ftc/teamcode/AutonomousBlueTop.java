@@ -126,10 +126,9 @@ public class AutonomousBlueTop extends AutonomousBase {
         telemetry.addData(">", "Final drive forward");
         //robot.relicWrist.setPosition(0.5);
         telemetry.update();
-        sleep(2000);
         dropGlyph();
-        pushGlyph();
-        telemetry.update();
+        rampage(true, true);
+        driveForward(1, 0.1);
     }
 
     String format(OpenGLMatrix transformationMatrix) {
