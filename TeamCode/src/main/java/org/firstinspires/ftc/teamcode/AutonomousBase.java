@@ -403,20 +403,25 @@ public abstract class AutonomousBase extends LinearOpMode {
         driveBackward(0.25, 0.4);
     }
     //rampage code (going for second glyph)
-    public void rampage () {
-        //start rampage
+    public void rampage (boolean Blue, boolean top) { //start rampage
         telemetry.addData(">", "Rampage code, I'm going for the second glyph!");
-        counterclockwiseTurn(180);
-        driveForward(1, 1.8);
-        holdGlyph();
-        raiseLifter();
-        driveBackward(1, 1.6);
-        counterclockwiseTurn(180);
-        driveForward(1, 0.5);
-        dropGlyph();
-        counterclockwiseTurn(180);
-        driveBackward(1, 1);
-        telemetry.update();
+        if(top == false) {
+            counterclockwiseTurn(180);
+            driveForward(1, 1.8);
+            holdGlyph();
+            raiseLifter();
+            driveBackward(1, 1.6);
+            counterclockwiseTurn(180);
+            driveForward(1, 0.5);
+            dropGlyph();
+            counterclockwiseTurn(180);
+            driveBackward(1, 1);
+            telemetry.update();
+        }
+
+        //start rampage
+       // telemetry.addData(">", "Rampage code, I'm going for the second glyph!");
+
     }
 
     public void clockwiseTurn (int degrees) {

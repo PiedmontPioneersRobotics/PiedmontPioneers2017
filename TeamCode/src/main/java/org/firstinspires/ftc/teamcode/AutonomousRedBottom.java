@@ -125,7 +125,7 @@ public class AutonomousRedBottom extends AutonomousBase {
         //robot.relicWrist.setPosition(0.5);
         telemetry.update();
         dropGlyph();
-        rampage();
+        rampage(false, false);
     }
 
     String format(OpenGLMatrix transformationMatrix) {
