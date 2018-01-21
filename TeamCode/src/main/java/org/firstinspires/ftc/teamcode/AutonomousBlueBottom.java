@@ -15,7 +15,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefau
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 @Autonomous(name="Blue Bottom Autonomous", group ="Concept")
-public class AutonomousBlueBottom extends AutonomousBase {
+public class AutonomousBlueBottom extends aarondogverybadplsdontuse {
     public static final double CENTER_COLUMN_DISTANCE = 1.65;
     public static final double RIGHT_COLUMN_DISTANCE = 2;
     public static final double LEFT_COLUMN_DISTANCE = 1.35;
@@ -120,6 +120,7 @@ public class AutonomousBlueBottom extends AutonomousBase {
         telemetry.update();
         driveForward(0.25, 1);
         telemetry.addData(">", "Final drive forward");
+        //robot.relicWrist.setPosition(0.5);
         telemetry.update();
         dropGlyph();
         pushGlyph();

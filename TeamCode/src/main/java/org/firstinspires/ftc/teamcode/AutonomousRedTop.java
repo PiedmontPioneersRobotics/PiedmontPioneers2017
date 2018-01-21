@@ -111,7 +111,7 @@ public class AutonomousRedTop extends AutonomousBase {
         telemetry.addData(">", "Preparing to drive.");
         telemetry.update();
         KnockoffJewel("RedTop");
-        driveForward(0.25, 1.4);
+        driveForward(0.25, 1.5);
         leftTurn(0.25, 1.5);
         telemetry.addData(">", "Turned left");
         telemetry.update();
@@ -123,6 +123,7 @@ public class AutonomousRedTop extends AutonomousBase {
         telemetry.update();
         driveForward(0.25, 1.5);
         telemetry.addData(">", "Final drive forward");
+        //robot.relicWrist.setPosition(0.5);
         telemetry.update();
         sleep(2000);
         dropGlyph();
