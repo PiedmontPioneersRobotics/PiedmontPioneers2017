@@ -23,7 +23,7 @@ public class HardwareFWD {
     public DcMotor                 Left1   = null;
     public DcMotor                 Left2   = null;
     public DcMotor                 lifter = null;
-    public DcMotor                 platformPusher = null;
+    //public DcMotor                 platformPusher = null;
     //public DcMotor                 rightMecanumGlyphSucker = null;
     //public DcMotor                 leftMecanumGlyphSucker = null;
     public Servo                   starboardGripper = null;
@@ -35,7 +35,7 @@ public class HardwareFWD {
     //public SensorMRRangeSensor     glyphLocator = null;
     //public DigitalChannel          glyphInSensor = null;
     public ModernRoboticsI2cGyro   gyro = null;
-    //public DcMotor                 relicArm = null;
+    public DcMotor                 relicArm = null;
     public Servo                   relicGrabber = null;
     public Servo                   relicWrist = null;
 
@@ -68,10 +68,10 @@ public class HardwareFWD {
         lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         lifter.setPower(0.5);
         lifter.setTargetPosition(0);
-        platformPusher  = hwMap.get(DcMotor.class, "Platform Pusher");
-        platformPusher.setDirection(DcMotor.Direction.FORWARD);
-        platformPusher.setPower(0);
-        platformPusher.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //platformPusher  = hwMap.get(DcMotor.class, "Platform Pusher");
+        //platformPusher.setDirection(DcMotor.Direction.FORWARD);
+        //platformPusher.setPower(0);
+        //platformPusher.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         //rightMecanumGlyphSucker = hwMap.get(DcMotor.class, "Right Mecanum Glyph Sucker");
         //rightMecanumGlyphSucker.setDirection(DcMotor.Direction.FORWARD);
         //rightMecanumGlyphSucker.setPower(0);
@@ -100,10 +100,10 @@ public class HardwareFWD {
         gyro = hwMap.get(ModernRoboticsI2cGyro.class, "gyro");
         gyro.calibrate();
 
-        //relicArm  = hwMap.get(DcMotor.class, "RelicArm");
-        //relicArm.setDirection(DcMotor.Direction.FORWARD);
-        //relicArm.setPower(0);
-        //relicArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        relicArm  = hwMap.get(DcMotor.class, "RelicArm");
+        relicArm.setDirection(DcMotor.Direction.FORWARD);
+        relicArm.setPower(0);
+        relicArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         relicGrabber = hwMap.get(Servo.class, "RelicGrabber");
         relicGrabber.setPosition(0);
