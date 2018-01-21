@@ -31,6 +31,7 @@ public abstract class AutonomousBase extends LinearOpMode {
     public boolean RedTop;
     public boolean BlueTop;
     public int columnCounts = 0;
+    public int offset = 5;
 
 
     HardwareFWD robot  = new HardwareFWD();
@@ -78,7 +79,6 @@ public abstract class AutonomousBase extends LinearOpMode {
                 telemetry.addLine("Our mode is RedBottom");
                 telemetry.addLine("Should twise away from jewel.");
                 telemetry.update();
-                sleep(2000);
                 leftTurn(powerForTurn, turnTime1);
                 stopDriving();
                 robot.jewelMover.setPosition(j_up);
@@ -91,7 +91,6 @@ public abstract class AutonomousBase extends LinearOpMode {
                 telemetry.addLine("Our mode is RedTop");
                 telemetry.addLine("Should twise away from jewel.");
                 telemetry.update();
-                sleep(2000);
                 leftTurn(powerForTurn, turnTime1);
                 stopDriving();
                 robot.jewelMover.setPosition(j_up);
@@ -104,7 +103,6 @@ public abstract class AutonomousBase extends LinearOpMode {
                 telemetry.addLine("Our mode is BlueBottom");
                 telemetry.addLine("Should twise towards jewel.");
                 telemetry.update();
-                sleep(2000);
                 rightTurn(powerForTurn, turnTime1);
                 stopDriving();
                 robot.jewelMover.setPosition(j_up);
@@ -117,7 +115,6 @@ public abstract class AutonomousBase extends LinearOpMode {
                 telemetry.addLine("Our mode is BlueTop");
                 telemetry.addLine("Should twise towards jewel.");
                 telemetry.update();
-                sleep(2000);
                 rightTurn(powerForTurn, turnTime1);
                 stopDriving();
                 robot.jewelMover.setPosition(j_up);
@@ -140,7 +137,6 @@ public abstract class AutonomousBase extends LinearOpMode {
                 telemetry.addLine("Our mode is RedBottom");
                 telemetry.addLine("Should twise towards jewel.");
                 telemetry.update();
-                sleep(2000);
                 rightTurn(powerForTurn, turnTime1);
                 stopDriving();
                 robot.jewelMover.setPosition(j_up);
@@ -153,7 +149,6 @@ public abstract class AutonomousBase extends LinearOpMode {
                 telemetry.addLine("Our mode is RedTop");
                 telemetry.addLine("Should twise towards jewel.");
                 telemetry.update();
-                sleep(2000);
                 rightTurn(powerForTurn, turnTime1);
                 stopDriving();
                 robot.jewelMover.setPosition(j_up);
@@ -166,7 +161,6 @@ public abstract class AutonomousBase extends LinearOpMode {
                 telemetry.addLine("Our mode is BlueBottom");
                 telemetry.addLine("Should twise away from jewel.");
                 telemetry.update();
-                sleep(2000);
                 leftTurn(powerForTurn, turnTime1);
                 stopDriving();
                 robot.jewelMover.setPosition(j_up);
@@ -179,7 +173,6 @@ public abstract class AutonomousBase extends LinearOpMode {
                 telemetry.addLine("Our mode is BlueTop");
                 telemetry.addLine("Should twise away from jewel.");
                 telemetry.update();
-                sleep(2000);
                 leftTurn(powerForTurn, turnTime1);
                 stopDriving();
                 robot.jewelMover.setPosition(j_up);
@@ -196,7 +189,6 @@ public abstract class AutonomousBase extends LinearOpMode {
             telemetry.addLine("The jewel color was not recognized as red or blue.");
             telemetry.addLine("Not going to do anything");
             telemetry.update();
-            sleep(1000);
             robot.jewelMover.setPosition(j_up);
         }
 
@@ -414,18 +406,49 @@ public abstract class AutonomousBase extends LinearOpMode {
     public void rampage () {
         //start rampage
         telemetry.addData(">", "Rampage code, I'm going for the second glyph!");
-        leftTurn(0.25, 2.5);
+        counterclockwiseTurn(180);
         driveForward(1, 1.8);
         holdGlyph();
+        sleep(1000);
         raiseLifter();
-        driveBackward(1, 1.6);
-        leftTurn(0.25, 2.5);
-        driveForward(1, 0.5);
+        driveBackward(1, 1);
+        counterclockwiseTurn(180);
+        driveForward(1, 1);
         dropGlyph();
-        pushGlyph();
+        driveBackward(1, 0.5);
+        counterclockwiseTurn(180);
+        driveBackward(1, 1);
         telemetry.update();
+        lowerLifter();
     }
 
+    public void clockwiseTurn (int degrees) {
+        robot.gyro.resetZAxisIntegrator();
+        while (robot.gyro.getIntegratedZValue() > (-degrees+offset)) {
+            robot.Right1.setPower(0.25);
+            robot.Left1.setPower(0.25);
+            robot.Right2.setPower(0.25);
+            robot.Left2.setPower(0.25);
+        }
+        robot.Right1.setPower(0);
+        robot.Left1.setPower(0);
+        robot.Right2.setPower(0);
+        robot.Left2.setPower(0);
+    }
+
+    public void counterclockwiseTurn (int degrees) {
+        robot.gyro.resetZAxisIntegrator();
+        while (robot.gyro.getIntegratedZValue() < (degrees-offset)) {
+            robot.Right1.setPower(-0.25);
+            robot.Left1.setPower(-0.25);
+            robot.Right2.setPower(-0.25);
+            robot.Left2.setPower(-0.25);
+        }
+        robot.Right1.setPower(0);
+        robot.Left1.setPower(0);
+        robot.Right2.setPower(0);
+        robot.Left2.setPower(0);
+    }
 
     //code for counting columns
     //severe AI: be warned

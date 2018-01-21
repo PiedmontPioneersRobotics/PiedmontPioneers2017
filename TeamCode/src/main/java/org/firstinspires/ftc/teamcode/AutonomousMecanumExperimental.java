@@ -14,8 +14,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
-@Autonomous(name="Mecanum Autonomous Exp.", group ="Concept")
-public class AutonomousMecanumExperimental extends AutonomousBaseMecanumExperimental {
+@Autonomous(name="gyro test", group ="Concept")
+public class AutonomousMecanumExperimental extends AutonomousBase {
 
     @Override
     public void runOpMode() {
@@ -25,6 +25,9 @@ public class AutonomousMecanumExperimental extends AutonomousBaseMecanumExperime
         telemetry.addData(">", "Press Play to start");
         telemetry.update();
         waitForStart();
+
+        counterclockwiseTurn(90);
+        clockwiseTurn(90);
 
 
 
