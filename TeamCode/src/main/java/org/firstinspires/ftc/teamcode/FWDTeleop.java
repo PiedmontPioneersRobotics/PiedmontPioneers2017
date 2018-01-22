@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import static java.lang.Math.atan;
 import static java.lang.Math.round;
+import static java.lang.Thread.sleep;
 
 @TeleOp(name="FWDTeleop: Teleop", group="FWD")
 public class FWDTeleop extends OpMode{
@@ -100,11 +101,26 @@ public class FWDTeleop extends OpMode{
             }
         }
 
-
-        robot.relicArm.setPower(gamepad2.left_stick_y*0.5);
-        robot.relicGrabber.setPosition(0.25+gamepad2.right_trigger*0.5);
-        robot.relicWrist.setPosition(gamepad2.left_trigger);
-
+        if(gamepad2.a){
+            robot.relicGrabber.setPosition(0.75);
+            robot.relicArm.setPower(-0.5);
+            try {
+                sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            robot.relicArm.setPower(0);
+            robot.relicGrabber.setPosition(0.5);
+            try {
+                sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } else{
+            robot.relicArm.setPower(gamepad2.left_stick_y*0.5);
+            robot.relicGrabber.setPosition(0.25+gamepad2.right_trigger*0.5);
+            robot.relicWrist.setPosition(gamepad2.left_trigger);
+        }
         //mecanum wheels code
 
         //lifter code
