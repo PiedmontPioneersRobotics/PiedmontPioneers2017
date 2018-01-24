@@ -99,6 +99,15 @@ public class HardwareFWD {
         jewelMover.setPosition(j_up);
         gyro = hwMap.get(ModernRoboticsI2cGyro.class, "gyro");
         gyro.calibrate();
+        ElapsedTime timer = new ElapsedTime();
+        while (gyro.isCalibrating()) {
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e) {
+
+            }
+
+        }
 
         relicArm  = hwMap.get(DcMotor.class, "RelicArm");
         relicArm.setDirection(DcMotor.Direction.FORWARD);
@@ -108,7 +117,7 @@ public class HardwareFWD {
         relicGrabber = hwMap.get(Servo.class, "RelicGrabber");
         relicGrabber.setPosition(0);
         relicWrist = hwMap.get(Servo.class, "RelicWrist");
-        relicWrist.setPosition(0);
+        relicWrist.setPosition(1);
         //hjkhkhjkh
     }
 

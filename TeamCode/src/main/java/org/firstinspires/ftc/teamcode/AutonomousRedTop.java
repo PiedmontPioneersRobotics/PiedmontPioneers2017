@@ -112,13 +112,15 @@ public class AutonomousRedTop extends AutonomousBase {
         telemetry.update();
         KnockoffJewel("RedTop");
         driveForward(0.25, 1.5);
-        leftTurn(0.25, 1.5);
+        //leftTurn(0.25, 1.5);
+        counterclockwiseTurn(90);
         telemetry.addData(">", "Turned left");
         telemetry.update();
         driveForward(0.25, time_for_driving);
         telemetry.addData(">", "Driving forward by:", time_for_driving);
         telemetry.update();
-        rightTurn(0.25,1.3);
+        //rightTurn(0.25,1.3);
+        clockwiseTurn(85);
         telemetry.addData(">", "Turned right");
         telemetry.update();
         driveForward(0.25, 1.5);

@@ -381,14 +381,14 @@ public abstract class AutonomousBase extends LinearOpMode {
     //raise lifter
     public void raiseLifter(){
         //these values may be switched! Check it next time!!
-        robot.lifter.setTargetPosition(2600);
+        robot.lifter.setTargetPosition(robot.lifter.getCurrentPosition()+2600);
         robot.lifter.setPower(0.5);
     }
 
     //lower lifter
     public void lowerLifter(){
         //these values may be switched! Check it next time!!
-        robot.lifter.setTargetPosition(0);
+        robot.lifter.setTargetPosition(robot.lifter.getCurrentPosition()-2600);
         robot.lifter.setPower(-0.5);
     }
     //push the glyph in
@@ -406,14 +406,18 @@ public abstract class AutonomousBase extends LinearOpMode {
     public void rampage (boolean Blue, boolean top) { //start rampage
         telemetry.addData(">", "Rampage code, I'm going for the second glyph!");
         if(top == false) {
+            driveBackward(1, 1);
             counterclockwiseTurn(180);
-            driveForward(1, 1.8);
+            lowerLifter();
+            driveForward(1, 0.8);
             holdGlyph();
             raiseLifter();
-            driveBackward(1, 1.6);
+            driveBackward(1, 0.8);
             counterclockwiseTurn(180);
-            driveForward(1, 0.5);
+            driveForward(1, 1);
             dropGlyph();
+            lowerLifter();
+            lowerLifter();
             counterclockwiseTurn(180);
             driveBackward(1, 1);
             telemetry.update();
@@ -451,7 +455,7 @@ public abstract class AutonomousBase extends LinearOpMode {
 
     public void clockwiseTurn (int degrees) {
         robot.gyro.resetZAxisIntegrator();
-        while (robot.gyro.getIntegratedZValue() < (degrees-offset)) {
+        while (robot.gyro.getIntegratedZValue() > -(degrees+offset)) {
             robot.Right1.setPower(0.25);
             robot.Left1.setPower(0.25);
             robot.Right2.setPower(0.25);

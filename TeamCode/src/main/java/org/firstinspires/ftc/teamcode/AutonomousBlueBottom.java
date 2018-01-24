@@ -116,7 +116,7 @@ public class AutonomousBlueBottom extends AutonomousBase {
         telemetry.addData(">", "Driving backward by:", time_for_driving);
         telemetry.update();
         //rightTurn(0.25,1.12);
-        clockwiseTurn(85);
+        clockwiseTurn(75);
         telemetry.addData(">", "Turned right");
         telemetry.update();
         driveForward(0.25, 1);
