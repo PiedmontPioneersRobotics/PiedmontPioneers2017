@@ -15,6 +15,7 @@ public class FWDTeleop extends OpMode{
     boolean down_previously_pressed = false;
     boolean b_previously_pressed = false;
     boolean x_previously_pressed = false;
+    double wristR = 0;
 
     @Override
     public void init() {
@@ -119,8 +120,11 @@ public class FWDTeleop extends OpMode{
         } else{
             robot.relicArm.setPower(gamepad2.left_stick_y*0.5);
             robot.relicGrabber.setPosition(0.25+gamepad2.right_trigger*0.5);
-            robot.relicWrist.setPosition(gamepad2.left_trigger);
+
         }
+        wristR += (gamepad2.left_trigger-wristR)/180;
+        telemetry.addData("Wrist Value: ", wristR);
+        robot.relicWrist.setPosition(wristR);
         //mecanum wheels code
 
         //lifter code
@@ -163,7 +167,7 @@ public class FWDTeleop extends OpMode{
         //mecanum wheels code for LeftTop Quadrant
         public void mecanumGoLeft(double speed, double time) {
             robot.leftForwardMecanumWheel.setPower(-speed);
-            robot.rightForwardMecanumWheel.setPower(speed);
+            robot.right5tForwardMecanumWheel.setPower(speed);
             robot.leftBackwardMecanumWheel.setPower(speed);
             robot.rightBackwardMecanumWheel.setPower(-speed);
             sleep(time);
