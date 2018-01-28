@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import static java.lang.Math.atan;
 import static java.lang.Math.round;
+import static java.lang.Math.tan;
 import static java.lang.Thread.sleep;
 
 @TeleOp(name="FWDTeleop: Teleop", group="FWD")
@@ -102,6 +103,7 @@ public class FWDTeleop extends OpMode{
         }
 
         if(gamepad2.a){
+            /*
             robot.relicGrabber.setPosition(0.75);
             robot.relicArm.setPower(-0.5);
             try {
@@ -115,11 +117,24 @@ public class FWDTeleop extends OpMode{
                 sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            }*/
+        } else {
+            if (gamepad2.left_bumper) {
+                robot.relicArm.setPower(gamepad2.left_stick_y*0.5);
+                robot.relicGrabber.setPosition(0.25+gamepad2.right_trigger*0.5);
+                robot.relicWrist.setPosition(0.85*(1-gamepad2.left_trigger)+0.15);
+                telemetry.addData("Relic Grabber:", robot.relicGrabber.getPosition());
+                telemetry.addData("Relic Wrist:", robot.relicWrist.getPosition());
+                telemetry.update();
+            } else {
+                robot.relicArm.setPower(gamepad2.left_stick_y*0.5);
+                robot.relicGrabber.setPosition(0.25+gamepad2.right_trigger*0.5);
+                robot.relicWrist.setPosition(1-gamepad2.left_trigger);
+                telemetry.addData("Relic Grabber:", robot.relicGrabber.getPosition());
+                telemetry.addData("Relic Wrist:", robot.relicWrist.getPosition());
+                telemetry.update();
             }
-        } else{
-            robot.relicArm.setPower(gamepad2.left_stick_y*0.5);
-            robot.relicGrabber.setPosition(0.25+gamepad2.right_trigger*0.5);
-            robot.relicWrist.setPosition(gamepad2.left_trigger);
+
         }
         //mecanum wheels code
 
