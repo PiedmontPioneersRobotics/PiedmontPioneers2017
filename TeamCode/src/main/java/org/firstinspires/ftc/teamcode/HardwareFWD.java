@@ -23,7 +23,7 @@ public class HardwareFWD {
     public DcMotor                 Left1   = null;
     public DcMotor                 Left2   = null;
     public DcMotor                 lifter = null;
-    //public DcMotor                 platformPusher = null;
+    public DcMotor                 platformPusher = null;
     //public DcMotor                 rightMecanumGlyphSucker = null;
     //public DcMotor                 leftMecanumGlyphSucker = null;
     public Servo                   starboardGripper = null;
@@ -68,10 +68,10 @@ public class HardwareFWD {
         lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         lifter.setPower(0.5);
         lifter.setTargetPosition(0);
-        //platformPusher  = hwMap.get(DcMotor.class, "Platform Pusher");
-        //platformPusher.setDirection(DcMotor.Direction.FORWARD);
-        //platformPusher.setPower(0);
-        //platformPusher.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        platformPusher  = hwMap.get(DcMotor.class, "Platform Pusher");
+        platformPusher.setDirection(DcMotor.Direction.FORWARD);
+        platformPusher.setPower(0);
+        platformPusher.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         //rightMecanumGlyphSucker = hwMap.get(DcMotor.class, "Right Mecanum Glyph Sucker");
         //rightMecanumGlyphSucker.setDirection(DcMotor.Direction.FORWARD);
         //rightMecanumGlyphSucker.setPower(0);

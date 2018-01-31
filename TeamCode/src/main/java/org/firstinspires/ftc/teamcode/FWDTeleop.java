@@ -136,7 +136,7 @@ public class FWDTeleop extends OpMode{
             }
 
         }
-        //mecanum wheels code
+        //mecanum wheels coden
 
         //lifter code
         if(lifterPosition > 8640) {
@@ -154,7 +154,7 @@ public class FWDTeleop extends OpMode{
             robot.lifter.setPower(0.5);
         } else if (a_pressed && !a_previously_pressed) {
             robot.lifter.setTargetPosition(lifterPosition - 2800);
-            robot.lifter.setPower(-0.5);
+            robot.lifter.setPower(-1);
         }
         a_previously_pressed = a_pressed;
         y_previously_pressed = y_pressed;
@@ -267,7 +267,7 @@ public class FWDTeleop extends OpMode{
 
         }
 
-/*
+
         //platform pusher code
         if (gamepad1.b) {
             robot.platformPusher.setPower(1);
@@ -276,7 +276,7 @@ public class FWDTeleop extends OpMode{
         } else {
             robot.platformPusher.setPower(0);
         }
-*/
+
 
     }
     @Override
