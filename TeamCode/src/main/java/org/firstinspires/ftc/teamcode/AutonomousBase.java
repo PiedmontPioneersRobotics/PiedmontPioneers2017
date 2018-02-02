@@ -402,60 +402,10 @@ public abstract class AutonomousBase extends LinearOpMode {
         sleep(750);
         driveBackward(0.25, 0.4);
     }
-    //rampage code (going for second glyph)
-    public void rampage (boolean Blue, boolean top) { //start rampage
-        telemetry.addData(">", "Rampage code, I'm going for the second glyph!");
-        if(top == false) {
-            driveBackward(1, 1);
-            counterclockwiseTurn(180);
-            lowerLifter();
-            driveForward(1, 0.8);
-            holdGlyph();
-            raiseLifter();
-            driveBackward(1, 0.8);
-            counterclockwiseTurn(180);
-            driveForward(1, 1);
-            dropGlyph();
-            lowerLifter();
-            lowerLifter();
-            counterclockwiseTurn(180);
-            driveBackward(1, 1);
-            telemetry.update();
-        } else if(top == true && Blue == false) {
-            counterclockwiseTurn(90);
-            driveForward(1, 0.9);
-            clockwiseTurn(90);
-            driveForward(1, 2.25);
-            holdGlyph();
-            raiseLifter();
-            driveBackward(1, 1.6);
-            counterclockwiseTurn(180);
-            driveForward(1, 0.65);
-            dropGlyph();
-            driveBackward(1, 0.1);
-            telemetry.update();
-        } else if(top == true && Blue == true) {
-            clockwiseTurn(150);
-            driveForward(1, 2.25);
-            holdGlyph();
-            raiseLifter();
-            driveBackward(1, 1.6);
-            counterclockwiseTurn(180);
-            driveForward(1, 0.65);
-            dropGlyph();
-            counterclockwiseTurn(180);
-            driveBackward(1, 1);
-            telemetry.update();
-        }
-
-        //start rampage
-       // telemetry.addData(">", "Rampage code, I'm going for the second glyph!");
-
-    }
 
     public void clockwiseTurn (int degrees) {
         robot.gyro.resetZAxisIntegrator();
-        while (robot.gyro.getIntegratedZValue() > -(degrees+offset)) {
+        while (robot.gyro.getIntegratedZValue() > (-degrees+offset)) {
             robot.Right1.setPower(0.25);
             robot.Left1.setPower(0.25);
             robot.Right2.setPower(0.25);
@@ -480,8 +430,58 @@ public abstract class AutonomousBase extends LinearOpMode {
         robot.Right2.setPower(0);
         robot.Left2.setPower(0);
     }
+    //rampage code (going for second glyph)
+    public void rampage (boolean Blue, boolean top) { //start rampage
+        telemetry.addData(">", "Rampage code, I'm going for the second glyph!");
+        if(top == false) {
+            driveBackward(1, 0.7);
+            counterclockwiseTurn(180);
+            lowerLifter();
+            driveForward(1, 1.1);
+            holdGlyph();
+            raiseLifter();
+            driveBackward(1, 0.8);
+            counterclockwiseTurn(150);
+            driveForward(1, 1);
+            dropGlyph();
+            lowerLifter();
+            counterclockwiseTurn(180);
+            driveBackward(1, 1);
+            telemetry.update();
+        } else if(top == true && Blue == false) {
+            counterclockwiseTurn(90);
+            driveForward(1, 0.9);
+            clockwiseTurn(90);
+            driveForward(1, 2.25);
+            holdGlyph();
+            raiseLifter();
+            driveBackward(1, 1.6);
+            counterclockwiseTurn(180);
+            driveForward(1, 0.65);
+            dropGlyph();
+            lowerLifter();
+            driveBackward(1, 0.1);
+            telemetry.update();
+        } else if(top == true && Blue == true) {
+            clockwiseTurn(150);
+            driveForward(1, 2.25);
+            holdGlyph();
+            raiseLifter();
+            driveBackward(1, 1.6);
+            counterclockwiseTurn(180);
+            driveForward(1, 0.65);
+            dropGlyph();
+            counterclockwiseTurn(180);
+            driveBackward(1, 1);
+            telemetry.update();
+        }
 
-    //code for counting columns
+        //start rampage
+       // telemetry.addData(">", "Rampage code, I'm going for the second glyph!");
+
+    }
+
+    //code for counting columns 
     //severe AI: be warned
 
     public void countColumns (String opMode, int columns) {

@@ -125,7 +125,9 @@ public class AutonomousBlueBottom extends AutonomousBase {
         telemetry.update();
         dropGlyph();
         //pushGlyph();
+        lowerLifter();
         rampage(true, false);
+        lowerLifter();
         driveForward(1, 0.2);
 
     }
