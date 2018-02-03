@@ -439,8 +439,9 @@ public abstract class AutonomousBase extends LinearOpMode {
             counterclockwiseTurn(165);
             driveForward(1, 1.1);
             holdGlyph();
+            sleep(300);
             raiseLifter();
-            sleep(100);
+            sleep(300);
             driveBackward(1, 0.8);
             clockwiseTurn(165);
             driveForward(1, 1);
@@ -457,8 +458,9 @@ public abstract class AutonomousBase extends LinearOpMode {
             clockwiseTurn(90);
             driveForward(1, 2.25);
             holdGlyph();
+            sleep(300);
             raiseLifter();
-            sleep(100);
+            sleep(300);
             driveBackward(1, 1.6);
             counterclockwiseTurn(180);
             driveForward(1, 0.65);
@@ -470,8 +472,9 @@ public abstract class AutonomousBase extends LinearOpMode {
             clockwiseTurn(150);
             driveForward(1, 2.25);
             holdGlyph();
+            sleep(300);
             raiseLifter();
-            sleep(100);
+            sleep(300);
             driveBackward(1, 1.6);
             counterclockwiseTurn(180);
             driveForward(1, 0.65);
