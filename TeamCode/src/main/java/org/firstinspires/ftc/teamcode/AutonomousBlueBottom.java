@@ -103,7 +103,7 @@ public class AutonomousBlueBottom extends AutonomousBase {
         telemetry.addData(">", "Press Play to start");
         telemetry.update();
         waitForStart();
-
+        holdGlyph();
         telemetry.addData(">", "Start main loop");
         telemetry.update();
         raiseLifter();
