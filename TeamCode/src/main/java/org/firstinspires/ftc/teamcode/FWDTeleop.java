@@ -136,7 +136,7 @@ public class FWDTeleop extends OpMode{
             }
 
         }
-        //mecanum wheels coden
+        //mecanum wheels code
 
         //lifter code
         if(lifterPosition > 8640) {

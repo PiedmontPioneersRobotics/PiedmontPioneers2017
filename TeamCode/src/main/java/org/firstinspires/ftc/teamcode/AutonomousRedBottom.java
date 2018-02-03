@@ -18,9 +18,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 @Autonomous(name="Red Bottom Autonomous", group ="Concept")
 public class AutonomousRedBottom extends AutonomousBase {
     //These distance are for a voltage between 13.00 & 13.10
-    public static final double CENTER_COLUMN_DISTANCE = 1.75;
+    public static final double CENTER_COLUMN_DISTANCE = 1.65;
     public static final double RIGHT_COLUMN_DISTANCE = 1.3;
-    public static final double LEFT_COLUMN_DISTANCE = 2.3;
+    public static final double LEFT_COLUMN_DISTANCE = 2.2;
     public int CryptoboxColumnCount = 0;
     public double driving_time = 1.5;
     public static final String TAG = "Vuforia VuMark Sample";
@@ -105,7 +105,7 @@ public class AutonomousRedBottom extends AutonomousBase {
         telemetry.addData(">", "Press Play to start");
         telemetry.update();
         waitForStart();
-
+        holdGlyph();
         telemetry.addData(">", "Start main loop");
         telemetry.update();
         raiseLifter();
@@ -125,7 +125,13 @@ public class AutonomousRedBottom extends AutonomousBase {
         //robot.relicWrist.setPosition(0.5);
         telemetry.update();
         dropGlyph();
-        rampage(false, false);
+        sleep(1000);
+        if(driving_time == LEFT_COLUMN_DISTANCE || driving_time == CENTER_COLUMN_DISTANCE){
+            rampage(false, false);
+        } else {
+            pushGlyph();
+        }
+
     }
 
     String format(OpenGLMatrix transformationMatrix) {

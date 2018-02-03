@@ -435,18 +435,20 @@ public abstract class AutonomousBase extends LinearOpMode {
         telemetry.addData(">", "Rampage code, I'm going for the second glyph!");
         if(top == false) {
             driveBackward(1, 0.7);
-            counterclockwiseTurn(180);
             lowerLifter();
+            counterclockwiseTurn(165);
             driveForward(1, 1.1);
             holdGlyph();
             raiseLifter();
             driveBackward(1, 0.8);
-            counterclockwiseTurn(150);
+            clockwiseTurn(165);
             driveForward(1, 1);
             dropGlyph();
             lowerLifter();
+            driveBackward(1, 0.5);
             counterclockwiseTurn(180);
-            driveBackward(1, 1);
+            driveBackward(1, 0.9);
+            driveForward(1, 0.2);
             telemetry.update();
         } else if(top == true && Blue == false) {
             counterclockwiseTurn(90);
