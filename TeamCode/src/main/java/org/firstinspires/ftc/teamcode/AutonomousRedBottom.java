@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -16,6 +17,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefau
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 @Autonomous(name="Red Bottom Autonomous", group ="Concept")
+@Disabled
 public class AutonomousRedBottom extends AutonomousBase {
     //These distance are for a voltage between 13.00 & 13.10
     public static final double CENTER_COLUMN_DISTANCE = 1.65;
