@@ -435,13 +435,13 @@ public abstract class AutonomousBase extends LinearOpMode {
         telemetry.addData(">", "Rampage code, I'm going for the second glyph!");
         if(top == false) {
             driveBackward(1, 0.7);
-            counterclockwiseTurn(180);
+            counterclockwiseTurn(165);
             lowerLifter();
             driveForward(1, 1.1);
             holdGlyph();
             raiseLifter();
             driveBackward(1, 0.8);
-            counterclockwiseTurn(150);
+            counterclockwiseTurn(165);
             driveForward(1, 1);
             dropGlyph();
             lowerLifter();
@@ -481,7 +481,7 @@ public abstract class AutonomousBase extends LinearOpMode {
 
     }
 
-    //code for counting columns 
+    //code for counting columns
     //severe AI: be warned
 
     public void countColumns (String opMode, int columns) {

@@ -113,7 +113,7 @@ public class AutonomousRedBottom extends AutonomousBase {
         telemetry.addData(">", "Preparing to drive.");
         telemetry.update();
         KnockoffJewel("RedBottom");
-        //countColumns("RedBottom", columnCounts);
+        //countColumns("RedBottom", columnCounts); 
         driveForward(0.25, time_for_driving);
         telemetry.addData(">", "Driving forward by:", time_for_driving);
         telemetry.update();
