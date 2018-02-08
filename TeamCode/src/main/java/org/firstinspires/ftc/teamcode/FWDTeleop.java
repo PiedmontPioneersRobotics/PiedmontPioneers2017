@@ -270,9 +270,9 @@ public class FWDTeleop extends OpMode{
 
         //platform pusher code
         if (gamepad1.b) {
-            robot.platformPusher.setPower(1);
+            robot.platformPusher.setPower(0.5);
         } else if (gamepad1.x) {
-            robot.platformPusher.setPower(-1);
+            robot.platformPusher.setPower(-0.5);
         } else {
             robot.platformPusher.setPower(0);
         }

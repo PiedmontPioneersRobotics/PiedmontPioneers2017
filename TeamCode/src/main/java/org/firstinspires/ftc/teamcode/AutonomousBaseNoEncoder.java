@@ -429,6 +429,10 @@ public abstract class AutonomousBaseNoEncoder extends LinearOpMode {
         robot.Left2.setPower(0);
         sleep(1);
     }
+    public void gripperInit (){
+        robot.starboardGripper.setPosition(1);
+        robot.portGripper.setPosition(0);
+    }
     //rampage code (going for second glyph)
     public void rampage (boolean Blue, boolean top) { //start rampage
         telemetry.addData(">", "Rampage code, I'm going for the second glyph!");

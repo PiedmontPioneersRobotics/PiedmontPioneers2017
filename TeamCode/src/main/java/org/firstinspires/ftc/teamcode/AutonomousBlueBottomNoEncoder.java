@@ -98,6 +98,7 @@ public class AutonomousBlueBottomNoEncoder extends AutonomousBaseNoEncoder {
 
     @Override public void runOpMode() {
         robot.init(hardwareMap);
+        gripperInit();
         telemetry.addData("Say", "Hello Driver");
         telemetry.update();
         telemetry.addData(">", "Press Play to start");
