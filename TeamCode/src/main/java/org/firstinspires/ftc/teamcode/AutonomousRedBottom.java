@@ -92,7 +92,7 @@ public class AutonomousRedBottom extends AutonomousBase {
             CryptoboxColumnCount = 2;
             telemetry.addData(">", "Cannot see it.");
             telemetry.update();
-            driving_time = CENTER_COLUMN_DISTANCE;
+            driving_time = CENTER_COLUMN_DISTANCE; 
         }
 
         return driving_time;
@@ -113,7 +113,7 @@ public class AutonomousRedBottom extends AutonomousBase {
         telemetry.addData(">", "Preparing to drive.");
         telemetry.update();
         KnockoffJewel("RedBottom");
-        //countColumns("RedBottom", columnCounts); 
+        //countColumns("RedBottom", columnCounts);
         driveForward(0.25, time_for_driving);
         telemetry.addData(">", "Driving forward by:", time_for_driving);
         telemetry.update();
