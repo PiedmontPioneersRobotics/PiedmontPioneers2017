@@ -92,7 +92,7 @@ public class AutonomousRedBottom extends AutonomousBase {
             CryptoboxColumnCount = 2;
             telemetry.addData(">", "Cannot see it.");
             telemetry.update();
-            driving_time = CENTER_COLUMN_DISTANCE; 
+            driving_time = CENTER_COLUMN_DISTANCE;
         }
 
         return driving_time;
