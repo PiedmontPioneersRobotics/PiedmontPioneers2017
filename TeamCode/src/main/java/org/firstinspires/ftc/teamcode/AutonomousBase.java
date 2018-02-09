@@ -381,14 +381,14 @@ public abstract class AutonomousBase extends LinearOpMode {
     //raise lifter
     public void raiseLifter(){
         //these values may be switched! Check it next time!!
-        robot.lifter.setTargetPosition(robot.lifter.getCurrentPosition()+2600);
+        robot.lifter.setTargetPosition(robot.lifter.getCurrentPosition()+280);
         robot.lifter.setPower(0.5);
     }
 
     //lower lifter
     public void lowerLifter(){
         //these values may be switched! Check it next time!!
-        robot.lifter.setTargetPosition(robot.lifter.getCurrentPosition()-2600);
+        robot.lifter.setTargetPosition(robot.lifter.getCurrentPosition()-280);
         robot.lifter.setPower(-0.5);
     }
     //push the glyph in
