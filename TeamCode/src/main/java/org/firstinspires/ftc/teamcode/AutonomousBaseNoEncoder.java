@@ -1,25 +1,14 @@
 package org.firstinspires.ftc.teamcode;
 import android.graphics.Color;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.robotcontroller.external.samples.ConceptVuforiaNavigation;
-import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
-import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
-import org.firstinspires.ftc.robotcore.external.navigation.VuMarkInstanceId;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
-public abstract class AutonomousBase extends LinearOpMode {
+
+public abstract class AutonomousBaseNoEncoder extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
     public static final String TAG = "Vuforia VuMark Sample";
     OpenGLMatrix lastLocation = null;
@@ -43,13 +32,13 @@ public abstract class AutonomousBase extends LinearOpMode {
 
     //knock off jewel routine
     public void KnockoffJewel(String opMode) {
-        double turnTime1 = 0.75;
-        double turnTime2 = 0.6;
+        double turnTime1 = 0.85;
+        double turnTime2 = 0.7;
         long motorSleep = 200;
         double powerForTurn = 0.15;
         String jewelColor = "None";
         robot.jewelMover.setPosition(j_down);
-        sleep(2000);
+        sleep(1000);
         //extend jewel arm
         float hsvValues[] = {0F, 0F, 0F};
         Color.RGBToHSV(robot.colorSensor.red(), robot.colorSensor.green(), robot.colorSensor.blue(), hsvValues);
@@ -380,16 +369,22 @@ public abstract class AutonomousBase extends LinearOpMode {
 
     //raise lifter
     public void raiseLifter(){
-        //these values may be switched! Check it next time!!
-        robot.lifter.setTargetPosition(robot.lifter.getCurrentPosition()+2600);
-        robot.lifter.setPower(0.5);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < 1.5)) {
+            robot.lifter.setPower(0.5);
+        }
+        robot.lifter.setPower(0);
+
     }
 
     //lower lifter
     public void lowerLifter(){
+        runtime.reset();
         //these values may be switched! Check it next time!!
-        robot.lifter.setTargetPosition(robot.lifter.getCurrentPosition()-2600);
-        robot.lifter.setPower(-0.5);
+        while (opModeIsActive() && (runtime.seconds() < 1.5)) {
+            robot.lifter.setPower(-0.5);
+        }
+        robot.lifter.setPower(0);
     }
     //push the glyph in
     public void pushGlyph () {
@@ -397,7 +392,7 @@ public abstract class AutonomousBase extends LinearOpMode {
         driveBackward(0.25, 0.5);
         sleep(750);
         lowerLifter();
-        sleep(2000);
+        sleep(1000);
         driveForward(0.25, 0.7);
         sleep(750);
         driveBackward(0.25, 0.4);
@@ -410,11 +405,13 @@ public abstract class AutonomousBase extends LinearOpMode {
             robot.Left1.setPower(0.25);
             robot.Right2.setPower(0.25);
             robot.Left2.setPower(0.25);
+            sleep(1);
         }
         robot.Right1.setPower(0);
         robot.Left1.setPower(0);
         robot.Right2.setPower(0);
         robot.Left2.setPower(0);
+        sleep(1);
     }
 
     public void counterclockwiseTurn (int degrees) {
@@ -424,11 +421,17 @@ public abstract class AutonomousBase extends LinearOpMode {
             robot.Left1.setPower(-0.25);
             robot.Right2.setPower(-0.25);
             robot.Left2.setPower(-0.25);
+            sleep(1);
         }
         robot.Right1.setPower(0);
         robot.Left1.setPower(0);
         robot.Right2.setPower(0);
         robot.Left2.setPower(0);
+        sleep(1);
+    }
+    public void gripperInit (){
+        robot.starboardGripper.setPosition(1);
+        robot.portGripper.setPosition(0);
     }
     //rampage code (going for second glyph)
     public void rampage (boolean Blue, boolean top) { //start rampage
@@ -439,9 +442,9 @@ public abstract class AutonomousBase extends LinearOpMode {
             counterclockwiseTurn(165);
             driveForward(1, 1.1);
             holdGlyph();
-            sleep(300);
+            sleep(100);
             raiseLifter();
-            sleep(300);
+            sleep(100);
             driveBackward(1, 0.8);
             clockwiseTurn(165);
             driveForward(1, 1);
@@ -458,9 +461,9 @@ public abstract class AutonomousBase extends LinearOpMode {
             clockwiseTurn(90);
             driveForward(1, 2.25);
             holdGlyph();
-            sleep(300);
+            sleep(100);
             raiseLifter();
-            sleep(300);
+            sleep(100);
             driveBackward(1, 1.6);
             counterclockwiseTurn(180);
             driveForward(1, 0.65);
@@ -472,9 +475,9 @@ public abstract class AutonomousBase extends LinearOpMode {
             clockwiseTurn(150);
             driveForward(1, 2.25);
             holdGlyph();
-            sleep(300);
+            sleep(100);
             raiseLifter();
-            sleep(300);
+            sleep(100);
             driveBackward(1, 1.6);
             counterclockwiseTurn(180);
             driveForward(1, 0.65);
@@ -535,7 +538,6 @@ public abstract class AutonomousBase extends LinearOpMode {
             //}
         } else {
             telemetry.addLine("We don't seem to have a mode?");
-            sleep(1000);
             telemetry.update();
         }
         // robot.columnCounterArm.setPosition(0.5);

@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
@@ -15,9 +14,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
-@Autonomous(name="Blue Top Autonomous", group ="Concept")
-@Disabled
-public class AutonomousBlueTop extends AutonomousBase {
+@Autonomous(name="Blue Top Autonomous No Encoder", group ="Concept")
+public class AutonomousBlueTopNoEncoder extends AutonomousBaseNoEncoder {
     public static final double CENTER_COLUMN_DISTANCE = 0.90;
     public static final double RIGHT_COLUMN_DISTANCE = 1.05;
     public static final double LEFT_COLUMN_DISTANCE = 0.41;
@@ -100,12 +98,13 @@ public class AutonomousBlueTop extends AutonomousBase {
 
     @Override public void runOpMode() {
         robot.init(hardwareMap);
+        gripperInit();
         telemetry.addData("Say", "Hello Driver");
         telemetry.update();
         telemetry.addData(">", "Press Play to start");
         telemetry.update();
         waitForStart();
-
+        holdGlyph();
         telemetry.addData(">", "Start main loop");
         telemetry.update();
         raiseLifter();
@@ -114,14 +113,14 @@ public class AutonomousBlueTop extends AutonomousBase {
         telemetry.update();
         KnockoffJewel("BlueTop");
         driveBackward(0.25, 1.6);
-        leftTurn(0.25, 1.25);
+        counterclockwiseTurn(90);
         telemetry.addData(">", "Turned left");
         telemetry.update();
         //countColumns("BlueTop", columnCounts);
         driveForward(0.25, time_for_driving);
         telemetry.addData(">", "Driving forward by:", time_for_driving);
         telemetry.update();
-        leftTurn(0.25,1.35);
+        counterclockwiseTurn(90);
         telemetry.addData(">", "Turned left");
         telemetry.update();
         driveForward(0.25, 1.4);
@@ -129,8 +128,9 @@ public class AutonomousBlueTop extends AutonomousBase {
         //robot.relicWrist.setPosition(0.5);
         telemetry.update();
         dropGlyph();
-        rampage(true, true);
-        driveForward(1, 0.1);
+        driveBackward(0.5,0.2);
+        //rampage(true, true);
+        //driveForward(1, 0.1);
     }
 
     String format(OpenGLMatrix transformationMatrix) {

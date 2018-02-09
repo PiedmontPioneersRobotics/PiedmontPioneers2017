@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
@@ -15,12 +14,11 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
-@Autonomous(name="Blue Top Autonomous", group ="Concept")
-@Disabled
-public class AutonomousBlueTop extends AutonomousBase {
-    public static final double CENTER_COLUMN_DISTANCE = 0.90;
-    public static final double RIGHT_COLUMN_DISTANCE = 1.05;
-    public static final double LEFT_COLUMN_DISTANCE = 0.41;
+@Autonomous(name="Blue Bottom Autonomous No Encoder", group ="Concept")
+public class AutonomousBlueBottomNoEncoder extends AutonomousBaseNoEncoder {
+    public static final double CENTER_COLUMN_DISTANCE = 1.65;
+    public static final double RIGHT_COLUMN_DISTANCE = 2;
+    public static final double LEFT_COLUMN_DISTANCE = 1.35;
     public int CryptoboxColumnCount = 0;
     public double driving_time = 1.0;
     public static final String TAG = "Vuforia VuMark Sample";
@@ -100,37 +98,39 @@ public class AutonomousBlueTop extends AutonomousBase {
 
     @Override public void runOpMode() {
         robot.init(hardwareMap);
+        gripperInit();
         telemetry.addData("Say", "Hello Driver");
         telemetry.update();
         telemetry.addData(">", "Press Play to start");
         telemetry.update();
         waitForStart();
-
+        holdGlyph();
         telemetry.addData(">", "Start main loop");
         telemetry.update();
         raiseLifter();
         double time_for_driving = checkVuforia();
         telemetry.addData(">", "Preparing to drive.");
         telemetry.update();
-        KnockoffJewel("BlueTop");
-        driveBackward(0.25, 1.6);
-        leftTurn(0.25, 1.25);
-        telemetry.addData(">", "Turned left");
+        KnockoffJewel("BlueBottom");
+        //countColumns("BlueBottom", columnCounts);
+        driveBackward(0.25, time_for_driving);
+        telemetry.addData(">", "Driving backward by:", time_for_driving);
         telemetry.update();
-        //countColumns("BlueTop", columnCounts);
-        driveForward(0.25, time_for_driving);
-        telemetry.addData(">", "Driving forward by:", time_for_driving);
+        //rightTurn(0.25,1.12);
+        clockwiseTurn(75);
+        telemetry.addData(">", "Turned right");
         telemetry.update();
-        leftTurn(0.25,1.35);
-        telemetry.addData(">", "Turned left");
-        telemetry.update();
-        driveForward(0.25, 1.4);
+        driveForward(0.25, 1);
         telemetry.addData(">", "Final drive forward");
         //robot.relicWrist.setPosition(0.5);
         telemetry.update();
         dropGlyph();
-        rampage(true, true);
-        driveForward(1, 0.1);
+        driveBackward(0.5,0.2);
+        //pushGlyph();
+        //rampage(true, false);
+        //lowerLifter();
+        //driveForward(1, 0.2);
+
     }
 
     String format(OpenGLMatrix transformationMatrix) {
