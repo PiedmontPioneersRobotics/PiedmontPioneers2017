@@ -93,8 +93,8 @@ public class HardwareFWD {
         double rgp = 1 - 0.2;   //right gripper position
         double lgp = 0.2;       //left gripper position
         double RGP = 180;       //relic gripper position
-        starboardGripper.setPosition(rgp);
-        portGripper.setPosition(lgp);
+        starboardGripper.setPosition(1);
+        portGripper.setPosition(0);
         jewelMover.setPosition(j_up);
         gyro = hwMap.get(ModernRoboticsI2cGyro.class, "gyro");
         gyro.calibrate();

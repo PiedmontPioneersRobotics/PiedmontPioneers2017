@@ -17,7 +17,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefau
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 @Autonomous(name="Red Bottom Autonomous", group ="Concept")
-@Disabled
 public class AutonomousRedBottom extends AutonomousBase {
     //These distance are for a voltage between 13.00 & 13.10
     public static final double CENTER_COLUMN_DISTANCE = 1.65;
@@ -119,7 +118,7 @@ public class AutonomousRedBottom extends AutonomousBase {
         driveForward(0.25, time_for_driving);
         telemetry.addData(">", "Driving forward by:", time_for_driving);
         telemetry.update();
-        clockwiseTurn(75);
+        clockwiseTurn(75, 0.25);
         telemetry.addData(">", "Turned right");
         telemetry.update();
         driveForward(0.25, 1);

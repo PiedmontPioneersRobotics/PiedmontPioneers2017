@@ -381,14 +381,14 @@ public abstract class AutonomousBase extends LinearOpMode {
     //raise lifter
     public void raiseLifter(){
         //these values may be switched! Check it next time!!
-        robot.lifter.setTargetPosition(robot.lifter.getCurrentPosition()+280);
+        robot.lifter.setTargetPosition(robot.lifter.getCurrentPosition()+560);
         robot.lifter.setPower(0.5);
     }
 
     //lower lifter
     public void lowerLifter(){
         //these values may be switched! Check it next time!!
-        robot.lifter.setTargetPosition(robot.lifter.getCurrentPosition()-280);
+        robot.lifter.setTargetPosition(robot.lifter.getCurrentPosition()-560);
         robot.lifter.setPower(-0.5);
     }
     //push the glyph in
@@ -403,13 +403,13 @@ public abstract class AutonomousBase extends LinearOpMode {
         driveBackward(0.25, 0.4);
     }
 
-    public void clockwiseTurn (int degrees) {
+    public void clockwiseTurn (int degrees, double speed) {
         robot.gyro.resetZAxisIntegrator();
         while (robot.gyro.getIntegratedZValue() > (-degrees+offset)) {
-            robot.Right1.setPower(0.25);
-            robot.Left1.setPower(0.25);
-            robot.Right2.setPower(0.25);
-            robot.Left2.setPower(0.25);
+            robot.Right1.setPower(speed);
+            robot.Left1.setPower(speed);
+            robot.Right2.setPower(speed);
+            robot.Left2.setPower(speed);
         }
         robot.Right1.setPower(0);
         robot.Left1.setPower(0);
@@ -417,13 +417,13 @@ public abstract class AutonomousBase extends LinearOpMode {
         robot.Left2.setPower(0);
     }
 
-    public void counterclockwiseTurn (int degrees) {
+    public void counterclockwiseTurn (int degrees, double speed) {
         robot.gyro.resetZAxisIntegrator();
         while (robot.gyro.getIntegratedZValue() < (degrees-offset)) {
-            robot.Right1.setPower(-0.25);
-            robot.Left1.setPower(-0.25);
-            robot.Right2.setPower(-0.25);
-            robot.Left2.setPower(-0.25);
+            robot.Right1.setPower(-speed);
+            robot.Left1.setPower(-speed);
+            robot.Right2.setPower(-speed);
+            robot.Left2.setPower(-speed);
         }
         robot.Right1.setPower(0);
         robot.Left1.setPower(0);
@@ -436,50 +436,50 @@ public abstract class AutonomousBase extends LinearOpMode {
         if(top == false) {
             driveBackward(1, 0.7);
             lowerLifter();
-            counterclockwiseTurn(165);
+            counterclockwiseTurn(165, 1);
             driveForward(1, 1.1);
             holdGlyph();
             sleep(300);
             raiseLifter();
             sleep(300);
             driveBackward(1, 0.8);
-            clockwiseTurn(165);
+            clockwiseTurn(165, 1);
             driveForward(1, 1);
             dropGlyph();
             lowerLifter();
             driveBackward(1, 0.5);
-            counterclockwiseTurn(180);
+            counterclockwiseTurn(180, 1);
             driveBackward(1, 0.9);
             driveForward(1, 0.2);
             telemetry.update();
         } else if(top == true && Blue == false) {
-            counterclockwiseTurn(90);
+            counterclockwiseTurn(90, 1);
             driveForward(1, 0.9);
-            clockwiseTurn(90);
+            clockwiseTurn(90, 1);
             driveForward(1, 2.25);
             holdGlyph();
             sleep(300);
             raiseLifter();
             sleep(300);
             driveBackward(1, 1.6);
-            counterclockwiseTurn(180);
+            counterclockwiseTurn(180, 1);
             driveForward(1, 0.65);
             dropGlyph();
             lowerLifter();
             driveBackward(1, 0.1);
             telemetry.update();
         } else if(top == true && Blue == true) {
-            clockwiseTurn(150);
+            clockwiseTurn(150, 1);
             driveForward(1, 2.25);
             holdGlyph();
             sleep(300);
             raiseLifter();
             sleep(300);
             driveBackward(1, 1.6);
-            counterclockwiseTurn(180);
+            counterclockwiseTurn(180, 1);
             driveForward(1, 0.65);
             dropGlyph();
-            counterclockwiseTurn(180);
+            counterclockwiseTurn(180, 1);
             driveBackward(1, 1);
             telemetry.update();
         }

@@ -26,8 +26,8 @@ public class AutonomousMecanumExperimental extends AutonomousBase {
         telemetry.update();
         waitForStart();
 
-        counterclockwiseTurn(90);
-        clockwiseTurn(90);
+        counterclockwiseTurn(90, 1);
+        clockwiseTurn(90, 1);
 
 
 

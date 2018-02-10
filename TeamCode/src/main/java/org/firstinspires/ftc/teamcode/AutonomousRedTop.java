@@ -16,7 +16,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefau
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 @Autonomous(name="Red Top Autonomous", group ="Concept")
-@Disabled
 public class AutonomousRedTop extends AutonomousBase {
     public static final double CENTER_COLUMN_DISTANCE = 0.90;
     public static final double RIGHT_COLUMN_DISTANCE = 0.51;
@@ -115,14 +114,14 @@ public class AutonomousRedTop extends AutonomousBase {
         KnockoffJewel("RedTop");
         driveForward(0.25, 1.5);
         //leftTurn(0.25, 1.5);
-        counterclockwiseTurn(90);
+        counterclockwiseTurn(90, 0.25);
         telemetry.addData(">", "Turned left");
         telemetry.update();
         driveForward(0.25, time_for_driving);
         telemetry.addData(">", "Driving forward by:", time_for_driving);
         telemetry.update();
         //rightTurn(0.25,1.3);
-        clockwiseTurn(85);
+        clockwiseTurn(85, 0.25);
         telemetry.addData(">", "Turned right");
         telemetry.update();
         driveForward(0.25, 1.5);

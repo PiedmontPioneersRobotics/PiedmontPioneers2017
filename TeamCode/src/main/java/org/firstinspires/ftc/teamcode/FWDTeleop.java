@@ -16,6 +16,11 @@ public class FWDTeleop extends OpMode{
     boolean down_previously_pressed = false;
     boolean b_previously_pressed = false;
     boolean x_previously_pressed = false;
+    int lifterTarget = 0;
+    static final int lifter_max = 8960;
+    static final int lifter_min = 0;
+    static final int lifter_step = 2240;
+    static final int lifter_speed = 1;
 
     @Override
     public void init() {
@@ -39,6 +44,7 @@ public class FWDTeleop extends OpMode{
         //int platformPusherPosition;
         //platformPusherPosition = robot.platformPusher.getCurrentPosition();
         telemetry.addData("lifter",  "%d", lifterPosition);
+        telemetry.addData("l-target",  "%d", lifterTarget);
         //telemetry.addData("Relic Arm",  "%d", relicGrabberPosition);
         boolean a_pressed;
         boolean y_pressed;
@@ -139,23 +145,33 @@ public class FWDTeleop extends OpMode{
         //mecanum wheels code
 
         //lifter code
-        if(lifterPosition > 1120) {
-            robot.lifter.setTargetPosition(lifterPosition - 1);
-
-            robot.lifter.setPower(-0.5);
+        /*
+        if(lifterPosition > lifter_max) {
+            lifterTarget = lifter_max;
+            robot.lifter.setTargetPosition(lifterTarget);
+            robot.lifter.setPower(0);
             telemetry.addLine("Caution: Lifter is too high");
             telemetry.update();
-        } else if (lifterPosition < 0){
-            robot.lifter.setTargetPosition(lifterPosition + 1);
-            robot.lifter.setPower(0.5);
+        } else if (lifterPosition < lifter_min){
+            lifterTarget = lifter_min;
+            robot.lifter.setTargetPosition(lifterTarget);
+            robot.lifter.setPower(0);
             telemetry.addLine("Caution: Lifter is too low");
             telemetry.update();
-        } else if (y_pressed && !y_previously_pressed) {
-            robot.lifter.setTargetPosition(lifterPosition + 560);
-            robot.lifter.setPower(1);
+        } else
+            */
+        if (y_pressed && !y_previously_pressed) {
+            lifterTarget += lifter_step;
+            if (lifterTarget > lifter_max) lifterTarget = lifter_max;
+            if (lifterTarget < lifter_min) lifterTarget = lifter_min;
+            robot.lifter.setTargetPosition(lifterTarget);
+            robot.lifter.setPower(lifter_speed);
         } else if (a_pressed && !a_previously_pressed) {
-            robot.lifter.setTargetPosition(lifterPosition - 560);
-            robot.lifter.setPower(-1);
+            lifterTarget -= lifter_step;
+            if (lifterTarget > lifter_max) lifterTarget = lifter_max;
+            if (lifterTarget < lifter_min) lifterTarget = lifter_min;
+            robot.lifter.setTargetPosition(lifterTarget);
+            robot.lifter.setPower(lifter_speed);
         }
         a_previously_pressed = a_pressed;
         y_previously_pressed = y_pressed;
@@ -259,13 +275,16 @@ public class FWDTeleop extends OpMode{
             robot.starboardGripper.setPosition(1);
             robot.portGripper.setPosition(0);
         } else {
+            /*
             double rgp = 1 - (0.11 * (gamepad1.right_trigger) + 0.4);
             double lgp = 0.11 * gamepad1.left_trigger + 0.3;
             robot.starboardGripper.setPosition(rgp);
             robot.portGripper.setPosition(lgp);
             telemetry.addData("starboard gripper", "%.2f", rgp);
             telemetry.addData("port gripper", "%.2f", lgp);
-
+            */
+            robot.starboardGripper.setPosition(0.2);
+            robot.portGripper.setPosition(0.8);
         }
 
 
@@ -276,6 +295,12 @@ public class FWDTeleop extends OpMode{
             robot.platformPusher.setPower(-0.5);
         } else {
             robot.platformPusher.setPower(0);
+        }
+
+        if (gamepad2.right_bumper) {
+            robot.jewelMover.setPosition(0);
+        } else {
+            robot.jewelMover.setPosition(0.45);
         }
 
 

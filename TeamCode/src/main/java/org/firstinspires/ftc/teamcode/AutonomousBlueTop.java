@@ -16,7 +16,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefau
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 @Autonomous(name="Blue Top Autonomous", group ="Concept")
-@Disabled
 public class AutonomousBlueTop extends AutonomousBase {
     public static final double CENTER_COLUMN_DISTANCE = 0.90;
     public static final double RIGHT_COLUMN_DISTANCE = 1.05;
