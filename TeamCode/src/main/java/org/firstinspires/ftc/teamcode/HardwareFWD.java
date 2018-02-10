@@ -64,10 +64,9 @@ public class HardwareFWD {
         lifter  = hwMap.get(DcMotor.class, "lifter");
         lifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         lifter.setDirection(DcMotor.Direction.FORWARD);
-        lifter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         lifter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        lifter.setPower(0.5);
         lifter.setTargetPosition(0);
+        lifter.setPower(1);
         platformPusher  = hwMap.get(DcMotor.class, "Platform Pusher");
         platformPusher.setDirection(DcMotor.Direction.FORWARD);
         platformPusher.setPower(0);

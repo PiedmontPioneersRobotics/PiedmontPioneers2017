@@ -141,6 +141,7 @@ public class FWDTeleop extends OpMode{
         //lifter code
         if(lifterPosition > 1120) {
             robot.lifter.setTargetPosition(lifterPosition - 1);
+
             robot.lifter.setPower(-0.5);
             telemetry.addLine("Caution: Lifter is too high");
             telemetry.update();
