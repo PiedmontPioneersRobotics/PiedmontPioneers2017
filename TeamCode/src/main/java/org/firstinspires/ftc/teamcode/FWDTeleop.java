@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.RobotLog;
 
 import static java.lang.Math.atan;
 import static java.lang.Math.round;
@@ -21,10 +22,12 @@ public class FWDTeleop extends OpMode{
     static final int lifter_min = 0;
     static final int lifter_step = 2240;
     static final int lifter_speed = 1;
+    public static final String TAG = "FWD Teleop";
 
     @Override
     public void init() {
         telemetry.addData("Say", "B4 init dog");
+        RobotLog.ii(TAG,       "***** after robot init");
 
 
         robot.init(hardwareMap);

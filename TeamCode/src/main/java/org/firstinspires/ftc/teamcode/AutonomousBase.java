@@ -4,6 +4,7 @@ import android.graphics.Color;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.RobotLog;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.ConceptVuforiaNavigation;
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -21,7 +22,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefau
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 public abstract class AutonomousBase extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
-    public static final String TAG = "Vuforia VuMark Sample";
+    public static final String TAG = "Autonomous base";
     OpenGLMatrix lastLocation = null;
     VuforiaLocalizer vuforia;
     RelicRecoveryVuMark vuMark;
@@ -404,12 +405,14 @@ public abstract class AutonomousBase extends LinearOpMode {
     }
 
     public void clockwiseTurn (int degrees, double speed) {
+        RobotLog.ii(TAG,       "Started Clockwise turn ");
         robot.gyro.resetZAxisIntegrator();
         while (robot.gyro.getIntegratedZValue() > (-degrees+offset)) {
             robot.Right1.setPower(speed);
             robot.Left1.setPower(speed);
             robot.Right2.setPower(speed);
             robot.Left2.setPower(speed);
+            RobotLog.ii(TAG,       "Ended clockwise Turn");
         }
         robot.Right1.setPower(0);
         robot.Left1.setPower(0);
@@ -418,12 +421,14 @@ public abstract class AutonomousBase extends LinearOpMode {
     }
 
     public void counterclockwiseTurn (int degrees, double speed) {
+        RobotLog.ii(TAG,       "Started CounterclockwiseTurn");
         robot.gyro.resetZAxisIntegrator();
         while (robot.gyro.getIntegratedZValue() < (degrees-offset)) {
             robot.Right1.setPower(-speed);
             robot.Left1.setPower(-speed);
             robot.Right2.setPower(-speed);
             robot.Left2.setPower(-speed);
+            RobotLog.ii(TAG,       "Ended Counter Clockwise Turn ");
         }
         robot.Right1.setPower(0);
         robot.Left1.setPower(0);
@@ -433,6 +438,7 @@ public abstract class AutonomousBase extends LinearOpMode {
     //rampage code (going for second glyph)
     public void rampage (boolean Blue, boolean top) { //start rampage
         telemetry.addData(">", "Rampage code, I'm going for the second glyph!");
+        RobotLog.ii(TAG,       "Rampage Code starting,");
         if(top == false) {
             driveBackward(1, 0.7);
             lowerLifter();
@@ -486,7 +492,7 @@ public abstract class AutonomousBase extends LinearOpMode {
 
         //start rampage
        // telemetry.addData(">", "Rampage code, I'm going for the second glyph!");
-
+        RobotLog.ii(TAG,       "Rampage done ");
     }
 
     //code for counting columns 

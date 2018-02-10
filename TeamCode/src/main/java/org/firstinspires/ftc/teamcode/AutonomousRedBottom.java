@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.RobotLog;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
@@ -24,7 +25,8 @@ public class AutonomousRedBottom extends AutonomousBase {
     public static final double LEFT_COLUMN_DISTANCE = 2.2;
     public int CryptoboxColumnCount = 0;
     public double driving_time = 1.5;
-    public static final String TAG = "Vuforia VuMark Sample";
+    public static final String TAG = "Autonomous Red bottom";
+
     OpenGLMatrix lastLocation = null;
     VuforiaLocalizer vuforia;
     RelicRecoveryVuMark vuMark;
@@ -76,22 +78,26 @@ public class AutonomousRedBottom extends AutonomousBase {
             CryptoboxColumnCount = 2;
             driving_time = CENTER_COLUMN_DISTANCE;
             telemetry.addData("Center:", "True");
+            RobotLog.ii(TAG,       "Going Center");
             telemetry.update();
         } else if (vuMark == RelicRecoveryVuMark.LEFT) {
             Left = true;
             CryptoboxColumnCount = 3;
             driving_time = LEFT_COLUMN_DISTANCE;
             telemetry.addData("Left:", "True");
+            RobotLog.ii(TAG,       "Going Left ");
             telemetry.update();
         } else if (vuMark == RelicRecoveryVuMark.RIGHT) {
             Right = true;
             CryptoboxColumnCount = 1;
             driving_time = RIGHT_COLUMN_DISTANCE;
             telemetry.addData("Right:", "True");
+            RobotLog.ii(TAG,       "Going Right");
             telemetry.update();
         } else {
             CryptoboxColumnCount = 2;
             telemetry.addData(">", "Cannot see it.");
+            RobotLog.ii(TAG,       "Cannont See, Going Center");
             telemetry.update();
             driving_time = CENTER_COLUMN_DISTANCE;
         }
@@ -101,6 +107,7 @@ public class AutonomousRedBottom extends AutonomousBase {
 
     @Override public void runOpMode() {
         robot.init(hardwareMap);
+        RobotLog.ii(TAG,       "***** after robot init");
         telemetry.addData("Say", "Hello Driver");
         telemetry.update();
         telemetry.addData(">", "Press Play to start");
