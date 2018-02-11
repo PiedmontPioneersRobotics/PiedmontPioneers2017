@@ -33,7 +33,11 @@ public abstract class AutonomousBase extends LinearOpMode {
     public boolean BlueTop;
     public int columnCounts = 0;
     public int offset = 5;
-
+    int lifterTarget = 0;
+    static final int lifter_max = 8960;
+    static final int lifter_min = 0;
+    static final int lifter_step = 2240;
+    static final int lifter_speed = 1;
 
     HardwareFWD robot  = new HardwareFWD();
     public final static double j_up = 0.6;
@@ -42,6 +46,11 @@ public abstract class AutonomousBase extends LinearOpMode {
     public boolean Left;
     public boolean Right;
 
+    //this puts the relic up so it doesn't interfere with the jewel knock
+    public void liftRelicArm() {
+        robot.relicWrist.setPosition(0.5);
+        sleep(1000);
+    }
     //knock off jewel routine
     public void KnockoffJewel(String opMode) {
         double turnTime1 = 0.75;
@@ -50,7 +59,9 @@ public abstract class AutonomousBase extends LinearOpMode {
         double powerForTurn = 0.15;
         String jewelColor = "None";
         robot.jewelMover.setPosition(j_down);
-        sleep(2000);
+        sleep(1000);
+        //liftRelicArm adds a sleep(1000)
+        liftRelicArm();
         //extend jewel arm
         float hsvValues[] = {0F, 0F, 0F};
         Color.RGBToHSV(robot.colorSensor.red(), robot.colorSensor.green(), robot.colorSensor.blue(), hsvValues);
@@ -381,16 +392,26 @@ public abstract class AutonomousBase extends LinearOpMode {
 
     //raise lifter
     public void raiseLifter(){
-        //these values may be switched! Check it next time!!
-        robot.lifter.setTargetPosition(robot.lifter.getCurrentPosition()+560);
-        robot.lifter.setPower(0.5);
+        //set the target position
+        robot.lifter.setTargetPosition(robot.lifter.getCurrentPosition()+lifter_step);
+        robot.lifter.setPower(lifter_speed);
+        lifterTarget += lifter_step;
+        //not really necessary, but just checking if the lifter's going too high or too low
+        if (lifterTarget > lifter_max) lifterTarget = lifter_max;
+        if (lifterTarget < lifter_min) lifterTarget = lifter_min;
+        robot.lifter.setTargetPosition(lifterTarget);
     }
 
     //lower lifter
     public void lowerLifter(){
-        //these values may be switched! Check it next time!!
-        robot.lifter.setTargetPosition(robot.lifter.getCurrentPosition()-560);
-        robot.lifter.setPower(-0.5);
+        //set the target position
+        robot.lifter.setTargetPosition(robot.lifter.getCurrentPosition()-lifter_step);
+        robot.lifter.setPower(-lifter_speed);
+        lifterTarget -= lifter_step;
+        //not really necessary, but just checking if the lifter's going too high or too low
+        if (lifterTarget > lifter_max) lifterTarget = lifter_max;
+        if (lifterTarget < lifter_min) lifterTarget = lifter_min;
+        robot.lifter.setTargetPosition(lifterTarget);
     }
     //push the glyph in
     public void pushGlyph () {
