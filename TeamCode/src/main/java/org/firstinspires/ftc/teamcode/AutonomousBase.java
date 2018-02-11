@@ -412,12 +412,12 @@ public abstract class AutonomousBase extends LinearOpMode {
             robot.Left1.setPower(speed);
             robot.Right2.setPower(speed);
             robot.Left2.setPower(speed);
-            RobotLog.ii(TAG,       "Ended clockwise Turn");
         }
         robot.Right1.setPower(0);
         robot.Left1.setPower(0);
         robot.Right2.setPower(0);
         robot.Left2.setPower(0);
+        RobotLog.ii(TAG,       "Ended clockwise Turn");
     }
 
     public void counterclockwiseTurn (int degrees, double speed) {
@@ -428,12 +428,12 @@ public abstract class AutonomousBase extends LinearOpMode {
             robot.Left1.setPower(-speed);
             robot.Right2.setPower(-speed);
             robot.Left2.setPower(-speed);
-            RobotLog.ii(TAG,       "Ended Counter Clockwise Turn ");
         }
         robot.Right1.setPower(0);
         robot.Left1.setPower(0);
         robot.Right2.setPower(0);
         robot.Left2.setPower(0);
+        RobotLog.ii(TAG,       "Ended Counter Clockwise Turn ");
     }
     //rampage code (going for second glyph)
     public void rampage (boolean Blue, boolean top) { //start rampage
