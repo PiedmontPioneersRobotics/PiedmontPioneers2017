@@ -105,9 +105,9 @@ public class AutonomousBlueBottom extends AutonomousBase {
     @Override public void runOpMode() {
         robot.init(hardwareMap);
         RobotLog.ii(TAG,       "***** after robot init");
-        telemetry.addData("Say", "Hello Driver");
+        telemetry.addLine("Hello Driver");
         telemetry.update();
-        telemetry.addData(">", "Press Play to start");
+        telemetry.addLine("Press Play to start");
         telemetry.update();
         waitForStart();
         holdGlyph();
