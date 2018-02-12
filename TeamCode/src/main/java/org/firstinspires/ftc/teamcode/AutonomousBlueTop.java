@@ -107,12 +107,15 @@ public class AutonomousBlueTop extends AutonomousBase {
         robot.init(hardwareMap);
         RobotLog.ii(TAG,       "***** after robot init");
         telemetry.addData("Say", "Hello Driver");
+
         telemetry.update();
         telemetry.addData(">", "Press Play to start");
+
         telemetry.update();
         waitForStart();
 
         telemetry.addData(">", "Start main loop");
+        RobotLog.ii(TAG,       "Main loop started");
         telemetry.update();
         raiseLifter();
         double time_for_driving = checkVuforia();
@@ -122,16 +125,20 @@ public class AutonomousBlueTop extends AutonomousBase {
         driveBackward(0.25, 1.6);
         leftTurn(0.25, 1.25);
         telemetry.addData(">", "Turned left");
+        RobotLog.ii(TAG,       "Turned left ");
         telemetry.update();
         //countColumns("BlueTop", columnCounts);
         driveForward(0.25, time_for_driving);
         telemetry.addData(">", "Driving forward by:", time_for_driving);
+        RobotLog.ii(TAG,       "Driving forward by:" + time_for_driving);
         telemetry.update();
         leftTurn(0.25,1.35);
         telemetry.addData(">", "Turned left");
+        RobotLog.ii(TAG,       "Turned Left");
         telemetry.update();
         driveForward(0.25, 1.4);
         telemetry.addData(">", "Final drive forward");
+        RobotLog.ii(TAG,       "Final drive forward");
         //robot.relicWrist.setPosition(0.5);
         telemetry.update();
         dropGlyph();
