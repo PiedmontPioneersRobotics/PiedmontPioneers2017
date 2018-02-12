@@ -126,13 +126,16 @@ public class AutonomousRedTop extends AutonomousBase {
         telemetry.update();
         driveForward(0.25, time_for_driving);
         telemetry.addData(">", "Driving forward by:", time_for_driving);
+        RobotLog.ii(TAG,       "Driving forward by:" + time_for_driving);
         telemetry.update();
         //rightTurn(0.25,1.3);
         clockwiseTurn(85, 0.25);
         telemetry.addData(">", "Turned right");
+        RobotLog.ii(TAG,       "Turned right");
         telemetry.update();
         driveForward(0.25, 1.5);
         telemetry.addData(">", "Final drive forward");
+        RobotLog.ii(TAG,       "Final Drive Forward ");
         //robot.relicWrist.setPosition(0.5);
         telemetry.update();
         dropGlyph();

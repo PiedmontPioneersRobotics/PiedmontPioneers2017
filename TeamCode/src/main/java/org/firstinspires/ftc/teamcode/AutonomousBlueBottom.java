@@ -112,6 +112,7 @@ public class AutonomousBlueBottom extends AutonomousBase {
         waitForStart();
         holdGlyph();
         telemetry.addData(">", "Start main loop");
+        RobotLog.ii(TAG,       "Main loop started");
         telemetry.update();
         raiseLifter();
         double time_for_driving = checkVuforia();
@@ -121,13 +122,16 @@ public class AutonomousBlueBottom extends AutonomousBase {
         //countColumns("BlueBottom", columnCounts);
         driveBackward(0.25, time_for_driving);
         telemetry.addData(">", "Driving backward by:", time_for_driving);
+        RobotLog.ii(TAG,       "Driving forward by:" + time_for_driving);
         telemetry.update();
         //rightTurn(0.25,1.12);
         clockwiseTurn(75, 0.25);
         telemetry.addData(">", "Turned right");
+        RobotLog.ii(TAG,       "Turned right");
         telemetry.update();
         driveForward(0.25, 1);
         telemetry.addData(">", "Final drive forward");
+        RobotLog.ii(TAG,       "Final drive forward");
         //robot.relicWrist.setPosition(0.5);
         telemetry.update();
         dropGlyph();

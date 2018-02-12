@@ -25,13 +25,14 @@ public class AutonomousRedBottom extends AutonomousBase {
     public static final double LEFT_COLUMN_DISTANCE = 2.2;
     public int CryptoboxColumnCount = 0;
     public double driving_time = 1.5;
-    public static final String TAG = "Autonomous Red bottom";
+    public static final String TAG = "AutonomousRedBottom";
 
     OpenGLMatrix lastLocation = null;
     VuforiaLocalizer vuforia;
     RelicRecoveryVuMark vuMark;
     //check vuforia and return the distance needed to get to the correct cryptobox column
     @Override public double checkVuforia() {
+        RobotLog.ii(TAG, "starting checkVuforia()");
         telemetry.addData("Just checking", "...");
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
@@ -97,7 +98,7 @@ public class AutonomousRedBottom extends AutonomousBase {
         } else {
             CryptoboxColumnCount = 2;
             telemetry.addData(">", "Cannot see it.");
-            RobotLog.ii(TAG,       "Cannont See, Going Center");
+            RobotLog.ii(TAG,       "Cannot See, Going Center");
             telemetry.update();
             driving_time = CENTER_COLUMN_DISTANCE;
         }
@@ -115,21 +116,26 @@ public class AutonomousRedBottom extends AutonomousBase {
         waitForStart();
         holdGlyph();
         telemetry.addData(">", "Start main loop");
+        RobotLog.ii(TAG,       "Main Loop started");
         telemetry.update();
         raiseLifter();
         double time_for_driving = checkVuforia();
         telemetry.addData(">", "Preparing to drive.");
+        RobotLog.ii(TAG,       "Preparing to drive.");
         telemetry.update();
         KnockoffJewel("RedBottom");
         //countColumns("RedBottom", columnCounts);
         driveForward(0.25, time_for_driving);
         telemetry.addData(">", "Driving forward by:", time_for_driving);
+        RobotLog.ii(TAG,       "Driving forward by:" + time_for_driving);
         telemetry.update();
         clockwiseTurn(75, 0.25);
         telemetry.addData(">", "Turned right");
+        RobotLog.ii(TAG,       "Turned right");
         telemetry.update();
         driveForward(0.25, 1);
         telemetry.addData(">", "Final drive forward");
+        RobotLog.ii(TAG,       "Final drive forward");
         //robot.relicWrist.setPosition(0.5);
         telemetry.update();
         dropGlyph();
