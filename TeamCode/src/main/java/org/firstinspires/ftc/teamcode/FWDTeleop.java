@@ -129,14 +129,14 @@ public class FWDTeleop extends OpMode{
             }*/
         } else {
             if (gamepad2.left_bumper) {
-                robot.relicArm.setPower(gamepad2.left_stick_y*0.5);
+                robot.relicArm.setPower(gamepad2.left_stick_y);
                 robot.relicGrabber.setPosition(0.25+gamepad2.right_trigger*0.5);
                 robot.relicWrist.setPosition(0.85*(1-gamepad2.left_trigger)+0.15);
                 telemetry.addData("Relic Grabber:", robot.relicGrabber.getPosition());
                 telemetry.addData("Relic Wrist:", robot.relicWrist.getPosition());
                 telemetry.update();
             } else {
-                robot.relicArm.setPower(gamepad2.left_stick_y*0.5);
+                robot.relicArm.setPower(gamepad2.left_stick_y);
                 robot.relicGrabber.setPosition(0.25+gamepad2.right_trigger*0.5);
                 robot.relicWrist.setPosition(1-gamepad2.left_trigger);
                 telemetry.addData("Relic Grabber:", robot.relicGrabber.getPosition());
