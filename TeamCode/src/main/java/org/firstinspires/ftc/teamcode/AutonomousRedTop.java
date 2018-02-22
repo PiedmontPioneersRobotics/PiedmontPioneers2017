@@ -20,7 +20,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 public class AutonomousRedTop extends AutonomousBase {
     public static final double CENTER_COLUMN_DISTANCE = 0.90;
     public static final double RIGHT_COLUMN_DISTANCE = 0.51;
-    public static final double LEFT_COLUMN_DISTANCE = 1.29;
+    public static final double LEFT_COLUMN_DISTANCE = 1.59;
     public int CryptoboxColumnCount = 0;
     public double driving_time = 1.0;
 
@@ -114,6 +114,7 @@ public class AutonomousRedTop extends AutonomousBase {
 
         telemetry.addData(">", "Start main loop");
         telemetry.update();
+        holdGlyph();
         raiseLifter();
         double time_for_driving = checkVuforia();
         telemetry.addData(">", "Preparing to drive.");
@@ -121,7 +122,7 @@ public class AutonomousRedTop extends AutonomousBase {
         KnockoffJewel("RedTop");
         driveForward(0.25, 1.5);
         //leftTurn(0.25, 1.5);
-        counterclockwiseTurn(90, 0.25);
+        counterclockwiseTurn(85, 0.25);
         telemetry.addData(">", "Turned left");
         telemetry.update();
         driveForward(0.25, time_for_driving);
@@ -129,7 +130,7 @@ public class AutonomousRedTop extends AutonomousBase {
         RobotLog.ii(TAG,       "Driving forward by:" + time_for_driving);
         telemetry.update();
         //rightTurn(0.25,1.3);
-        clockwiseTurn(85, 0.25);
+        clockwiseTurn(80, 0.25);
         telemetry.addData(">", "Turned right");
         RobotLog.ii(TAG,       "Turned right");
         telemetry.update();
@@ -139,8 +140,9 @@ public class AutonomousRedTop extends AutonomousBase {
         //robot.relicWrist.setPosition(0.5);
         telemetry.update();
         dropGlyph();
-        rampage(false, true);
-        driveForward(1, 0.1);
+        //rampage(false, true);
+        //driveForward(1, 0.1);
+        pushGlyph();
     }
 
     String format(OpenGLMatrix transformationMatrix) {
